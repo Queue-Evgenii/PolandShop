@@ -13,5 +13,21 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script type="module">
+      import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js'
+    
+      const swiper = new Swiper('.swiper', {
+      loop: true,
+      autoplay: true,
+      pagination: {
+        el: '.swiper-pagination'
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+    })
+    console.log(swiper)
+    </script>
   </body>
 </html>

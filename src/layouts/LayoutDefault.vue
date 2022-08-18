@@ -1,5 +1,8 @@
 <template>
-  <main class="default">
+  <div class="default">
+    <div class="container">
+      <main-menu  v-if="MobileWidth"/>
+    </div>
     <header class="header">
       <div class="header__top top-header">
         <div class="top-header__container container">
@@ -10,7 +13,10 @@
                 <span></span>
                 <span></span>
               </button>
-              <div v-bind:class="{active: burgerActive}" class="menu__body"></div>
+              <div v-bind:class="{active: burgerActive}" class="menu__body" >
+                <main-menu v-if="!MobileWidth" />
+                <header-menu v-if="!MobileWidth" />
+              </div>
             </nav>
             <a class="top-header__logo"><img src="../assets/img/header/logo.png" alt=""></a>
             <div class="top-header__phones phones-header flex">
@@ -21,8 +27,8 @@
               </div>
             </div>
             <form class="top-header__search search-header flex">
-              <button type="button" class="search-header__button"><img src="../assets/img/header/icon/search.png" alt=""></button>
-              <input-header v-if="InputHeader" />
+              <button @click="searchActive = !searchActive" type="button" class="search-header__button"><img src="../assets/img/header/icon/search.png" alt=""></button>
+              <input-header v-if="MobileWidth" />
             </form>
             <div class="top-header__actions actions-header flex">
               <div class="actions-header__favorite actions-header__item flex">
@@ -38,22 +44,18 @@
                 <a href="#" class="actions-header__user-icon"></a>
               </div>
             </div>
-            <input-header v-if="!InputHeader" />
           </div>
+          <input-header v-if="!MobileWidth" v-bind:class="{active: searchActive}" />
         </div>
       </div>
       <div class="header__bottom bottom-header">
         <div class="bottom-header__container container">
-          <ul class="bottom-header__content flex">
-            <li v-for="item in headerMenu" :key="item.id">
-              <a class="hover-underline" :href="item.url">{{ item.label }}</a>
-            </li>
-          </ul>
+          <header-menu v-if="MobileWidth" />
         </div>
       </div>
     </header>
     <slot></slot>
-  </main>
+  </div>
 </template>
 <style lang="stylus">
   .header {
@@ -77,7 +79,7 @@
     }
     &__content{
       justify-content space-between
-      height 120px
+      min-height 120px
       column-gap: 20px
       @media(max-width: 768px){
         min-height 70px
@@ -133,6 +135,7 @@
       &__items{
         transform scale(0)
         position absolute
+        z-index 2
         background-color #fff
         border-radius: 6px
         padding 10px
@@ -197,15 +200,17 @@
       flex: 0 0 auto
       &__input{
         position relative
-        flex: 1 1 100%
-        order 5
-        height 50px
+        height 0
+        margin-top 5px
         padding 0 15px
-        // transform translate(0, -1000%)
-        // visibility hidden
-        // overflow hidden
-        // display none
-        transition all 0.5s ease 0s
+        transform translate(0, -1000%)
+        visibility collapse
+        transition all 0.5s ease 0.1s
+        &.active {
+          height 50px
+          transform translate(0, 0)
+          visibility visible
+        }
       }
     }
   }
@@ -287,7 +292,7 @@
   }
   .bottom-header{
     &__content{
-      height 36px
+      min-height 36px
       column-gap: 2.6%
       a{
         color: #3D3D3D;
@@ -295,14 +300,29 @@
           color: #FF0031;
         }
       }
+      li{
+        display inline-block
+      }
     }
     @media(max-width: 768px){
-      //display none
+      display none
+      &__content{
+        flex-direction column
+        align-items start
+        a{
+          font-size 30px
+        }
+        li{
+          &:not(:last-child){
+            margin-bottom 20px
+          }
+        }
+      }
     }
   }
   .menu{
   display: none;
-  @media(max-width: 992px){
+  @media(max-width: 768px){
     display: block;
   }
   &__body{
@@ -310,12 +330,12 @@
     width: 85%;
     height: 100%;
     background: #ead9ea;
-    z-index: 2;
+    z-index: 5;
     transition: all 0.5s ease 0s;
     top 0
     left: -100%;
     overflow: auto;
-    padding: 100px 20px 70px 20px;
+    padding: 80px 20px 70px 20px;
     &.active{
       left: 0;
     }
@@ -364,61 +384,42 @@
     }
   }
 }
+.navigation{
+  a{
+    white-space nowrap
+  }
+  @media(max-width: 768px){
+    flex-wrap: wrap
+    gap: 15px
+    margin-bottom 25px
+    a{
+      font-size 26px
+    }
+  }
+}
+
 </style>
 <script>
 import InputHeader from '@/components/InputHeader'
+import HeaderMenu from '@/components/HeaderMenu'
+import MainMenu from '@/components/MainMenu'
 export default {
   data () {
     return {
       activePhones: false,
       burgerActive: false,
-      inputHeader: true,
-      headerMenu: [
-        {
-          id: 1,
-          label: 'Kategorie',
-          url: '#'
-        },
-        {
-          id: 2,
-          label: 'Promocje',
-          url: '#'
-        },
-        {
-          id: 3,
-          label: 'Aktualności',
-          url: '#'
-        },
-        {
-          id: 4,
-          label: 'Nowości',
-          url: '#'
-        },
-        {
-          id: 5,
-          label: 'Dostawa',
-          url: '#'
-        },
-        {
-          id: 6,
-          label: 'Dodaj opinię o sklepie',
-          url: '#'
-        },
-        {
-          id: 7,
-          label: 'Kontakt',
-          url: '#'
-        }
-      ]
+      searchActive: false
     }
   },
   components: {
-    InputHeader
+    InputHeader,
+    HeaderMenu,
+    MainMenu
   },
   methods: {
   },
   computed: {
-    InputHeader () {
+    MobileWidth () {
       if (window.innerWidth <= 768) {
         console.log('false')
         return false
