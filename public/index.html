@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/> -->
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
@@ -14,20 +16,18 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
     <script type="module">
-      import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js'
-    
-      const swiper = new Swiper('.swiper', {
+      new Swiper('.swiper', {
       loop: true,
-      autoplay: true,
+      //autoplay: true,
       pagination: {
-        el: '.swiper-pagination'
+        el: '.swiper-pagination',
+        clickable: true
       },
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
     })
-    console.log(swiper)
     </script>
   </body>
 </html>

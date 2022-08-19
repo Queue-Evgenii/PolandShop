@@ -7,24 +7,34 @@
           <div class="container">
             <div class="great__content">
               <aside class="great__sidebar">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos ipsum in necessitatibus laudantium quidem autem ab laborum asperiores, recusandae tenetur adipisci voluptatum quam similique deleniti quae est quasi incidunt atque!</p>
-                <p>Qui totam optio nostrum necessitatibus laudantium deleniti incidunt voluptatum magnam sed amet dolorem repellendus vel at ad, velit eius! Aspernatur temporibus voluptatem ea fugit suscipit itaque eveniet esse architecto perferendis!</p>
-                <p>Accusantium sapiente dignissimos harum ad repellendus illo sunt, error beatae ipsam eius repudiandae magnam aspernatur, molestiae quo neque officia odit omnis qui quam, impedit est ducimus labore perferendis? Perferendis, odit!</p>
-                <p>Nisi tenetur nam amet, accusantium blanditiis error perspiciatis eum dolores aperiam consequatur voluptates. Dolorem nesciunt quas qui atque facilis nobis labore, aspernatur voluptatem dicta dolorum sunt porro. Omnis, aperiam suscipit?</p>
-                <p>Soluta a eaque modi qui cum pariatur aliquid iure sunt vel tenetur, sed explicabo expedita nostrum consequuntur facilis ipsum numquam beatae est officia sit commodi facere distinctio! Quod, praesentium sit?</p>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos ipsum in necessitatibus
+                  laudantium quidem autem ab laborum asperiores, recusandae tenetur adipisci voluptatum quam similique
+                  deleniti quae est quasi incidunt atque!</p>
+                <p>Qui totam optio nostrum necessitatibus laudantium deleniti incidunt voluptatum magnam sed amet
+                  dolorem repellendus vel at ad, velit eius! Aspernatur temporibus voluptatem ea fugit suscipit itaque
+                  eveniet esse architecto perferendis!</p>
+                <p>Accusantium sapiente dignissimos harum ad repellendus illo sunt, error beatae ipsam eius repudiandae
+                  magnam aspernatur, molestiae quo neque officia odit omnis qui quam, impedit est ducimus labore
+                  perferendis? Perferendis, odit!</p>
+                <p>Nisi tenetur nam amet, accusantium blanditiis error perspiciatis eum dolores aperiam consequatur
+                  voluptates. Dolorem nesciunt quas qui atque facilis nobis labore, aspernatur voluptatem dicta dolorum
+                  sunt porro. Omnis, aperiam suscipit?</p>
+                <p>Soluta a eaque modi qui cum pariatur aliquid iure sunt vel tenetur, sed explicabo expedita nostrum
+                  consequuntur facilis ipsum numquam beatae est officia sit commodi facere distinctio! Quod, praesentium
+                  sit?</p>
               </aside>
               <div class="great__sliders">
-                <div class="mainslider swiper">
+                <div class="mainslider swiper swiper-container">
                   <div class="mainslider__container swiper-wrapper">
                     <div class="mainslider__slide swiper-slide" v-for="item in mainSlides" :key="item.id">
-                      <div class="mainslider__image"><img :src="item.image" alt=""></div>
+                      <img :src="item.image" alt="">
                       <div class="mainslider__button"><a :href="item.url">{{ item.label }}</a></div>
                     </div>
                   </div>
                   <div class="mainslider__navs">
-                      <button type='button' class="slider__navs-btn slider__navs-prev swiper-button-prev"></button>
-                      <div class="mainslider__dotts swiper-pagination"></div>
-                      <button type='button' class="slider__navs-btn slider__navs-next swiper-button-next"></button>
+                    <button type='button' class="slider__navs-btn slider__navs-prev swiper-button-prev"></button>
+                    <div class="mainslider__dotts swiper-pagination"></div>
+                    <button type='button' class="slider__navs-btn slider__navs-next swiper-button-next"></button>
                   </div>
                 </div>
                 <div class="subslider"></div>
@@ -45,16 +55,36 @@
     padding: 0;
     position: relative;
     z-index: 5;
+    width: 100%;
+    height: 100%;
   }
   .swiper-wrapper{
-    display: flex;
-    height: 100%;
     position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
   }
   .swiper-slide{
-    flex 0 0 100%
+    width: 100%;
     height: 100%;
     position: relative;
+    transition-property: transform;
+    flex 1 0 100%
+    img{
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        // object-fit: cover;
+        // position: absolute;
+        // width: 100%;
+        // height: 100%;
+        // top: 0;
+        // left: 0;
+      }
   }
   .great{
     &__content{
@@ -65,34 +95,63 @@
     }
     &__sliders{
       max-width: 1500px
-      flex: 1 1 auto
+      flex: 1 1 1500px
+      display flex
     }
   }
   .mainslider{
-    &__image{
-      max-width 1500px
-      height 567px
-      text-align center
-      img{
-        width 100%
-        height 100%
-        object-fit cover
-      }
-    }
+    // &__image{
+    //   max-width 1500px
+    //   height 567px
+    //   text-align center
+    //   img{
+    //     display: block;
+    //     width: 100%;
+    //     height: 100%;
+    //     object-fit: cover;
+    //     // object-fit: cover;
+    //     // position: absolute;
+    //     // width: 100%;
+    //     // height: 100%;
+    //     // top: 0;
+    //     // left: 0;
+    //   }
+    // }
     &__dotts{
       display: inline-flex;
       align-items: center;
+      flex 0 0 auto
+      align-self center
     }
     &__navs{
-      display inline-flex
       position absolute
+      z-index 5
       bottom 45px
       right 37px
       padding 0 30px
+      display flex
+      justify-content space-between
+    }
+    &__button{
+      display inline-flex
+      justify-content center
+      align-items center
+      position absolute
+      width 198px
+      height 58px
+      bottom 138px
+      left 164px
+      background: #FFFFFF;
+      border: 1px solid #000000;
+      box-shadow: 0px 4px 100px #FF0000;
+      border-radius: 5px;
+      // text
+      color: #FF0000;
+      font-weight 700
     }
   }
   .slider__navs-btn{
-    display inline-block
+    flex: 0 0 75px
     width 75px
     height 75px
     background: rgba(255, 255, 255, 0.7);
