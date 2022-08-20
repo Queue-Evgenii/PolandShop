@@ -16,17 +16,25 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
     <script type="module">
-      new Swiper('.swiper', {
+      let subSlider = new Swiper('.subslider', {
+        slidesPerView: 5,
+        spacebetween: 30,
+        // loop: true,
+      })
+      new Swiper('.mainslider', {
       loop: true,
       //autoplay: true,
       pagination: {
-        el: '.swiper-pagination',
+        el: '.mainslider__dotts',
         clickable: true
       },
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
+        nextEl: '.slider__navs-next',
+        prevEl: '.slider__navs-prev'
       },
+      thumbs: {
+        swiper: subSlider
+      }
     })
     </script>
   </body>

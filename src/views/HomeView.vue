@@ -25,9 +25,9 @@
               </aside>
               <div class="great__sliders">
                 <div class="mainslider swiper swiper-container">
-                  <div class="mainslider__container swiper-wrapper">
+                  <div class="mainslider__wrapper swiper-wrapper">
                     <div class="mainslider__slide swiper-slide" v-for="item in mainSlides" :key="item.id">
-                      <img :src="item.image" alt="">
+                      <div class="mainslider__image"><img :src="item.image" alt=""></div>
                       <div class="mainslider__button"><a :href="item.url">{{ item.label }}</a></div>
                     </div>
                   </div>
@@ -37,7 +37,26 @@
                     <button type='button' class="slider__navs-btn slider__navs-next swiper-button-next"></button>
                   </div>
                 </div>
-                <div class="subslider"></div>
+                <div class="subslider swiper swiper-container">
+                  <div class="subslider__wrapper swiper-wrapper">
+                    <div class="subslider__slide swiper-slide">
+                      <div class="subslider__image"><img src="../assets/img/main/subslide-bg.png" alt=""></div>
+                      <p class="subslider__label">Akcesoria do sufitów napinanych </p>
+                    </div>
+                    <div class="subslider__slide swiper-slide">
+                      <div class="subslider__image"><img src="../assets/img/main/subslide-bg.png" alt=""></div>
+                      <p class="subslider__label">Folia do sufitów napinanych  </p>
+                    </div>
+                    <div class="subslider__slide swiper-slide">
+                      <div class="subslider__image"><img src="../assets/img/main/subslide-bg.png" alt=""></div>
+                      <p class="subslider__label">Akcesoria do sufitów napinanych </p>
+                    </div>
+                    <div class="subslider__slide swiper-slide">
+                      <div class="subslider__image"><img src="../assets/img/main/subslide-bg.png" alt=""></div>
+                      <p class="subslider__label">Polia do sufitów napinanych  </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -61,7 +80,7 @@
   .swiper-wrapper{
     position: relative;
     width: 100%;
-    height: 100%;
+    // height: 100%;
     z-index: 1;
     display: flex;
     transition-property: transform;
@@ -72,8 +91,30 @@
     height: 100%;
     position: relative;
     transition-property: transform;
-    flex 1 0 100%
-    img{
+  }
+  .great{
+    &__content{
+    display flex
+    gap: 60px
+    }
+    &__sidebar{
+      flex: 0 0 350px
+    }
+    &__sliders{
+      max-width: 1500px
+      min-width: 0
+      flex: 1 1 1500px
+      display flex
+      flex-wrap wrap
+    }
+  }
+  .mainslider{
+    height 567px
+    &__image{
+      max-width 1500px
+      height 567px
+      text-align center
+      img{
         display: block;
         width: 100%;
         height: 100%;
@@ -85,38 +126,10 @@
         // top: 0;
         // left: 0;
       }
-  }
-  .great{
-    &__content{
-    display flex
     }
-    &__sidebar{
-      flex: 0 0 350px
+    &__slide{
+      flex 1 0 100%
     }
-    &__sliders{
-      max-width: 1500px
-      flex: 1 1 1500px
-      display flex
-    }
-  }
-  .mainslider{
-    // &__image{
-    //   max-width 1500px
-    //   height 567px
-    //   text-align center
-    //   img{
-    //     display: block;
-    //     width: 100%;
-    //     height: 100%;
-    //     object-fit: cover;
-    //     // object-fit: cover;
-    //     // position: absolute;
-    //     // width: 100%;
-    //     // height: 100%;
-    //     // top: 0;
-    //     // left: 0;
-    //   }
-    // }
     &__dotts{
       display: inline-flex;
       align-items: center;
@@ -190,6 +203,33 @@
   .swiper-pagination-bullet-active{
     width 22px
     height 22px
+  }
+  .subslider{
+    max-width: 1350px
+    padding 40px 0
+    &__wrapper{
+    }
+    &__slide{
+      flex: 0 0 25%
+      display flex
+      flex-direction column
+      align-items center
+      justify-content center
+      gap 15px
+      height 100%
+      padding 20px
+    }
+    &__image{
+      max-width 174px
+      height 90px
+      // flex 0 0 auto
+    }
+    &__label{
+      // flex: 1 1 auto
+    }
+  }
+  .swiper-slide-thumb-active{
+    border 1px solid #FF0031
   }
 </style>
 <script>
