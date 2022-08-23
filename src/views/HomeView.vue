@@ -6,22 +6,16 @@
         <div class="great">
           <div class="container">
             <div class="great__content">
-              <aside class="great__sidebar">
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos ipsum in necessitatibus
-                  laudantium quidem autem ab laborum asperiores, recusandae tenetur adipisci voluptatum quam similique
-                  deleniti quae est quasi incidunt atque!</p>
-                <p>Qui totam optio nostrum necessitatibus laudantium deleniti incidunt voluptatum magnam sed amet
-                  dolorem repellendus vel at ad, velit eius! Aspernatur temporibus voluptatem ea fugit suscipit itaque
-                  eveniet esse architecto perferendis!</p>
-                <p>Accusantium sapiente dignissimos harum ad repellendus illo sunt, error beatae ipsam eius repudiandae
-                  magnam aspernatur, molestiae quo neque officia odit omnis qui quam, impedit est ducimus labore
-                  perferendis? Perferendis, odit!</p>
-                <p>Nisi tenetur nam amet, accusantium blanditiis error perspiciatis eum dolores aperiam consequatur
-                  voluptates. Dolorem nesciunt quas qui atque facilis nobis labore, aspernatur voluptatem dicta dolorum
-                  sunt porro. Omnis, aperiam suscipit?</p>
-                <p>Soluta a eaque modi qui cum pariatur aliquid iure sunt vel tenetur, sed explicabo expedita nostrum
-                  consequuntur facilis ipsum numquam beatae est officia sit commodi facere distinctio! Quod, praesentium
-                  sit?</p>
+              <aside class="great__sidebar sidebar">
+                <h2 class="sidebar__title">Kategorie</h2>
+                <ul class="sidebar__list">
+                  <li class="sidebar__item" v-for="item in asideItems" :key="item.id">
+                    <h3 class="sidebar__item-title">{{ item.label }}</h3>
+                    <ul class="sidebar__sublist">
+                      <li class="sidebar__subitem" v-for="link in item.asideSubItems" :key="link.id"><a :href="link.href">{{ link.title }}</a></li>
+                    </ul>
+                  </li>
+                </ul>
               </aside>
               <div class="great__sliders">
                 <div class="mainslider swiper swiper-container">
@@ -32,30 +26,19 @@
                     </div>
                   </div>
                   <div class="mainslider__navs">
-                    <button type='button' class="slider__navs-btn slider__navs-prev swiper-button-prev"></button>
+                    <button type='button' class="slider__navs-btn mainslider__navs-prev swiper-button-prev"></button>
                     <div class="mainslider__dotts swiper-pagination"></div>
-                    <button type='button' class="slider__navs-btn slider__navs-next swiper-button-next"></button>
+                    <button type='button' class="slider__navs-btn mainslider__navs-next swiper-button-next"></button>
                   </div>
                 </div>
                 <div class="subslider swiper swiper-container">
                   <div class="subslider__wrapper swiper-wrapper">
-                    <div class="subslider__slide swiper-slide">
-                      <div class="subslider__image"><img src="../assets/img/main/subslide-bg.png" alt=""></div>
-                      <p class="subslider__label">Akcesoria do sufitów napinanych </p>
-                    </div>
-                    <div class="subslider__slide swiper-slide">
-                      <div class="subslider__image"><img src="../assets/img/main/subslide-bg.png" alt=""></div>
-                      <p class="subslider__label">Folia do sufitów napinanych  </p>
-                    </div>
-                    <div class="subslider__slide swiper-slide">
-                      <div class="subslider__image"><img src="../assets/img/main/subslide-bg.png" alt=""></div>
-                      <p class="subslider__label">Akcesoria do sufitów napinanych </p>
-                    </div>
-                    <div class="subslider__slide swiper-slide">
-                      <div class="subslider__image"><img src="../assets/img/main/subslide-bg.png" alt=""></div>
-                      <p class="subslider__label">Polia do sufitów napinanych  </p>
+                    <div class="subslider__slide swiper-slide" v-for="item in subSlides" :key="item.id">
+                      <div class="subslider__image"><img :src="item.image" alt=""></div>
+                      <p class="subslider__label">{{ item.label }}</p>
                     </div>
                   </div>
+                  <button type="button" class="slider__navs-btn subslider-btn-next"></button>
                 </div>
               </div>
             </div>
@@ -66,6 +49,70 @@
   </div>
 </template>
 <style lang="stylus">
+.sidebar{
+  padding 50px 0
+  &__title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    color: #FF0031;
+    display block
+    padding-bottom: 25px
+    margin-bottom 15px
+    border-bottom: 1px solid #888
+  }
+  &__item {
+    display block
+    padding 5px 0
+  }
+  &__item-title {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 50px;
+    color: #3D3D3D;
+    position relative
+    &::before{
+      content ''
+      width 20px
+      height 11px
+      position absolute
+      right 0
+      top 43%
+      background url('../assets/img/main/icons/arrow-bottom.png') center no-repeat
+      transform rotate(-90deg)
+      &._active{
+        transform rotate(0)
+      }
+    }
+  }
+  &__subitem{
+    padding 0 30px
+    position relative
+    display none
+    &.active{
+      display block
+    }
+    a{
+      color: #3d3d3d
+      font-size: 20px;
+      line-height: 40px;
+      &:hover{
+        color: #FF0031;
+      }
+    }
+    &:hover{
+      &::before{
+        content ''
+        position absolute
+        left 0
+        top 33%
+        width 20px
+        height 14px
+        background url('../assets/img/main/icons/arrow-on-hover.png') center no-repeat
+      }
+    }
+  }
+}
   .swiper{
     list-style: none;
     margin-left: auto;
@@ -75,12 +122,10 @@
     position: relative;
     z-index: 5;
     width: 100%;
-    height: 100%;
   }
   .swiper-wrapper{
     position: relative;
     width: 100%;
-    // height: 100%;
     z-index: 1;
     display: flex;
     transition-property: transform;
@@ -207,29 +252,40 @@
   .subslider{
     max-width: 1350px
     padding 40px 0
+    position relative
+    display flex
+    gap: 40px
+    align-items center
+    min-width: 0
     &__wrapper{
+      flex: 1 1 auto
+      gap: 30px
     }
     &__slide{
-      flex: 0 0 25%
+      flex: 0 0 250px
       display flex
       flex-direction column
       align-items center
       justify-content center
       gap 15px
-      height 100%
       padding 20px
+      cursor: pointer
     }
     &__image{
       max-width 174px
       height 90px
-      // flex 0 0 auto
     }
     &__label{
-      // flex: 1 1 auto
     }
   }
   .swiper-slide-thumb-active{
     border 1px solid #FF0031
+  }
+  .subslider-btn-next{
+    flex: 0 0 75px
+    position relative
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    z-index 5
   }
 </style>
 <script>
@@ -266,6 +322,260 @@ export default {
           url: '#',
           label: 'Dodaj to koszyka',
           image: require('../assets/img/main/slide-bg.png')
+        }
+      ],
+      subSlides: [
+        {
+          id: 1,
+          label: 'Akcesoria do sufitów napinanych',
+          image: require('../assets/img/main/subslide-bg.png')
+        },
+        {
+          id: 2,
+          label: 'Folia do sufitów napinanych',
+          image: require('../assets/img/main/subslide-bg.png')
+        },
+        {
+          id: 3,
+          label: 'Akcesoria do sufitów napinanych',
+          image: require('../assets/img/main/subslide-bg.png')
+        },
+        {
+          id: 4,
+          label: 'Polia do sufitów napinanych',
+          image: require('../assets/img/main/subslide-bg.png')
+        }
+      ],
+      asideItems: [
+        {
+          id: 1,
+          label: 'Akcesoria do sufitów napinanych',
+          asideSubItems: [
+            {
+              id: 1,
+              title: 'Profile',
+              href: '#'
+            },
+            {
+              id: 2,
+              title: 'Listwa wykończeniowa',
+              href: '#'
+            },
+            {
+              id: 3,
+              title: 'Platformy',
+              href: '#'
+            },
+            {
+              id: 4,
+              title: 'Termo pierścienie',
+              href: '#'
+            },
+            {
+              id: 5,
+              title: 'Termo kwadraty',
+              href: '#'
+            },
+            {
+              id: 6,
+              title: 'Świecące szpilki',
+              href: '#'
+            },
+            {
+              id: 7,
+              title: 'Katalogi',
+              href: '#'
+            },
+            {
+              id: 8,
+              title: 'Pozostałe',
+              href: '#'
+            }
+          ]
+        },
+        {
+          id: 2,
+          label: 'Folia do sufitów napinanych',
+          asideSubItems: [
+            {
+              id: 1,
+              title: 'Termo kwadraty',
+              href: '#'
+            },
+            {
+              id: 2,
+              title: 'Listwa wykończeniowa',
+              href: '#'
+            },
+            {
+              id: 3,
+              title: 'Platformy',
+              href: '#'
+            },
+            {
+              id: 4,
+              title: 'Termo pierścienie',
+              href: '#'
+            },
+            {
+              id: 5,
+              title: 'Profile',
+              href: '#'
+            },
+            {
+              id: 6,
+              title: 'Katalogi',
+              href: '#'
+            },
+            {
+              id: 7,
+              title: 'Pozostałe',
+              href: '#'
+            },
+            {
+              id: 8,
+              title: 'Świecące szpilki',
+              href: '#'
+            }
+          ]
+        },
+        {
+          id: 3,
+          label: 'Oprawy sufitowe',
+          asideSubItems: [
+            {
+              id: 1,
+              title: 'Profile',
+              href: '#'
+            },
+            {
+              id: 2,
+              title: 'Listwa wykończeniowa',
+              href: '#'
+            },
+            {
+              id: 3,
+              title: 'Platformy',
+              href: '#'
+            },
+            {
+              id: 4,
+              title: 'Termo pierścienie',
+              href: '#'
+            },
+            {
+              id: 5,
+              title: 'Termo kwadraty',
+              href: '#'
+            },
+            {
+              id: 6,
+              title: 'Świecące szpilki',
+              href: '#'
+            },
+            {
+              id: 7,
+              title: 'Katalogi',
+              href: '#'
+            },
+            {
+              id: 8,
+              title: 'Pozostałe',
+              href: '#'
+            }
+          ]
+        },
+        {
+          id: 4,
+          label: 'LED akcesoria',
+          asideSubItems: [
+            {
+              id: 1,
+              title: 'Profile',
+              href: '#'
+            },
+            {
+              id: 2,
+              title: 'Listwa wykończeniowa',
+              href: '#'
+            },
+            {
+              id: 3,
+              title: 'Platformy',
+              href: '#'
+            },
+            {
+              id: 4,
+              title: 'Termo pierścienie',
+              href: '#'
+            },
+            {
+              id: 5,
+              title: 'Termo kwadraty',
+              href: '#'
+            },
+            {
+              id: 6,
+              title: 'Świecące szpilki',
+              href: '#'
+            },
+            {
+              id: 7,
+              title: 'Katalogi',
+              href: '#'
+            },
+            {
+              id: 8,
+              title: 'Pozostałe',
+              href: '#'
+            }
+          ]
+        },
+        {
+          id: 5,
+          label: 'Elektryka i akcesoria',
+          asideSubItems: [
+            {
+              id: 1,
+              title: 'Termo kwadraty',
+              href: '#'
+            },
+            {
+              id: 2,
+              title: 'Listwa wykończeniowa',
+              href: '#'
+            },
+            {
+              id: 3,
+              title: 'Platformy',
+              href: '#'
+            },
+            {
+              id: 4,
+              title: 'Termo pierścienie',
+              href: '#'
+            },
+            {
+              id: 5,
+              title: 'Profile',
+              href: '#'
+            },
+            {
+              id: 6,
+              title: 'Katalogi',
+              href: '#'
+            },
+            {
+              id: 7,
+              title: 'Pozostałe',
+              href: '#'
+            },
+            {
+              id: 8,
+              title: 'Świecące szpilki',
+              href: '#'
+            }
+          ]
         }
       ]
     }

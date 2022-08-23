@@ -20,6 +20,10 @@
         slidesPerView: 5,
         spacebetween: 30,
         // loop: true,
+        navigation: {
+          nextEl: '.subslider-btn-next',
+          prevEl: ''
+        }
       })
       new Swiper('.mainslider', {
       loop: true,
@@ -29,8 +33,8 @@
         clickable: true
       },
       navigation: {
-        nextEl: '.slider__navs-next',
-        prevEl: '.slider__navs-prev'
+        nextEl: '.mainslider__navs-next',
+        prevEl: '.mainslider__navs-prev'
       },
       thumbs: {
         swiper: subSlider
