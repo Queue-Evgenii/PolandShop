@@ -7,7 +7,7 @@
         </div>
       </VueSlickCarousel>
     </div>
-</template>
+</template> 
 <style lang="stylus">
   .slick-arrow{
     width 75px
