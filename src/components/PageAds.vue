@@ -8,9 +8,9 @@
         </div>
         <div class="ads__item ads__images">
           <div class="ads__images flex">
-            <div class="ads__image"><img src="../assets/img/ads-image.png" alt=""></div>
-            <div class="ads__image"><img src="../assets/img/ads-image.png" alt=""></div>
-            <div class="ads__image"><img src="../assets/img/ads-image.png" alt=""></div>
+            <div class="ads__image"><img src="@/assets/img/ads-image.png" alt=""></div>
+            <div class="ads__image"><img src="@/assets/img/ads-image.png" alt=""></div>
+            <div class="ads__image"><img src="@/assets/img/ads-image.png" alt=""></div>
           </div>
         </div>
         <div class="ads__item ads__action">
@@ -120,7 +120,3 @@
     }
   }
 </style>
-<script>
-export default {
-}
-</script>

@@ -1,14 +1,16 @@
 <template>
   <div class="recent-products">
-    <section class="products">
+    <div class="products">
     <div class="products__container container">
-      <h2 class="products__title recent-products__title">Niedawno przeglądałeś:</h2>
+      <div class="products__title recent-products__title">Niedawno przeglądałeś:</div>
       <div class="products__items flex">
-        <div class="products__item item-product" v-for="product in MainProducts" :key="product.id">
+        <div class="products__item item-product" v-for="product in mainProducts" :key="product.id">
           <div class="item-product__body recent-product__body flex">
             <div class="item-product__info flex">
-              <a :href="product.href" class="item-product__image"><img :src="product.image" alt=""></a>
-              <a :href="product.href" class="item-product__label">{{ product.label }}</a>
+              <router-link :to="product.href" class="item-product__image">
+                <img :src="product.image" alt="">
+              </router-link>
+              <router-link :to="product.href" class="item-product__label">{{ product.label }}</router-link>
               <div class="item-product__price">{{ product.price }}</div>
             </div>
             <div class="item-product__actions actions-product flex">
@@ -19,16 +21,18 @@
         </div>
       </div>
     </div>
-  </section>
-  <section class="products">
+  </div>
+  <div class="products">
     <div class="products__container container">
-      <h2 class="products__title recent-products__title">Niedawno przeglądałeś:</h2>
+      <div class="products__title recent-products__title">Niedawno przeglądałeś:</div>
       <div class="products__items flex">
-        <div class="products__item item-product" v-for="product in MainProducts" :key="product.id">
+        <div class="products__item item-product" v-for="product in mainProducts" :key="product.id">
           <div class="item-product__body recent-product__body flex">
             <div class="item-product__info flex">
-              <a :href="product.href" class="item-product__image"><img :src="product.image" alt=""></a>
-              <a :href="product.href" class="item-product__label">{{ product.label }}</a>
+              <router-link :to="product.href" class="item-product__image">
+                <img :src="product.image" alt="">
+              </router-link>
+              <router-link :to="product.href" class="item-product__label">{{ product.label }}</router-link>
               <div class="item-product__price">{{ product.price }}</div>
             </div>
             <div class="item-product__actions actions-product flex">
@@ -39,7 +43,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
   </div>
 </template>
 <style lang="stylus">
@@ -50,43 +54,10 @@
 </style>
 <script>
 export default {
-  data () {
-    return {
-      MainProducts: [
-        {
-          id: 1,
-          image: require('../../assets/img/products/product-1.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 2,
-          image: require('../../assets/img/products/product-2.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 3,
-          image: require('../../assets/img/products/product-3.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 4,
-          image: require('../../assets/img/products/product-4.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        }
-      ]
+  props: {
+    mainProducts: {
+      type: Array,
     }
-  }
+  },
 }
 </script>

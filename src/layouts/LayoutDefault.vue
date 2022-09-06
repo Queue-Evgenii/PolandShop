@@ -1,7 +1,7 @@
 <template>
   <div class="default">
     <div class="container header-tabs">
-      <main-menu  v-if="MobileWidth"/>
+      <main-menu v-if="MobileWidth" :mainMenu="mainMenu" />
     </div>
     <header class="header">
       <div class="header__top top-header">
@@ -14,20 +14,20 @@
                 <span></span>
               </button>
               <div v-bind:class="{active: burgerActive}" class="menu__body" >
-                <main-menu v-if="!MobileWidth" />
-                <header-menu v-if="!MobileWidth" />
+                <main-menu v-if="!MobileWidth" :mainMenu="mainMenu" />
+                <header-menu v-if="!MobileWidth" :headerMenu="headerMenu" />
               </div>
             </nav>
-            <a class="top-header__logo"><img src="../assets/img/header/logo.png" alt=""></a>
+            <router-link to="/" class="top-header__logo"><img src="@/assets/img/header/logo.png" alt=""></router-link>
             <div class="top-header__phones phones-header flex">
-              <button @click="activePhones = !activePhones" type="button" class="phones-header__icon"><img src="../assets/img/header/icon/phone.png" alt=""></button>
+              <button @click="activePhones = !activePhones" type="button" class="phones-header__icon"><img src="@/assets/img/header/icon/phone.png" alt=""></button>
               <div class="phones-header__items" v-bind:class="{active: activePhones}">
                 <a href="tel:48729216186" class="phones-header__item hover-underline">+48 729 216 186</a>
                 <a href="tel:48729856998" class="phones-header__item hover-underline">+48 729 856 998</a>
               </div>
             </div>
             <form class="top-header__search search-header flex">
-              <button @click="searchActive = !searchActive" type="button" class="search-header__button"><img src="../assets/img/header/icon/search.png" alt=""></button>
+              <button @click="searchActive = !searchActive" type="button" class="search-header__button"><img src="@/assets/img/header/icon/search.png" alt=""></button>
               <input-header v-if="MobileWidth" />
             </form>
             <div class="top-header__actions actions-header flex">
@@ -50,7 +50,7 @@
       </div>
       <div class="header__bottom bottom-header">
         <div class="bottom-header__container container">
-          <header-menu v-if="MobileWidth" />
+          <header-menu v-if="MobileWidth" :headerMenu="headerMenu" />
         </div>
       </div>
     </header>
@@ -74,23 +74,23 @@
           <div class="bottom-footer__row flex">
             <footer-copy v-if="FooterWidth" />
             <div class="bottom-footer__column bottom-footer__social social-footer">
-              <a href="#" class="social-footer__twitter"><img src="../assets/img/header/icon/twitter-icon.png" alt=""></a>
-              <a href="#" class="social-footer__facebook"><img src="../assets/img/header/icon/fb-icon.png" alt=""></a>
+              <a href="#" class="social-footer__twitter"><img src="@/assets/img/header/icon/twitter-icon.png" alt=""></a>
+              <a href="#" class="social-footer__facebook"><img src="@/assets/img/header/icon/fb-icon.png" alt=""></a>
             </div>
             <div class="bottom-footer__column bottom-footer__payment payment-footer">
               <h5 class="payment-footer__title">Metody Płatności</h5>
-              <div class="payment-footer__icon"><img src="../assets/img/header/icon/payment.png" alt=""></div>
+              <div class="payment-footer__icon"><img src="@/assets/img/header/icon/payment.png" alt=""></div>
             </div>
             <div class="bottom-footer__column bottom-footer__contact contact-footer">
               <div class="contact-footer__phones phones-footer flex">
-                <div class="phones-header__icon"><img src="../assets/img/header/icon/phone.png" alt=""></div>
+                <div class="phones-header__icon"><img src="@/assets/img/header/icon/phone.png" alt=""></div>
                 <div class="phones-footer__items">
                  <a href="tel:48729216186" class="phones-footer__item hover-underline">+48 729 216 186</a>
                  <a href="tel:48729856998" class="phones-footer__item hover-underline">+48 729 856 998</a>
                 </div>
               </div>
               <div class="contact-footer__emailes flex">
-                <div class="contact-footer__icon"><img src="../assets/img/header/icon/email.png" alt=""></div>
+                <div class="contact-footer__icon"><img src="@/assets/img/header/icon/email.png" alt=""></div>
                 <a href="mailto:dosufitu.pl@gmail.com" class="contact-footer__email hover-underline">dosufitu.pl@gmail.com</a>
               </div>
             </div>
@@ -306,7 +306,7 @@
       }
     }
     &__favorite-icon{
-      background url('../assets/img/header/icon/favorite.png') center no-repeat
+      background url('@/assets/img/header/icon/favorite.png') center no-repeat
       height 26px
       flex 0 0 26px
       position relative
@@ -315,7 +315,7 @@
       }
     }
     &__cart-icon{
-      background url('../assets/img/header/icon/cart.png') center no-repeat
+      background url('@/assets/img/header/icon/cart.png') center no-repeat
       height 26px
       flex 0 0 26px
       position relative
@@ -324,7 +324,7 @@
       }
     }
     &__user-icon{
-      background url('../assets/img/header/icon/user.png') center no-repeat
+      background url('@/assets/img/header/icon/user.png') center no-repeat
       height 27px
       flex 0 0 26px
     }
@@ -599,6 +599,65 @@ export default {
       activePhones: false,
       burgerActive: false,
       searchActive: false,
+      mainMenu: [
+        {
+          id: 1,
+          label: 'Wzmacniacz',
+          to: '/'
+        },
+        {
+          id: 2,
+          label: 'O nas',
+          to: '/about'
+        },
+        {
+          id: 3,
+          label: 'Łączność',
+          to: '/about'
+        },
+        {
+          id: 4,
+          label: 'Sklepy',
+          to: '/about'
+        }
+      ],
+      headerMenu: [
+        {
+          id: 1,
+          label: 'Kategorie',
+          url: '#'
+        },
+        {
+          id: 2,
+          label: 'Promocje',
+          url: '#'
+        },
+        {
+          id: 3,
+          label: 'Aktualności',
+          url: '#'
+        },
+        {
+          id: 4,
+          label: 'Nowości',
+          url: '#'
+        },
+        {
+          id: 5,
+          label: 'Dostawa',
+          url: '#'
+        },
+        {
+          id: 6,
+          label: 'Dodaj opinię o sklepie',
+          url: '#'
+        },
+        {
+          id: 7,
+          label: 'Kontakt',
+          url: '#'
+        }
+      ],
       footerColumn: [
         {
           id: 1,
@@ -714,7 +773,7 @@ export default {
             }
           ]
         }
-      ]
+      ],
     }
   },
   components: {

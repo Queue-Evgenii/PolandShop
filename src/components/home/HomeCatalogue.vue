@@ -1,15 +1,17 @@
 
 <template>
 <div class="page-products">
-  <section class="mainproducts products">
+  <div class="mainproducts products">
     <div class="products__container container">
-      <h2 class="products__title">Akcesoria do sufitów napinanych</h2>
+      <div class="products__title">Akcesoria do sufitów napinanych</div>
       <div class="products__items flex">
-        <div class="products__item item-product" v-for="product in MainProducts" :key="product.id">
+        <div class="products__item item-product" v-for="product in mainProducts" :key="product.id">
           <div class="item-product__body flex">
             <div class="item-product__info flex">
-              <a :href="product.href" class="item-product__image"><img :src="product.image" alt=""><span v-if="product.mark">{{ product.mark }}</span></a>
-              <a :href="product.href" class="item-product__label">{{ product.label }}</a>
+              <router-link :to="product.href" class="item-product__image">
+                <img :src="product.image" alt="">
+                <span v-if="product.mark">{{ product.mark }}</span></router-link>
+              <router-link :to="product.href" class="item-product__label">{{ product.label }}</router-link>
               <div class="item-product__price">{{ product.price }}</div>
             </div>
             <div class="item-product__actions actions-product flex">
@@ -20,16 +22,19 @@
         </div>
       </div>
     </div>
-  </section>
-  <section class="mainproducts products">
+  </div>
+  <div class="mainproducts products">
     <div class="products__container container">
-      <h2 class="products__title">Akcesoria do sufitów napinanych</h2>
+      <div class="products__title">Akcesoria do sufitów napinanych</div>
       <div class="products__items flex">
-        <div class="products__item item-product" v-for="product in MainProducts" :key="product.id">
+        <div class="products__item item-product" v-for="product in mainProducts" :key="product.id">
           <div class="item-product__body flex">
             <div class="item-product__info flex">
-              <a :href="product.href" class="item-product__image"><img :src="product.image" alt=""><span v-if="product.mark">{{ product.mark }}</span></a>
-              <a :href="product.href" class="item-product__label">{{ product.label }}</a>
+              <router-link :to="product.href" class="item-product__image">
+                <img :src="product.image" alt="">
+                <span v-if="product.mark">{{ product.mark }}</span>
+              </router-link>
+              <router-link :to="product.href" class="item-product__label">{{ product.label }}</router-link>
               <div class="item-product__price">{{ product.price }}</div>
             </div>
             <div class="item-product__actions actions-product flex">
@@ -40,17 +45,20 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
   <page-ads />
-  <section class="mainproducts products">
+  <div class="mainproducts products">
     <div class="products__container container">
-      <h2 class="products__title">Akcesoria do sufitów napinanych</h2>
+      <div class="products__title">Akcesoria do sufitów napinanych</div>
       <div class="products__items flex">
-        <div class="products__item item-product" v-for="product in MainProducts" :key="product.id">
+        <div class="products__item item-product" v-for="product in mainProducts" :key="product.id">
           <div class="item-product__body flex">
             <div class="item-product__info flex">
-              <a :href="product.href" class="item-product__image"><img :src="product.image" alt=""><span v-if="product.mark">{{ product.mark }}</span></a>
-              <a :href="product.href" class="item-product__label">{{ product.label }}</a>
+              <router-link :to="product.href" class="item-product__image">
+                <img :src="product.image" alt="">
+                <span v-if="product.mark">{{ product.mark }}</span>
+              </router-link>
+              <router-link :to="product.href" class="item-product__label">{{ product.label }}</router-link>
               <div class="item-product__price">{{ product.price }}</div>
             </div>
             <div class="item-product__actions actions-product flex">
@@ -61,7 +69,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
   </div>
 </template>
 <style lang="stylus">
@@ -174,9 +182,9 @@
   &__favorite {
     width 28px
     height 28px
-    background url('../../assets/img/main/icons/main-favorite.png') 0 0 no-repeat
+    background url('@/assets/img/main/icons/main-favorite.png') 0 0 no-repeat
     &:hover{
-      background url('../../assets/img/main/icons/favorite-on-hover.png') 0 0 no-repeat
+      background url('@/assets/img/main/icons/favorite-on-hover.png') 0 0 no-repeat
     }
   }
 }
@@ -184,42 +192,9 @@
 <script>
 import PageAds from '@/components/PageAds'
 export default {
-  data () {
-    return {
-      MainProducts: [
-        {
-          id: 1,
-          image: require('../../assets/img/products/product-1.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 2,
-          image: require('../../assets/img/products/product-2.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 3,
-          image: require('../../assets/img/products/product-3.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 4,
-          image: require('../../assets/img/products/product-4.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        }
-      ]
+  props: {
+    mainProducts: {
+      type: Array,
     }
   },
   components: {

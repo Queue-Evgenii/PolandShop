@@ -3,7 +3,7 @@
       <VueSlickCarousel :arrows="true" :dots="true">
         <div class="mainslider__slide" v-for="item in mainSlides" :key="item.id">
           <div class="mainslider__image"><img :src="item.image" alt=""></div>
-            <div class="mainslider__button"><a :href="item.url">{{ item.label }}</a></div>
+            <div class="mainslider__button"><router-link :to="item.url">{{ item.label }}</router-link></div>
         </div>
       </VueSlickCarousel>
     </div>
@@ -88,6 +88,7 @@
     }
   }
   .mainslider{
+    width 100%
     height 567px
     overflow-y: hidden
     &__image{
@@ -103,6 +104,7 @@
     }
     &__slide{
       flex 1 0 100%
+      position relative
     }
     &__button{
       display inline-flex
@@ -117,7 +119,6 @@
       border: 1px solid #000000;
       box-shadow: 0px 4px 100px #FF0000;
       border-radius: 5px;
-      // text
       color: #FF0000;
       font-weight 700
     }
@@ -151,34 +152,9 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
   // // optional style for arrows & dots
   // import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 export default {
-  data () {
-    return {
-      mainSlides: [
-        {
-          id: 1,
-          url: '#',
-          label: 'Dodaj do koszyka',
-          image: require('../../assets/img/main/slider/slide-bg.png')
-        },
-        {
-          id: 2,
-          url: '#',
-          label: 'Dodaj to koszyka',
-          image: require('../../assets/img/main/slider/slide-bg.png')
-        },
-        {
-          id: 3,
-          url: '#',
-          label: 'Dodaj to koszyka',
-          image: require('../../assets/img/main/slider/slide-bg.png')
-        },
-        {
-          id: 4,
-          url: '#',
-          label: 'Dodaj to koszyka',
-          image: require('../../assets/img/main/slider/slide-bg.png')
-        }
-      ]
+  props: {
+    mainSlides: {
+      type: Array,
     }
   },
   components: { VueSlickCarousel },

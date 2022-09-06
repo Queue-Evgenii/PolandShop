@@ -3,7 +3,7 @@
     <VueSlickCarousel v-bind="settings" class="subslider__wrapper">
         <div class="subslider__slide" v-for="item in subSlides" :key="item.id">
           <div class="subslider__image"><img :src="item.image" alt=""></div>
-          <p class="subslider__label">{{ item.label }}</p>
+          <div class="subslider__label">{{ item.label }}</div>
         </div>
     </VueSlickCarousel>
   </div>
@@ -71,33 +71,6 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 export default {
   data () {
     return {
-      subSlides: [
-        {
-          id: 1,
-          label: 'Akcesoria do sufitów napinanych',
-          image: require('../assets/img/main/slider/subslide-bg.png')
-        },
-        {
-          id: 2,
-          label: 'Folia do sufitów napinanych',
-          image: require('../assets/img/main/slider/subslide-bg.png')
-        },
-        {
-          id: 3,
-          label: 'Akcesoria do sufitów napinanych',
-          image: require('../assets/img/main/slider/subslide-bg.png')
-        },
-        {
-          id: 4,
-          label: 'Polia do sufitów napinanych',
-          image: require('../assets/img/main/slider/subslide-bg.png')
-        },
-        {
-          id: 5,
-          label: 'polia do sufitów napinanych',
-          image: require('../assets/img/main/slider/subslide-bg.png')
-        }
-      ],
       settings: {
         "dots": false,
         "focusOnSelect": true,
@@ -153,6 +126,11 @@ export default {
           }
         ]
       }
+    }
+  },
+  props: {
+    subSlides: {
+      type: Array,
     }
   },
   components: { VueSlickCarousel },
