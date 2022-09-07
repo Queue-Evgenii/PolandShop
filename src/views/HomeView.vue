@@ -1,14 +1,14 @@
 <template>
-  <div class="home home-page">
+  <div class="home">
     <layout-default>
-      <main class="main">
-        <div class="great">
-          <div class="container">
-            <div class="great__content">
-              <aside class="great__sidebar">
+      <main class="page">
+        <div class="home-page">
+          <div class="home-page__container container">
+            <div class="home-page__row row">
+              <aside class="home-page__sidebar sidebar">
                 <aside-sidebar :asideItems="asideItems" />
               </aside>
-              <div class="great__sliders">
+              <div class="home-page__content content">
                 <main-slider :mainSlides="mainSlides" />
                 <sub-slider :subSlides="subSlides" />
               </div>
@@ -22,38 +22,9 @@
     </layout-default>
   </div>
 </template>
-<style lang="stylus">
-  .great{
-    &__content{
-    display flex
-    column-gap: 60px
-    }
-    &__sidebar{
-      flex: 0 0 350px
-    }
-    &__sliders{
-      max-width: 1500px
-      min-width: 0
-      flex: 1 1 1500px
-      display flex
-      flex-wrap wrap
-    }
-    @media(max-width: 1200px){
-      &__content{
-        flex-wrap wrap
-      }
-      &__sliders{
-        order: 0
-        flex-basis: 100%
-      }
-      &__sidebar{
-        order: 1
-        flex-basis: 100%
-      }
-    }
-  }
-</style>
 <script>
+import subSlidesList from '@/mock/slider-category'
+import sidebarCategoryList from '@/mock/sidebar-category'
 import LayoutDefault from '@/layouts/LayoutDefault'
 import AsideSidebar from '@/components/home/AsideSidebar'
 import MainSlider from '@/components/home/MainSlider'
@@ -67,240 +38,13 @@ import PageAds from '@/components/PageAds'
 export default {
   name: 'HomeView',
   layouts: 'default',
+  created () {
+    this.subSlides = subSlidesList
+    this.asideItems =sidebarCategoryList
+  },
   data () {
     return {
-      asideItems: [
-        {
-          id: 1,
-          label: 'Akcesoria do sufitów napinanych',
-          asideSubItems: [
-            {
-              id: 1,
-              title: 'Profile',
-              href: '#'
-            },
-            {
-              id: 2,
-              title: 'Listwa wykończeniowa',
-              href: '#'
-            },
-            {
-              id: 3,
-              title: 'Platformy',
-              href: '#'
-            },
-            {
-              id: 4,
-              title: 'Termo pierścienie',
-              href: '#'
-            },
-            {
-              id: 5,
-              title: 'Termo kwadraty',
-              href: '#'
-            },
-            {
-              id: 6,
-              title: 'Świecące szpilki',
-              href: '#'
-            },
-            {
-              id: 7,
-              title: 'Katalogi',
-              href: '#'
-            },
-            {
-              id: 8,
-              title: 'Pozostałe',
-              href: '#'
-            }
-          ]
-        },
-        {
-          id: 2,
-          label: 'Folia do sufitów napinanych',
-          asideSubItems: [
-            {
-              id: 1,
-              title: 'Termo kwadraty',
-              href: '#'
-            },
-            {
-              id: 2,
-              title: 'Listwa wykończeniowa',
-              href: '#'
-            },
-            {
-              id: 3,
-              title: 'Platformy',
-              href: '#'
-            },
-            {
-              id: 4,
-              title: 'Termo pierścienie',
-              href: '#'
-            },
-            {
-              id: 5,
-              title: 'Profile',
-              href: '#'
-            },
-            {
-              id: 6,
-              title: 'Katalogi',
-              href: '#'
-            },
-            {
-              id: 7,
-              title: 'Pozostałe',
-              href: '#'
-            },
-            {
-              id: 8,
-              title: 'Świecące szpilki',
-              href: '#'
-            }
-          ]
-        },
-        {
-          id: 3,
-          label: 'Oprawy sufitowe',
-          asideSubItems: [
-            {
-              id: 1,
-              title: 'Profile',
-              href: '#'
-            },
-            {
-              id: 2,
-              title: 'Listwa wykończeniowa',
-              href: '#'
-            },
-            {
-              id: 3,
-              title: 'Platformy',
-              href: '#'
-            },
-            {
-              id: 4,
-              title: 'Termo pierścienie',
-              href: '#'
-            },
-            {
-              id: 5,
-              title: 'Termo kwadraty',
-              href: '#'
-            },
-            {
-              id: 6,
-              title: 'Świecące szpilki',
-              href: '#'
-            },
-            {
-              id: 7,
-              title: 'Katalogi',
-              href: '#'
-            },
-            {
-              id: 8,
-              title: 'Pozostałe',
-              href: '#'
-            }
-          ]
-        },
-        {
-          id: 4,
-          label: 'LED akcesoria',
-          asideSubItems: [
-            {
-              id: 1,
-              title: 'Profile',
-              href: '#'
-            },
-            {
-              id: 2,
-              title: 'Listwa wykończeniowa',
-              href: '#'
-            },
-            {
-              id: 3,
-              title: 'Platformy',
-              href: '#'
-            },
-            {
-              id: 4,
-              title: 'Termo pierścienie',
-              href: '#'
-            },
-            {
-              id: 5,
-              title: 'Termo kwadraty',
-              href: '#'
-            },
-            {
-              id: 6,
-              title: 'Świecące szpilki',
-              href: '#'
-            },
-            {
-              id: 7,
-              title: 'Katalogi',
-              href: '#'
-            },
-            {
-              id: 8,
-              title: 'Pozostałe',
-              href: '#'
-            }
-          ]
-        },
-        {
-          id: 5,
-          label: 'Elektryka i akcesoria',
-          asideSubItems: [
-            {
-              id: 1,
-              title: 'Termo kwadraty',
-              href: '#'
-            },
-            {
-              id: 2,
-              title: 'Listwa wykończeniowa',
-              href: '#'
-            },
-            {
-              id: 3,
-              title: 'Platformy',
-              href: '#'
-            },
-            {
-              id: 4,
-              title: 'Termo pierścienie',
-              href: '#'
-            },
-            {
-              id: 5,
-              title: 'Profile',
-              href: '#'
-            },
-            {
-              id: 6,
-              title: 'Katalogi',
-              href: '#'
-            },
-            {
-              id: 7,
-              title: 'Pozostałe',
-              href: '#'
-            },
-            {
-              id: 8,
-              title: 'Świecące szpilki',
-              href: '#'
-            }
-          ]
-        }
-      ],
+      asideItems: [],
       mainSlides: [
         {
           id: 1,
@@ -327,33 +71,7 @@ export default {
           image: require('@/assets/img/main/slider/slide-bg.png')
         }
       ],
-      subSlides: [
-        {
-          id: 1,
-          label: 'Akcesoria do sufitów napinanych',
-          image: require('@/assets/img/main/slider/subslide-bg.png')
-        },
-        {
-          id: 2,
-          label: 'Folia do sufitów napinanych',
-          image: require('@/assets/img/main/slider/subslide-bg.png')
-        },
-        {
-          id: 3,
-          label: 'Akcesoria do sufitów napinanych',
-          image: require('@/assets/img/main/slider/subslide-bg.png')
-        },
-        {
-          id: 4,
-          label: 'Polia do sufitów napinanych',
-          image: require('@/assets/img/main/slider/subslide-bg.png')
-        },
-        {
-          id: 5,
-          label: 'polia do sufitów napinanych',
-          image: require('@/assets/img/main/slider/subslide-bg.png')
-        }
-      ],
+      subSlides: [],
       mainProducts: [
         {
           id: 1,
@@ -398,6 +116,6 @@ export default {
     HomeCatalogue,
     RecentProducts,
     PageAds
-  }
+  },
 }
 </script>

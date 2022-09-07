@@ -1,27 +1,27 @@
 <template>
-  <div class="sidebar">
-    <div class="sidebar__title" @click="mobileCategory">Kategorie</div>
-     <ul class="sidebar__list">
-       <li class="sidebar__item" v-for="item in asideItems" :key="item.id">
-         <div class="sidebar__item-title" ref="title" @click="categotyToggle">{{ item.label }}</div>
-         <ul class="sidebar__sublist" ref="sublist">
-            <li class="sidebar__subitem" v-for="link in item.asideSubItems" :key="link.id"><router-link :to="link.href">{{ link.title }}</router-link></li>
+  <div class="sidebar-category">
+    <div class="sidebar-category__title" @click="mobileCategory">Kategorie</div>
+     <ul class="sidebar-category__list">
+       <li class="sidebar-category__item" v-for="item in asideItems" :key="item.id">
+         <div class="sidebar-category__item-title" ref="title" @click="categotyToggle">{{ item.label }}</div>
+         <ul class="sidebar-category__sublist" ref="sublist">
+            <li class="sidebar-category__subitem" v-for="link in item.asideSubItems" :key="link.id"><router-link :to="link.href">{{ link.title }}</router-link></li>
         </ul>
       </li>
     </ul>
   </div>
 </template>
 <style lang="stylus">
-.sidebar{
-  margin-top 30px
+.sidebar-category{
   overflow hidden
   transition all 0.5s ease 0s
+  padding-top 30px
   &.active{
-    margin-top 50px
     display flex
     flex-direction column
   }
   @media(min-width: 1201px){
+    padding 0
     display flex
     flex-direction column
   }
@@ -33,7 +33,7 @@
     display inline-flex
     align-items center
     padding-bottom: 25px
-    margin-bottom 15px
+    margin-bottom 5px
     border none
     background inherit
     @media(max-width: 1200px){

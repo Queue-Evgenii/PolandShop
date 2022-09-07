@@ -37,4 +37,31 @@
   line-height: 16px;
   color: #8B8B8B;
   }
+  .row{
+    display flex
+    column-gap: 60px
+    }
+    .sidebar{
+      padding 40px 0 0 0
+      flex: 0 0 350px
+    }
+    .content{
+      max-width: 1500px
+      min-width: 0
+      flex: 1 1 1500px
+    }
+    @media(max-width: 1200px){
+      .row{
+        flex-wrap wrap
+      }
+      .content{
+        order: 0
+        flex-basis: 100%
+      }
+      .sidebar{
+        padding 0
+        order: 1
+        flex-basis: 100%
+      }
+    }
 </style>

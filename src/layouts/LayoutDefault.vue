@@ -18,7 +18,7 @@
                 <header-menu v-if="!MobileWidth" :headerMenu="headerMenu" />
               </div>
             </nav>
-            <router-link to="/" class="top-header__logo"><img src="@/assets/img/header/logo.png" alt=""></router-link>
+            <a href="/" class="top-header__logo"><img src="@/assets/img/header/logo.png" alt=""></a>
             <div class="top-header__phones phones-header flex">
               <button @click="activePhones = !activePhones" type="button" class="phones-header__icon"><img src="@/assets/img/header/icon/phone.png" alt=""></button>
               <div class="phones-header__items" v-bind:class="{active: activePhones}">
@@ -603,22 +603,22 @@ export default {
         {
           id: 1,
           label: 'Wzmacniacz',
-          to: '/'
+          to: '/shop/'
         },
         {
           id: 2,
           label: 'O nas',
-          to: '/about'
+          to: '/shop/about'
         },
         {
           id: 3,
           label: 'Łączność',
-          to: '/about'
+          to: '/shop/about'
         },
         {
           id: 4,
           label: 'Sklepy',
-          to: '/about'
+          to: '/shop/about'
         }
       ],
       headerMenu: [
@@ -781,8 +781,6 @@ export default {
     HeaderMenu,
     MainMenu,
     FooterCopy
-  },
-  methods: {
   },
   computed: {
     MobileWidth () {

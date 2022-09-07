@@ -12,14 +12,17 @@
   .slick-arrow{
     width 75px
     height 75px
-    background: rgba(255, 255, 255, 0.7);
+    background: rgb(255, 255, 255);
+    opacity 0.7
     border-radius 50%
+    border: 1px solid #3D3D3D;
     position absolute
     z-index 3
     font-size 0
     bottom 45px
     &:hover{
-      background: rgba(255, 255, 255, 0.9);
+      background: rgb(255, 255, 255);
+      opacity 0.9
     }
     &::before, &::after{
       content ''

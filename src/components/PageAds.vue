@@ -1,5 +1,5 @@
 <template>
-  <div class="ads">
+  <div class="page__ads ads">
     <div class="ads__container container">
       <div class="ads__row flex">
         <div class="ads__item ads__content">

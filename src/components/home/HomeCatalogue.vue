@@ -4,7 +4,7 @@
   <div class="mainproducts products">
     <div class="products__container container">
       <div class="products__title">Akcesoria do sufitów napinanych</div>
-      <div class="products__items flex">
+      <div class="products__items">
         <div class="products__item item-product" v-for="product in mainProducts" :key="product.id">
           <div class="item-product__body flex">
             <div class="item-product__info flex">
@@ -26,7 +26,7 @@
   <div class="mainproducts products">
     <div class="products__container container">
       <div class="products__title">Akcesoria do sufitów napinanych</div>
-      <div class="products__items flex">
+      <div class="products__items">
         <div class="products__item item-product" v-for="product in mainProducts" :key="product.id">
           <div class="item-product__body flex">
             <div class="item-product__info flex">
@@ -50,7 +50,7 @@
   <div class="mainproducts products">
     <div class="products__container container">
       <div class="products__title">Akcesoria do sufitów napinanych</div>
-      <div class="products__items flex">
+      <div class="products__items">
         <div class="products__item item-product" v-for="product in mainProducts" :key="product.id">
           <div class="item-product__body flex">
             <div class="item-product__info flex">
@@ -84,9 +84,9 @@
   &__items {
     padding 50px 0
     margin 0 -10px
-    justify-content space-between
-    align-items stretch !important
-    flex-wrap wrap
+    display grid
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    row-gap: 40px
   }
   &__item {
     padding 0 10px
@@ -95,7 +95,6 @@
   }
 }
 .item-product {
-  flex: 1 1 20%
   &__body {
     min-height 100%
     flex-direction column
@@ -108,6 +107,7 @@
     &:hover{
       box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.2);
       border: 2px solid #FF0031;
+      padding 26px 30px
       .actions-product__button{
         border: 2px solid #FF0031;
         color: #FF0031

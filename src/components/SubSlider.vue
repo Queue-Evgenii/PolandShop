@@ -44,7 +44,7 @@
         }
       }
       &__slide{
-        min-height: 100%
+        min-height: 200px
         display flex !important
         flex-direction column
         align-items center

@@ -3,7 +3,7 @@
     <div class="products">
     <div class="products__container container">
       <div class="products__title recent-products__title">Niedawno przeglądałeś:</div>
-      <div class="products__items flex">
+      <div class="products__items">
         <div class="products__item item-product" v-for="product in mainProducts" :key="product.id">
           <div class="item-product__body recent-product__body flex">
             <div class="item-product__info flex">
@@ -25,7 +25,7 @@
   <div class="products">
     <div class="products__container container">
       <div class="products__title recent-products__title">Niedawno przeglądałeś:</div>
-      <div class="products__items flex">
+      <div class="products__items">
         <div class="products__item item-product" v-for="product in mainProducts" :key="product.id">
           <div class="item-product__body recent-product__body flex">
             <div class="item-product__info flex">
