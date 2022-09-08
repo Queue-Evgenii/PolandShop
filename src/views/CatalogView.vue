@@ -21,6 +21,8 @@
             </div>
           </div>
         </div>
+        <recent-products :mainProducts="mainProducts" />
+        <page-ads />
       </main>
     </layout-default>
   </div>
