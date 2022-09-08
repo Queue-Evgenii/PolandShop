@@ -1,5 +1,5 @@
 <template>
-  <div class="catalog">
+  <div class="catalog-">
     <layout-default>
       <main class="page">
         <div class="page__catalog catalog-page">
