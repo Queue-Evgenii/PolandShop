@@ -6,6 +6,7 @@
             <div class="mainslider__button"><a :href="item.url">{{ item.label }}</a></div>
         </div>
       </VueSlickCarousel>
+      <div class="div"></div>
     </div>
 </template>
 <style lang="stylus">
