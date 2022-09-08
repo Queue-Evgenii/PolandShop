@@ -21,7 +21,6 @@
             </div>
           </div>
         </div>
-        <recent-products :mainProducts="mainProducts" />
       </main>
     </layout-default>
   </div>
