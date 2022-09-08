@@ -6,7 +6,6 @@
             <div class="mainslider__button"><a :href="item.url">{{ item.label }}</a></div>
         </div>
       </VueSlickCarousel>
-      <div class="div"></div>
     </div>
 </template>
 <style lang="stylus">
@@ -154,32 +153,6 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 export default {
   data () {
     return {
-      mainSlides: [
-        {
-          id: 1,
-          url: '#',
-          label: 'Dodaj do koszyka',
-          image: require('../../assets/img/main/slider/slide-bg.png')
-        },
-        {
-          id: 2,
-          url: '#',
-          label: 'Dodaj to koszyka',
-          image: require('../../assets/img/main/slider/slide-bg.png')
-        },
-        {
-          id: 3,
-          url: '#',
-          label: 'Dodaj to koszyka',
-          image: require('../../assets/img/main/slider/slide-bg.png')
-        },
-        {
-          id: 4,
-          url: '#',
-          label: 'Dodaj to koszyka',
-          image: require('../../assets/img/main/slider/slide-bg.png')
-        }
-      ]
     }
   },
   components: { VueSlickCarousel },
