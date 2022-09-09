@@ -4,7 +4,7 @@
     <form action="" class="sidebar-filter__form">
       <div class="sidebar-filter__section section-filter">
         <div class="section-filter__title">Cena £</div>
-        <div class="section-filter__body range-filter">
+        <div class="section-filter__body active range-filter">
           <range-slider
             class="range-filter__slider"
             :min="filterSlider.sliderMinValue"
@@ -18,11 +18,11 @@
         </div>
       </div>
       <div class="sidebar-filter__section section-filter" v-for="item in filterItems" :key="item.id">
-        <div class="section-filter__title">{{ item.name }}</div>
-        <ul class="section-filter__body">
+        <div class="section-filter__title" ref="title" @click="categotyToggle">{{ item.name }}</div>
+        <ul class="section-filter__body section-filter__body-line" ref="sublist">
           <li class="section-filter__item" v-for="input in item.filterInputs" :key="input.id">
-            <input type="checkbox" :id="input.id">
-            <label :for="input.id">{{ input.label }}</label>
+            <input type="checkbox" :id="input.for">
+            <label class="flex" :for="input.for">{{ input.label }}</label>
           </li>
         </ul>
       </div>
@@ -34,6 +34,25 @@
   // you probably need to import built-in style
   import 'vue-range-slider/dist/vue-range-slider.css'
   export default {
+    methods: {
+      categotyToggle (e) {
+        const title = e.target
+        const list = e.target.nextSibling
+        if (list.classList.contains('active')) {
+          list.classList.remove('active')
+          title.classList.remove('active')
+        } else {
+          this.$refs.sublist.forEach(element => {
+            element.classList.remove('active')
+            list.classList.add('active')
+          })
+          this.$refs.title.forEach(element => {
+            element.classList.remove('active')
+            title.classList.add('active')
+          })
+        }
+      },
+    },
     data () {
       return {
         filterSlider: {
@@ -41,45 +60,11 @@
           sliderMinValue: 0,
           sliderMaxValue: 350,
         },
-        filterItems: [
-          {
-            name: 'Rodzaj produktu',
-            id: 1,
-            filterInputs: [
-              {
-                label: 'Profil',
-                id: 1,
-              },
-              {
-                label: 'Listwa wykończeniowa',
-                id: 2,
-              },
-              {
-                label: 'Termo pierścienie',
-                id: 3,
-              },
-            ]
-          },
-          {
-            name: 'Rodzaj produktu',
-            id: 2,
-            filterInputs: [
-              
-              {
-                label: 'Listwa wykończeniowa',
-                id: 1,
-              },
-              {
-                label: 'Profil',
-                id: 2,
-              },
-              {
-                label: 'Termo pierścienie',
-                id: 3,
-              },
-            ]
-          },
-        ],
+      }
+    },
+    props: {
+      filterItems: {
+        type: Array,
       }
     },
     components: {
@@ -88,11 +73,27 @@
   }
 </script> 
 <style lang="stylus">
+  .settings-products__body.active .sidebar-filter{
+    transform translate(0, 0)
+  }
   .sidebar-filter{
-    @media(min-width: 769px){
+    @media(min-width: 1201px){
       margin-top: 40px
       padding-top 60px
       border-top 1px solid #8B8B8B;
+    }
+    @media(max-width: 1200px){
+      transform translate(0, -1000%)
+      transition all 0.5s ease 0s
+      position absolute
+      z-index 1
+      left 0
+      right 0
+      top 130%
+      background: #FFFFFF;
+      box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      padding 35px 20px
     }
     &__title{
       font-weight: 700;
@@ -110,7 +111,85 @@
       border-bottom 1px solid #CACACA;
     }
     &__title{
-      margin-bottom 25px
+    }
+    &__body{
+      margin-top 0
+      transition all 0.5s ease 0s
+      max-height: 0
+      opacity: 0
+      visibility hidden
+      &.active{
+        max-height: none
+        opacity 1
+        visibility visible
+        margin-top 25px
+      }
+      @media(max-width: 1200px){
+        max-height: none
+        opacity 1
+        visibility visible
+        margin-top 25px
+      }
+    }
+    &__body-line{
+      position relative
+      &::after{
+        content ''
+        position absolute
+        right 0
+        top 0
+        bottom 0
+        height 100%
+        width 1px
+        background-color #838383;
+      }
+      &::before{
+        content ''
+        position absolute
+        right -4px
+        top 8px
+        height 9px
+        width 9px
+        background-color #838383;
+        border-radius 50%
+      }
+    }
+    &__item{
+      &:not(:last-child){
+        margin-bottom 15px
+      }
+      input{
+        display none
+      }
+      label{
+        position relative
+        &::before{
+          content: ''
+          margin-right 10px
+          display inline-block
+          width 20px
+          height 20px
+          border 1px solid #CACACA;
+          background-color #fff
+          border-radius 3px
+        }
+        &::after{
+          content: ''
+          position absolute
+          display inline-block
+          width 14px
+          height 14px
+          background-color #cacaca
+          left 3px
+          transform scale(0)
+          transition transform 0.3s ease 0s
+        }
+      }
+      input[type=checkbox]:checked + label{
+        &::after{
+          transform scale(1)
+        }
+      }
     }
   }
   .range-filter{

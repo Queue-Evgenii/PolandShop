@@ -149,8 +149,8 @@ export default {
           element.classList.remove('active')
           list.classList.add('active')
         })
-        this.$refs.title.forEach(el => {
-          el.classList.remove('active')
+        this.$refs.title.forEach(element => {
+          element.classList.remove('active')
           title.classList.add('active')
         })
       }
