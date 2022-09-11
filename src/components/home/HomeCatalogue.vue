@@ -87,6 +87,9 @@
     display grid
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     row-gap: 40px
+    @media(max-width: 560px){
+      padding 20px 0
+    }
   }
   &__item {
     padding 0 10px

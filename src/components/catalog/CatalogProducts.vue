@@ -6,16 +6,16 @@
         <button type="button" class="settings-products__filters" @click="filtersToggle">Filtr</button>
         <button type="button" class="settings-products__order">Cena rosnąco</button>
         <div class="settings-products__view flex">
-          <button type="button" class="settings-products__view-columns"><img src="@/assets/img/catalog/columns.png" alt=""></button>
-          <button type="button" class="settings-products__view-rows"><img src="@/assets/img/catalog/rows.png" alt=""></button>
+          <button type="button" class="settings-products__view-columns" ref="column" @click="filtersLayout"><img src="@/assets/img/catalog/columns.png" alt=""></button>
+          <button type="button" class="settings-products__view-rows" @click="filtersLayout"><img src="@/assets/img/catalog/rows.png" alt=""></button>
         </div>
       </div>
       <div class="settings-products__body" ref="filters">
         <slot></slot>
       </div>
     </div>
-     <div class="products__items">
-      <div class="products__item item-product" v-for="product in catalogProducts" :key="product.id">
+     <div class="products__items" ref="products">
+      <div class="products__item item-product" ref="product" v-for="product in catalogProducts" :key="product.id">
         <div class="item-product__body flex">
           <div class="item-product__info flex">
             <router-link :to="product.href" class="item-product__image">
@@ -70,8 +70,29 @@ export default {
       title.classList.toggle('active')
       list.classList.toggle('active')
     },
+    filtersLayout (e) {
+      const column = this.$refs.column,
+            row = column.nextElementSibling,
+            products = this.$refs.products,
+            productItems = this.$refs.product
+      if (column == e.target) {
+        for (let index = 0; index < productItems.length; index++) {
+          const productItem = productItems[index];
+          productItem.classList.remove('item-product-row')
+        }
+        products.classList.remove('products-items-row')
+      } else if (row == e.target) {
+        for (let index = 0; index < productItems.length; index++) {
+          const productItem = productItems[index];
+          productItem.classList.add('item-product-row')
+        }
+        products.classList.add('products-items-row')
+      }
+    }
   },
 }
+// .products-items-row
+// .item-product-row
 </script>
 <style lang="stylus">
   .settings-products {
@@ -122,6 +143,10 @@ export default {
         display inline-block
         padding 0 20px
       }
+      img{
+        position relative
+        z-index -1
+      }
     }
     &__view-columns{
       border-right: 1px solid #000000;
@@ -144,8 +169,11 @@ export default {
     display flex
     align-items center
     justify-content space-between
-    width 466px
+    max-width 466px
+    width 100%
     margin 0 auto
+    position relative
+    z-index 1
     &__number{
       position relative
       width 37px
@@ -168,7 +196,10 @@ export default {
           line-height: 28px;
         }
       }
-      &.disabled{
+      @media(max-width: 420px) {
+        a{
+          font-size 24px
+        }
       }
     }
     
@@ -190,19 +221,25 @@ export default {
     &::before, &::after{
       content ''
       position absolute
-      width 22.5px
-      height 2px
+      // width 22.5px
+      // height 2px
+      width 30%
+      height 2.666%
       background-color #000
     }
     &::before{
       transform rotate(45deg)
-      top: 28.5px
-      left: 28.5px
+      // top: 28.5px
+      // left: 28.5px
+      top 38%
+      left 38%
     }
     &::after{
       transform rotate(-45deg)
-      bottom: 28.5px
-      left: 28.5px
+      // bottom: 28.5px
+      // left: 28.5px
+      bottom 38%
+      left 38%
     }
     a{
       font-size 0
@@ -210,6 +247,10 @@ export default {
       width 100%
       height 100%
       z-index 2
+    }
+    @media(max-width: 420px) {
+      width 50px
+      height 50px
     }
   }
   .paginate-products__prev{
