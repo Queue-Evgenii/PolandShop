@@ -26,6 +26,11 @@
           </li>
         </ul>
       </div>
+      <div class="sidebar-filter__section section-filter section-button">
+        <div class="section-filter__body">
+          <button class="section-filter__button button"><span>Stosować</span></button>
+        </div>
+      </div>
     </form>
   </div>
 </template>
@@ -103,6 +108,21 @@
     }
     &__form{
       padding-top 20px
+    }
+  }
+  .section-button{
+    border none !important
+    button{
+      width 230px !important
+      margin 0 auto
+      display block
+      span{
+        font-size: 24px;
+        line-height: 28px;
+      }
+    }
+    @media(min-width: 1201px){
+      display none
     }
   }
   .section-filter{

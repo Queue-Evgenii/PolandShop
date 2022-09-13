@@ -14,7 +14,7 @@
           </div>
         </div>
         <div class="ads__item ads__action">
-          <button type="button" class="ads__button"><span>Wybierz ze zniżką - 30%</span></button>
+          <button type="button" class="ads__button button"><span>Wybierz ze zniżką - 30%</span></button>
         </div>
       </div>
     </div>
@@ -99,20 +99,14 @@
       }
     }
     &__button {
-      background: #FF0031;
-      min-width 240px
-      padding 16px 5px
       span{
-        font-weight: 700;
         font-size: 16px;
         line-height: 18px;
-        color: #FFFFFF;
       }
       &:hover{
         box-shadow 2px 2px 2px #FF0031
       }
       @media(max-width:1440px){
-        width 100%
         span{
           font-size 24px
         }

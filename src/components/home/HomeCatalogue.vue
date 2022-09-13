@@ -119,7 +119,8 @@
   }
   &__image {
     display block
-    max-width 270px
+    width 225px
+    // max-width 270px
     height 200px
     img{
       width 100%

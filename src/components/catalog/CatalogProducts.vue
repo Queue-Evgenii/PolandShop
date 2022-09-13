@@ -133,8 +133,23 @@ export default {
     }
     &__order{
       width 300px
+      display flex
+      align-items center
+      justify-content center
+      &::after{
+        content ''
+        background url('@/assets/img/catalog/price-arrow.png') 0 0 / 100% no-repeat
+        display inline-block
+        height 17px
+        width 12px
+        margin-left 9px
+      }
       @media(max-width: 560px){
         width 147px
+        &::after{
+          height 14px
+          width 9px
+        }
       }
     }
     &__view{

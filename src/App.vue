@@ -64,4 +64,16 @@
         flex-basis: 100%
       }
     }
+  .button{
+  background: #FF0031;
+  min-width 240px
+  padding 16px 5px
+  span{
+    font-weight: 700;
+    color: #fff
+  }
+  @media(max-width:1440px){
+    width 100%
+  }
+}
 </style>
