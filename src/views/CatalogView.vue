@@ -187,7 +187,135 @@ export default {
           image: require('@/assets/img/products/product-4.png'),
           href: '#',
           mark: '',
+          label: 'PRofil aluminiowy uniwersalny bezuszczelkowy',
+          price: 75
+        },
+        {
+          id: 17,
+          image: require('@/assets/img/products/product-1.png'),
+          href: '#',
+          mark: 'Najlepiej sprzedający się',
           label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+          price: 75
+        },
+        {
+          id: 18,
+          image: require('@/assets/img/products/product-2.png'),
+          href: '#',
+          mark: '',
+          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+          price: 75
+        },
+        {
+          id: 19,
+          image: require('@/assets/img/products/product-3.png'),
+          href: '#',
+          mark: 'Najlepiej sprzedający się',
+          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+          price: 75
+        },
+        {
+          id: 20,
+          image: require('@/assets/img/products/product-4.png'),
+          href: '#',
+          mark: '',
+          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+          price: 75
+        },
+        {
+          id: 21,
+          image: require('@/assets/img/products/product-1.png'),
+          href: '#',
+          mark: 'Najlepiej sprzedający się',
+          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+          price: 75
+        },
+        {
+          id: 22,
+          image: require('@/assets/img/products/product-2.png'),
+          href: '#',
+          mark: '',
+          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+          price: 75
+        },
+        {
+          id: 23,
+          image: require('@/assets/img/products/product-3.png'),
+          href: '#',
+          mark: 'Najlepiej sprzedający się',
+          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+          price: 75
+        },
+        {
+          id: 24,
+          image: require('@/assets/img/products/product-4.png'),
+          href: '#',
+          mark: '',
+          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+          price: 75
+        },
+        {
+          id: 25,
+          image: require('@/assets/img/products/product-1.png'),
+          href: '#',
+          mark: 'Najlepiej sprzedający się',
+          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+          price: 75
+        },
+        {
+          id: 26,
+          image: require('@/assets/img/products/product-2.png'),
+          href: '#',
+          mark: '',
+          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+          price: 75
+        },
+        {
+          id: 27,
+          image: require('@/assets/img/products/product-3.png'),
+          href: '#',
+          mark: 'Najlepiej sprzedający się',
+          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+          price: 75
+        },
+        {
+          id: 28,
+          image: require('@/assets/img/products/product-4.png'),
+          href: '#',
+          mark: '',
+          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+          price: 75
+        },
+        {
+          id: 29,
+          image: require('@/assets/img/products/product-1.png'),
+          href: '#',
+          mark: 'Najlepiej sprzedający się',
+          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+          price: 75
+        },
+        {
+          id: 30,
+          image: require('@/assets/img/products/product-2.png'),
+          href: '#',
+          mark: '',
+          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+          price: 75
+        },
+        {
+          id: 31,
+          image: require('@/assets/img/products/product-3.png'),
+          href: '#',
+          mark: 'Najlepiej sprzedający się',
+          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+          price: 75
+        },
+        {
+          id: 32,
+          image: require('@/assets/img/products/product-4.png'),
+          href: '#',
+          mark: '',
+          label: 'PRofil aluminiowy uniwersalny bezuszczelkowy',
           price: 75
         },
       ],

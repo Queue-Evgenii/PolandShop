@@ -15,12 +15,13 @@
       </div>
     </div>
      <div class="products__items" ref="products">
-      <div class="products__item item-product" ref="product" v-for="product in catalogProducts" :key="product.id">
+      <div class="products__item item-product" ref="product" v-for="product in getItems" :key="product.id">
         <div class="item-product__body flex">
           <div class="item-product__info flex">
             <router-link :to="product.href" class="item-product__image">
               <img :src="product.image" alt="">
-              <span v-if="product.mark">{{ product.mark }}</span></router-link>
+              <span v-if="product.mark">{{ product.mark }}</span>
+            </router-link>
               <div class="item-product__info-text">
                 <router-link :to="product.href" class="item-product__label">{{ product.label }}</router-link>
                 <div class="item-product__price">{{ product.price }}</div>
@@ -36,14 +37,14 @@
     <div class="products__navi navi-products">
       <div class="navi-products__button"><button type="button">Załaduj jeszcze 10 produktów</button></div>
       <paginate 
-        :page-count="10"
+        :page-count="getPaginateCount"
         :page-range="1"
         :container-class="'paginate-products'"
         :page-class="'paginate-products__number'"
         :prev-class="'paginate-products__prev'"
         :next-class="'paginate-products__next'"
         :break-view-text="'●'"
-        :click-handler="clickCallback"
+        :click-handler="paginateClickCallback"
       ></paginate>
       <!-- <pagination v-model="page" :records="pagging.total" :per-page="pagging.perPage" @paginate="paginate" /> -->
     </div>
@@ -52,6 +53,13 @@
 <script>
   import Paginate from 'vuejs-paginate'
 export default {
+  data () {
+    return {
+      currentPage: 1,
+      perPage: 16,
+      currentProducts: this.catalogProducts,
+    }
+  },
   props: {
     catalogProducts: {
       type: Array,
@@ -61,9 +69,13 @@ export default {
     Paginate,
   },
   methods: {
-    clickCallback (pageNum) {
-      console.log(pageNum)
+    paginateClickCallback (pageNum) {
+      this.currentPage = Number(pageNum);
+      // console.log(pageNum)
     },
+    // clickCallback (pageNum) {
+    //   console.log(pageNum)
+    // },
     filtersToggle (e) {
       const title = e.target
       const list = this.$refs.filters
@@ -88,6 +100,19 @@ export default {
         }
         products.classList.add('products-items-row')
       }
+    }
+  },
+  computed: {
+    getPaginateCount () {
+      console.log(Math.ceil(this.catalogProducts.length / this.perPage))
+      return Math.ceil(this.catalogProducts.length / this.perPage);
+    },
+    getItems () {
+      let start = (this.currentPage - 1) * this.perPage;
+      let end = this.currentPage * this.perPage;
+      this.currentProducts.slice(start, end);
+      console.log(this.currentProducts)
+      return this.currentProducts.slice(start, end);
     }
   },
 }
