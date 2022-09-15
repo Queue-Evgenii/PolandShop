@@ -2,75 +2,55 @@
   <div class="wrapper">
     <layout-default>
       <main class="page">
-        <div class="home-page">
-          <div class="home-page__container container">
-            <div class="home-page__row row">
-              <aside class="home-page__sidebar sidebar">
-                <aside-sidebar :asideItems="asideItems" />
+        <div class="page__product product-page">
+          <div class="product-page__container container">
+            <div class="product-page__row row">
+              <aside class="product-page__sidebar sidebar">
+                <aside-sidebar :asideItems="asideItems" v-if="SidebarWidth" />
               </aside>
-              <div class="home-page__content content">
-                <main-slider :mainSlides="mainSlides" />
-                <sub-slider :subSlides="subSlides" />
+              <div class="product-page__content content">
+                <div class="product-page__commodity commodity-page flex">
+                  <commodity-slider :commoditySlides="commoditySlides" />
+                  <div class="commodity-page__body"></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <home-catalogue :mainProducts="mainProducts" />
         <recent-products :mainProducts="mainProducts" />
         <page-ads />
       </main>
     </layout-default>
   </div>
 </template>
+<style lang="stylus">
+</style>
 <script>
 import subSlidesList from '@/mock/slider-category'
 import sidebarCategoryList from '@/mock/sidebar-category'
+
+import CommoditySlider from '@/components/product/CommoditySlider'
 import LayoutDefault from '@/layouts/LayoutDefault'
 import AsideSidebar from '@/components/home/AsideSidebar'
-import MainSlider from '@/components/home/MainSlider'
-import SubSlider from '@/components/SubSlider'
-import HomeCatalogue from '@/components/home/HomeCatalogue'
 import RecentProducts from '@/components/home/RecentProducts'
 import PageAds from '@/components/PageAds'
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'HomeView',
+  name: 'CatalogView',
   layouts: 'default',
   created () {
     this.subSlides = subSlidesList
     this.asideItems =sidebarCategoryList
   },
+  components: {
+    LayoutDefault,
+    AsideSidebar,
+    RecentProducts,
+    PageAds,
+    CommoditySlider,
+  },
   data () {
     return {
       asideItems: [],
-      mainSlides: [
-        {
-          id: 1,
-          url: '#',
-          label: 'Dodaj do koszyka',
-          image: require('@/assets/img/main/slider/slide-bg.png')
-        },
-        {
-          id: 2,
-          url: '#',
-          label: 'Dodaj to koszyka',
-          image: require('@/assets/img/main/slider/slide-bg.png')
-        },
-        {
-          id: 3,
-          url: '#',
-          label: 'Dodaj to koszyka',
-          image: require('@/assets/img/main/slider/slide-bg.png')
-        },
-        {
-          id: 4,
-          url: '#',
-          label: 'Dodaj to koszyka',
-          image: require('@/assets/img/main/slider/slide-bg.png')
-        }
-      ],
       subSlides: [],
       mainProducts: [
         {
@@ -106,16 +86,41 @@ export default {
           price: 75
         }
       ],
+      commoditySlides: [
+        {
+          id: 1,
+          image: require('@/assets/img/product/product-img-1.png')
+        },
+        {
+          id: 2,
+          image: require('@/assets/img/product/product-img-2.png')
+        },
+        {
+          id: 3,
+          image: require('@/assets/img/product/product-img-3.png')
+        },
+        {
+          id: 4,
+          image: require('@/assets/img/product/product-img-4.png')
+        },
+      ],
     }
   },
-  components: {
-    LayoutDefault,
-    AsideSidebar,
-    MainSlider,
-    SubSlider,
-    HomeCatalogue,
-    RecentProducts,
-    PageAds
+  computed: {
+    SidebarWidth () {
+      if (window.innerWidth <= 1200) {
+        return false
+      } else {
+        return true
+      }
+    },
+    MobileWidth () {
+      if (window.innerWidth <= 768) {
+        return false
+      } else {
+        return true
+      }
+    },
   },
 }
 </script>
