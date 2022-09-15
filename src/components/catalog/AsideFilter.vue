@@ -17,7 +17,8 @@
           </div>
         </div>
       </div>
-      <div class="sidebar-filter__section section-filter" v-for="item in filterItems" :key="item.id">
+      <section-filter v-for="item in filterItems" :key="item.id" :item="item"></section-filter>
+      <!-- <div class="sidebar-filter__section section-filter" v-for="item in filterItems" :key="item.id">
         <div class="section-filter__title" ref="title" @click="categotyToggle">{{ item.name }}</div>
         <ul class="section-filter__body section-filter__body-line" ref="sublist">
           <li class="section-filter__item" v-for="input in item.filterInputs" :key="input.id">
@@ -25,7 +26,7 @@
             <label class="flex" :for="input.for">{{ input.label }}</label>
           </li>
         </ul>
-      </div>
+      </div> -->
       <div class="sidebar-filter__section section-filter section-button">
         <div class="section-filter__body">
           <button class="section-filter__button button"><span>Stosować</span></button>
@@ -35,28 +36,29 @@
   </div>
 </template>
 <script>
+  import SectionFilter from "@/components/catalog/SectionFilter";
   import RangeSlider from 'vue-range-slider'
   // you probably need to import built-in style
   import 'vue-range-slider/dist/vue-range-slider.css'
   export default {
     methods: {
-      categotyToggle (e) {
-        const title = e.target
-        const list = e.target.nextSibling
-        if (list.classList.contains('active')) {
-          list.classList.remove('active')
-          title.classList.remove('active')
-        } else {
-          this.$refs.sublist.forEach(element => {
-            element.classList.remove('active')
-            list.classList.add('active')
-          })
-          this.$refs.title.forEach(element => {
-            element.classList.remove('active')
-            title.classList.add('active')
-          })
-        }
-      },
+      // categotyToggle (e) {
+      //   const title = e.target
+      //   const list = e.target.nextSibling
+      //   if (list.classList.contains('active')) {
+      //     list.classList.remove('active')
+      //     title.classList.remove('active')
+      //   } else {
+      //     this.$refs.sublist.forEach(element => {
+      //       element.classList.remove('active')
+      //       list.classList.add('active')
+      //     })
+      //     this.$refs.title.forEach(element => {
+      //       element.classList.remove('active')
+      //       title.classList.add('active')
+      //     })
+      //   }
+      // },
     },
     data () {
       return {
@@ -73,7 +75,8 @@
       }
     },
     components: {
-      RangeSlider
+      RangeSlider,
+      SectionFilter
     }
   }
 </script> 

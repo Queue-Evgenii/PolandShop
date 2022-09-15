@@ -116,8 +116,6 @@ export default {
     }
   },
 }
-// .products-items-row
-// .item-product-row
 </script>
 <style lang="stylus">
   .settings-products {
@@ -198,11 +196,13 @@ export default {
     row-gap: 60px
     &__button{
       margin 0 auto
-      padding 20px 10px
-      text-align center
-      width 280px
-      border 2px solid #000
-      border-radius 6px
+      button{
+        padding 20px 10px
+        text-align center
+        width 280px
+        border 2px solid #000
+        border-radius 6px
+      }
     }
   }
   .paginate-products{

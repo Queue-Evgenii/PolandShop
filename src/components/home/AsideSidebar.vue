@@ -2,12 +2,15 @@
   <div class="sidebar-category">
     <div class="sidebar-category__title" @click="mobileCategory">Kategorie</div>
      <ul class="sidebar-category__list">
-       <li class="sidebar-category__item" v-for="item in asideItems" :key="item.id">
+      <category-item v-for="item in asideItems" :key="item.id" :item="item"></category-item>
+       <!-- <li class="sidebar-category__item" v-for="item in asideItems" :key="item.id">
          <div class="sidebar-category__item-title" ref="title" @click="categotyToggle">{{ item.label }}</div>
          <ul class="sidebar-category__sublist" ref="sublist">
-            <li class="sidebar-category__subitem" v-for="link in item.asideSubItems" :key="link.id"><router-link :to="link.href">{{ link.title }}</router-link></li>
+            <li class="sidebar-category__subitem" v-for="link in item.asideSubItems" :key="link.id">
+              <router-link :to="link.href">{{ link.title }}</router-link>
+            </li>
         </ul>
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>
@@ -131,30 +134,34 @@
 }
 </style>
 <script>
+import CategoryItem from "@/components/home/CategoryItem";
 export default {
+  components: {
+    CategoryItem,
+  },
   props: {
     asideItems: {
       type: Array,
     }
   },
   methods: {
-    categotyToggle (e) {
-      const title = e.target
-      const list = e.target.nextSibling
-      if (list.classList.contains('active')) {
-        list.classList.remove('active')
-        title.classList.remove('active')
-      } else {
-        this.$refs.sublist.forEach(element => {
-          element.classList.remove('active')
-          list.classList.add('active')
-        })
-        this.$refs.title.forEach(element => {
-          element.classList.remove('active')
-          title.classList.add('active')
-        })
-      }
-    },
+    // categotyToggle (e) {
+    //   const title = e.target
+    //   const list = e.target.nextSibling
+    //   if (list.classList.contains('active')) {
+    //     list.classList.remove('active')
+    //     title.classList.remove('active')
+    //   } else {
+    //     this.$refs.sublist.forEach(element => {
+    //       element.classList.remove('active')
+    //       list.classList.add('active')
+    //     })
+    //     this.$refs.title.forEach(element => {
+    //       element.classList.remove('active')
+    //       title.classList.add('active')
+    //     })
+    //   }
+    // },
     mobileCategory (e) {
       const categoriesTitle = e.target
       const categoriesList = e.target.nextSibling
