@@ -64,8 +64,9 @@
         flex-basis: 100%
       }
     }
-  .button{
-  background: #FF0031;
+.button{
+  border-radius: 8px
+  background-color: #FF0031;
   min-width 240px
   padding 16px 5px
   span{
@@ -74,6 +75,10 @@
   }
   @media(max-width:1440px){
     width 100%
+  }
+  &:hover{
+    border 1px solid #FF0031
+    background-color: rgba(#FF0031, 0.5);
   }
 }
 </style>

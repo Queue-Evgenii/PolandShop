@@ -9,9 +9,9 @@
                 <aside-sidebar :asideItems="asideItems" v-if="SidebarWidth" />
               </aside>
               <div class="product-page__content content">
-                <div class="product-page__commodity commodity-page flex">
+                <div class="product-page__commodity commodity-page">
                   <commodity-slider :commoditySlides="commoditySlides" />
-                  <div class="commodity-page__body"></div>
+                  <commodity-content />
                 </div>
               </div>
             </div>
@@ -24,11 +24,20 @@
   </div>
 </template>
 <style lang="stylus">
+  .commodity-page{
+    padding 20px 0
+    display flex
+    &__images{
+      max-width: 800px
+      flex: 1 1 800px
+    }
+  }
 </style>
 <script>
 import subSlidesList from '@/mock/slider-category'
 import sidebarCategoryList from '@/mock/sidebar-category'
 
+import CommodityContent from '@/components/product/CommodityContent'
 import CommoditySlider from '@/components/product/CommoditySlider'
 import LayoutDefault from '@/layouts/LayoutDefault'
 import AsideSidebar from '@/components/home/AsideSidebar'
@@ -47,6 +56,7 @@ export default {
     RecentProducts,
     PageAds,
     CommoditySlider,
+    CommodityContent,
   },
   data () {
     return {
