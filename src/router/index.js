@@ -22,7 +22,12 @@ const routes = [
     path: '/catalog',
     name: 'catalog',
     component: () => import('../views/CatalogView.vue')
-  }
+  },
+  {
+    path: '/product',
+    name: 'product',
+    component: () => import('../views/ProductView.vue')
+  },
 ]
 
 const router = new VueRouter({
