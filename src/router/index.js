@@ -6,12 +6,12 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/shop/',
+    path: '/',
     name: 'home',
     component: HomeView
   },
   {
-    path: '/shop/about',
+    path: '/about',
     name: 'about',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -19,7 +19,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
-    path: '/shop/catalog',
+    path: '/catalog',
     name: 'catalog',
     component: () => import('../views/CatalogView.vue')
   }

@@ -170,13 +170,13 @@
 .actions-product {
   width 100%
   justify-content space-between
+  gap 5px
   &__button {
-    width 200px
-    padding 20px 0
+    flex-shrink: 0
+    padding 20px 30px
     text-align center
     font-size: 16px;
     border: 2px solid #000000;
-    margin-right 30px
     border-radius: 10px;
     &:hover{
       background-color #FF0031;

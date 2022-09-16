@@ -2,15 +2,13 @@
   <div class="sidebar-category">
     <div class="sidebar-category__title" @click="mobileCategory">Kategorie</div>
      <ul class="sidebar-category__list">
-      <category-item v-for="item in asideItems" :key="item.id" :item="item"></category-item>
-       <!-- <li class="sidebar-category__item" v-for="item in asideItems" :key="item.id">
-         <div class="sidebar-category__item-title" ref="title" @click="categotyToggle">{{ item.label }}</div>
-         <ul class="sidebar-category__sublist" ref="sublist">
-            <li class="sidebar-category__subitem" v-for="link in item.asideSubItems" :key="link.id">
-              <router-link :to="link.href">{{ link.title }}</router-link>
-            </li>
-        </ul>
-      </li> -->
+      <category-item
+        v-for="item in asideItems" 
+        :key="item.id"
+        :item="item"
+        :class="{'active' : currentNavItem === item.id}"
+        @onSelected="onSelected"
+      />
     </ul>
   </div>
 </template>
@@ -91,22 +89,12 @@
       transform rotate(-90deg)
       transition transform 0.3s ease 0s
     }
-    &.active{
-        &::before{
-          transform rotate(0)
-        }
-      }
   }
   &__sublist{
     transition all 0.5s ease 0s
     max-height: 0
     opacity: 0
     visibility hidden
-    &.active{
-      max-height: none
-      opacity 1
-      visibility visible
-    }
   }
   &__subitem{
     padding 0 30px
@@ -145,23 +133,6 @@ export default {
     }
   },
   methods: {
-    // categotyToggle (e) {
-    //   const title = e.target
-    //   const list = e.target.nextSibling
-    //   if (list.classList.contains('active')) {
-    //     list.classList.remove('active')
-    //     title.classList.remove('active')
-    //   } else {
-    //     this.$refs.sublist.forEach(element => {
-    //       element.classList.remove('active')
-    //       list.classList.add('active')
-    //     })
-    //     this.$refs.title.forEach(element => {
-    //       element.classList.remove('active')
-    //       title.classList.add('active')
-    //     })
-    //   }
-    // },
     mobileCategory (e) {
       const categoriesTitle = e.target
       const categoriesList = e.target.nextSibling
@@ -170,7 +141,24 @@ export default {
         categoriesList.classList.toggle('active')
         categoriesTitle.parentNode.classList.toggle('active')
       }
+    },
+    onSelected (id) {
+      if (this.currentNavItem !== id) {
+        this.currentNavItem = id
+      } else if (this.currentNavItem === id) {
+        this.currentNavItem = null
+      }
     }
-  }
+  },
+  data () {
+    return {
+      filterSlider: {
+        sliderValue: 50,
+        sliderMinValue: 0,
+        sliderMaxValue: 350,
+      },
+      currentNavItem: null
+    }
+  },
 }
 </script>
