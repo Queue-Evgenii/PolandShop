@@ -15,8 +15,14 @@
     </div>
     <div class="content-commodity__actions actions-commodity">
       <div class="actions-commodity__row">
-        <div class="actions-commodity__quantity"></div>
-        <div class="actions-commodity__token"></div>
+        <div class="actions-commodity__quantity quantity-product">
+          <span>-</span>
+          <div class="quantity-product__input">
+            <input type="text" value="1">
+          </div>
+          <span>+</span>
+        </div>
+        <div class="actions-commodity__token flex">Cod Kupon: _ _  _ _   _ _  _ _ </div>
       </div>
       <div class="actions-commodity__status flex yes"><span>W magazynie - </span>Są dostępne</div>
       <div class="actions-commodity__row">
@@ -30,6 +36,31 @@
   </div>
 </template>
 <style lang="stylus">
+  .quantity-product {
+    display flex
+    align-items center
+    span{
+      display inline-block
+      font-size 32px
+      color: #3D3D3D;
+      padding 15px
+      cursor: pointer
+      &:hover{
+        color: #FF0031;
+      }
+    }
+    &__input {
+      flex: 0 0 70px
+      border 1px dashed #000
+      input{
+        background transparent
+        padding: 5px 15px
+        width 70px
+        font-size 24px
+        color: #3D3D3D;
+      }
+    }
+  }
   .content-commodity{
     padding 0 20px
     &__title{
@@ -116,10 +147,25 @@
   .actions-commodity{
     margin -26px 0
     &__row{
-      padding 13px 0
+      padding 25px 0
       display flex
       align-items center
       column-gap: 20px
+    }
+    &__token{
+      padding 5px 10px
+      border 1px solid #FF0031
+      border-radius: 3px
+      color: #3D3D3D;
+      font-weight 700
+      &::before{
+        content: ''
+        display inline-block
+        width 30px
+        height 30px
+        background url('@/assets/img/product/icon/token.png') 0 0 no-repeat
+        margin-right 10px
+      }
     }
     &__status{
       font-weight: 400;
