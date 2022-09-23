@@ -11,10 +11,17 @@
           <div class="thumbs-commodity__image"><img :src="item.image" alt=""></div>
         </div>
       </VueSlickCarousel>
-      <VueSlickCarousel ref="slider" v-bind="settings" :asNavFor="thumb"
-        class="commodity-images__carousel carousel-commodity">
-        <div class="carousel-commodity__slide" v-for="item in commoditySlides" :key="item.id">
-          <div class="carousel-commodity__image"><img :src="item.image" alt=""></div>
+      <VueSlickCarousel 
+        ref="slider" 
+        v-bind="settings" 
+        :asNavFor="thumb"
+        class="commodity-images__carousel carousel-commodity"
+      >
+        <div class="carousel-commodity__slide"
+          v-for="item in commoditySlides"
+          :key="item.id"
+        >
+          <div class="carousel-commodity__image"><img :src="item.image" alt="" @click="openPopup(item.id)"></div>
         </div>
       </VueSlickCarousel>
     </div>
@@ -41,7 +48,7 @@ export default {
         "arrows": false,
         "focusOnSelect": true,
         "infinite": true,
-        "centerMode": true,
+        // "centerMode": true,
         "centerPadding": "2px",
         "speed": 500,
         "slidesToShow": 4,
@@ -120,6 +127,11 @@ export default {
     }
   },
   components: { VueSlickCarousel },
+  methods: {
+    openPopup (id) {
+      this.$emit('openPopup', id)
+    }
+  }
 } 
 </script>
 <style lang="stylus">
@@ -130,6 +142,9 @@ export default {
       column-gap 25px
       row-gap: 10px
       overflow: hidden
+      position relative
+      padding-bottom 70px
+      margin-bottom 30px
       @media(max-width: 1590px){
         grid-template-columns: minmax(200px, 1fr)
       }
@@ -150,20 +165,40 @@ export default {
     &__carousel{
     }
   }
+  .popup{
+    .thumbs-commodity__image{
+      border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+    .thumbs-commodity{
+      .slick-current{
+        .thumbs-commodity__image{
+          border: 1px solid #FF0031
+        }
+      }
+    }
+    
+  }
   .thumbs-commodity{
     .slick-track{
     }
     .slick-slide{
-      padding 0 5px
+      @media(max-width: 1590px){
+        padding 0 5px
+      }
+      @media(min-width: 1591px){
+        margin-top 1px
+      }
     }
     &__slide{
-      
-      
+    }
+    .slick-current{
+      .thumbs-commodity__image{
+        border: 1px solid rgba(0, 0, 0, 0.2);
+      }
     }
     &__image{
-      border: 1px solid rgba(0, 0, 0, 0.2);
       background-color #fff
-      min-width 140px
+      min-width 135px
       height 130px
       position relative
       img{
@@ -180,19 +215,32 @@ export default {
     }
   }
   .carousel-commodity{
-    position relative
-    max-width 610px
-    &::after{
-      content ''
-      background url('@/assets/img/header/icon/search.png') 0 0 / 100% no-repeat
-      width 42px
-      height 42px
-      position absolute
-      right 25px
-      bottom 35px
-    }
+    position initial !important
     .slick-arrow{
       display none !important
+      border: none
+      background: inherit
+      &::after,
+      &::before{
+        background-color #D60029
+      }
+    }
+    .slick-dots{
+      bottom 0 
+      right 0
+      width 100%
+      justify-content center
+      @media(min-width: 1591px) {
+        right -75px
+      }
+      li {
+        background-color #3d3d3d
+        opacity 0.5
+      &.slick-active{
+          background-color #FF0031
+          opacity 1
+      }
+    }
     }
     &__slide{
       background-color #fff
@@ -213,7 +261,10 @@ export default {
         }
       }
       @media(max-width: 1590px) {
-        height 410px !important
+        height 410px 
+      }
+      @media(max-width: 500px) {
+        height 300px
       }
     }
     @media(max-width: 1460px){

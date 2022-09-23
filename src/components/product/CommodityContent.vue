@@ -1,15 +1,15 @@
 <template>
   <div class="commodity-page__content content-commodity">
-    <div class="content-commodity__title">Profil aluminiowy uniwersalny bezuszczelkowy</div>
-    <div class="content-commodity__offer">Bezpłatna dostawa z 500 Pln</div>
+    <div class="content-commodity__title">{{ productAbout.title }}</div>
+    <div class="content-commodity__offer">{{ productAbout.offer }}</div>
     <div class="content-commodity__info">
       <div class="content-commodity__info-row"><span>Numer kategorii: </span>26</div>
       <div class="content-commodity__info-row"><span>Kod EAN: </span>0723314791448</div>
     </div>
     <div class="content-commodity__price flex">
-      <div class="content-commodity__new-price flex">75<span>PLN ZA M.B.</span></div>
+      <div class="content-commodity__new-price flex">{{ productAbout.price }}<span>PLN ZA M.B.</span></div>
       <div class="content-commodity__sale-price">
-        <div class="content-commodity__first-price flex">95<span>PLN ZA M.B.</span></div>
+        <div class="content-commodity__first-price flex">{{ productAbout.firstPrice }}<span>PLN ZA M.B.</span></div>
         <div class="content-commodity__price-info"><span>do -7% </span>w hurcie, sprawdz cennik</div>
       </div>
     </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="actions-commodity__token flex">Cod Kupon: _ _  _ _   _ _  _ _ </div>
       </div>
-      <div class="actions-commodity__status flex yes"><span>W magazynie - </span>Są dostępne</div>
+      <div class="actions-commodity__status flex yes" v-if="productAbout.status"><span>W magazynie - </span>Są dostępne</div>
       <div class="actions-commodity__row">
         <button type="button" class="actions-commodity__cart button"><span>Dodaj do koszyka</span></button>
         <button type="button" class="actions-commodity__buy button"><span>Kup w 1 kliknięciu</span></button>
@@ -93,6 +93,10 @@
     &__price{
       margin 20px 0
       gap: 15px
+      @media(max-width: 620px){
+        flex-direction: column-reverse
+        align-items start
+      }
     }
     &__sale-price{
       
@@ -151,6 +155,13 @@
       display flex
       align-items center
       column-gap: 20px
+      row-gap: 20px
+      &:last-child{
+        padding-top 0
+      }
+      @media(max-width: 620px){
+        flex-wrap: wrap
+      }
     }
     &__token{
       padding 5px 10px
@@ -226,5 +237,77 @@
         }
       }
     }
+    @media(max-width: 620px){
+      &__buy,
+      &__cart{
+        width 100%
+      }
+    }
+  }
+  .popup{
+    .content-commodity{
+      max-width: 260px
+      padding 0
+      right 0
+    }
+    .content-commodity__title{
+      position absolute 
+      top 40px
+    }
+    .content-commodity__info,
+    .content-commodity__offer,
+    .content-commodity__price-info,
+    .actions-commodity__status,
+    .actions-commodity__buy,{
+      display none
+    }
+    .actions-commodity__row{
+      &:first-child,
+      &:last-child{
+        display none
+      }
+    }
+    .actions-commodity__cart{
+      width 200px
+      min-width 0 !important
+      bottom 55px
+      @media(max-width: 470px){
+        bottom 35px
+        left 50px
+      }
+    }
+    .content-commodity__price{
+      flex-direction: column-reverse
+      width 200px
+      bottom 100px
+      @media(max-width: 1590px){
+        bottom 30px
+        left 50px
+        flex-direction row
+      }
+      @media(max-width: 790px){
+        .content-commodity__sale-price{
+          display none
+        }
+      }
+      @media(max-width: 470px){
+        bottom 70px
+      }
+    }
+    .actions-commodity__cart,
+    .content-commodity__price{
+      position absolute
+      right 50px
+    }
   }
 </style>
+<script>
+  export default {
+    props: {
+      productAbout: {
+        type: Object,
+        required: true,
+      }
+    }
+  }
+</script>

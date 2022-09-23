@@ -12,6 +12,9 @@
     font-size 16px
     line-height 18px
   }
+  .wrapper{
+    position relative
+  }
   .container {
     max-width: 1860px;
     padding 0 30px

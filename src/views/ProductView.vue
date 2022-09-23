@@ -10,14 +10,15 @@
               </aside>
               <div class="product-page__content content">
                 <div class="product-page__commodity commodity-page">
-                  <commodity-slider :commoditySlides="commoditySlides" />
-                  <commodity-content />
+                  <commodity-slider :commoditySlides="commoditySlides" @openPopup="openPopup"/>
+                  <commodity-content :productAbout="productAbout" />
                 </div>
                 <div class="product-page__info info-product">
                   <about-product />
                   <table-product :tableProductItems="tableProductItems" />
                   <gallery-product :commoditySlides="commoditySlides" />
                   <reviews-product :ReviewsProductItems="ReviewsProductItems" />
+                  <button class="info-product__more">Uczyć się więcej</button>
                 </div>
               </div>
             </div>
@@ -27,6 +28,13 @@
         <page-ads />
       </main>
     </layout-default>
+    <page-popup
+      v-if="visibilityPopup"
+      @closePopup="closePopup"
+    >
+      <commodity-slider :commoditySlides="commoditySlides"  />
+      <commodity-content :productAbout="productAbout" />
+    </page-popup>
   </div>
 </template>
 <style lang="stylus">
@@ -82,12 +90,47 @@
       }
     }
   }
+  .popup{
+    .commodity-page__images{
+      max-width: 1600px
+      @media(max-width: 470px){
+        padding-bottom 20px
+      }
+    }
+    .carousel-commodity{
+      position relative !important
+      margin 0 80px
+      @media(max-width: 768px){
+        margin 0 40px
+      }
+      &__slide{
+        border: none
+      }
+      .slick-arrow{
+        display block !important
+        bottom 220px
+        @media(max-width: 1590px){
+          bottom 190px
+        }
+        @media(max-width: 500px){
+          bottom 140px
+        }
+      }
+      .slick-prev{
+        left -60px
+      }
+      .slick-next{
+        right -60px
+      }
+    }
+  }
 </style>
 <script>
-import subSlidesList from '@/mock/slider-category'
+import PagePopup from '@/components/PagePopup'
+
 import sidebarCategoryList from '@/mock/sidebar-category'
 
-import ReviewsProduct from '@/components/product/ReviewsProduct.vue'
+import ReviewsProduct from '@/components/product/ReviewsProduct'
 import TableProduct from '@/components/product/TableProduct'
 import GalleryProduct from '@/components/product/GalleryProduct'
 import AboutProduct from '@/components/product/AboutProduct.vue'
@@ -103,7 +146,6 @@ export default {
   name: 'CatalogView',
   layouts: 'default',
   created () {
-    this.subSlides = subSlidesList
     this.asideItems =sidebarCategoryList
   },
   components: {
@@ -116,10 +158,12 @@ export default {
     AboutProduct,
     TableProduct,
     GalleryProduct,
-    ReviewsProduct
+    ReviewsProduct,
+    PagePopup
   },
   data () {
     return {
+      visibilityPopup: null,
       asideItems: [],
       subSlides: [],
       mainProducts: [
@@ -247,7 +291,25 @@ export default {
           username: 'Jewgienij',
           text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
         },
-      ]
+      ],
+      productAbout: {
+        title: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+        offer: 'Bezpłatna dostawa z 500 Pln',
+        categoryNum: 26,
+        cod: '0723314791448',
+        firstPrice: 95,
+        price: 75,
+        status: true,
+      },
+    }
+  },
+  methods: {
+    openPopup (id) {
+      console.log(id)
+      this.visibilityPopup = id;
+    },
+    closePopup () {
+      this.visibilityPopup = null;
     }
   },
   computed: {
