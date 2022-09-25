@@ -11,6 +11,7 @@
     width 100%
     font-size 16px
     line-height 18px
+    overflow-x: hidden
   }
   .wrapper{
     position relative
@@ -84,4 +85,29 @@
     background-color: rgba(#FF0031, 0.5);
   }
 }
+.quantity-product {
+    display flex
+    align-items center
+    span{
+      display inline-block
+      font-size 32px
+      color: #3D3D3D;
+      padding 15px
+      cursor: pointer
+      &:hover{
+        color: #FF0031;
+      }
+    }
+    &__input {
+      flex: 0 0 70px
+      border 1px dashed #000
+      input{
+        background transparent
+        padding: 5px 15px
+        width 70px
+        font-size 24px
+        color: #3D3D3D;
+      }
+    }
+  }
 </style>

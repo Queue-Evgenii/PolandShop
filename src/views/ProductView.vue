@@ -293,6 +293,7 @@ export default {
         },
       ],
       productAbout: {
+        image: require('@/assets/img/product/product-img-1.png'),
         title: 'Profil aluminiowy uniwersalny bezuszczelkowy',
         offer: 'Bezpłatna dostawa z 500 Pln',
         categoryNum: 26,
@@ -300,13 +301,13 @@ export default {
         firstPrice: 95,
         price: 75,
         status: true,
+        quantity: 1,
       },
     }
   },
   methods: {
-    openPopup (id) {
-      console.log(id)
-      this.visibilityPopup = id;
+    openPopup () {
+      this.visibilityPopup = 1;
     },
     closePopup () {
       this.visibilityPopup = null;

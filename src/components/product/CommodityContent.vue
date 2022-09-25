@@ -36,31 +36,6 @@
   </div>
 </template>
 <style lang="stylus">
-  .quantity-product {
-    display flex
-    align-items center
-    span{
-      display inline-block
-      font-size 32px
-      color: #3D3D3D;
-      padding 15px
-      cursor: pointer
-      &:hover{
-        color: #FF0031;
-      }
-    }
-    &__input {
-      flex: 0 0 70px
-      border 1px dashed #000
-      input{
-        background transparent
-        padding: 5px 15px
-        width 70px
-        font-size 24px
-        color: #3D3D3D;
-      }
-    }
-  }
   .content-commodity{
     padding 0 20px
     &__title{

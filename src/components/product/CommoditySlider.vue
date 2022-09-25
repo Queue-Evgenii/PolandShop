@@ -105,13 +105,6 @@ export default {
               "vertical": false,
             }
           },
-          // {
-          //   "breakpoint": 500,
-          //   "settings": {
-          //     "slidesToShow": 2,
-          //     "vertical": false,
-          //   }
-          // }
         ]
       },
     }

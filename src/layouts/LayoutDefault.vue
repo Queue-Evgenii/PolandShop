@@ -35,7 +35,7 @@
                 <a href="#" class="actions-header__link hover-underline">Uratowany</a>
                 <a href="#" class="actions-header__favorite-icon"><span>0</span></a>
               </div>
-              <div class="actions-header__cart actions-header__item flex">
+              <div class="actions-header__cart actions-header__item flex" @click="openPopup">
                 <a href="#" class="actions-header__link hover-underline">Moje zakupy</a>
                 <a href="#" class="actions-header__cart-icon"><span>0</span></a>
               </div>
@@ -98,12 +98,19 @@
         </div>
       </div>
     </footer>
+    <page-popup
+      v-if="visibilityPopup"
+      @closePopup="closePopup"
+    >
+      <cart-component :productAbout="productAbout" />
+    </page-popup>
   </div>
 </template>
 <style lang="stylus">
   .default{
     //background-color #fff
     background: linear-gradient(180deg, rgba(217, 217, 217, 0) -53.92%, rgba(255, 0, 0, 0.5) 1000%);
+    position relative
   }
   .header {
     position: relative;
@@ -593,12 +600,15 @@ import InputHeader from '@/components/header/InputHeader'
 import HeaderMenu from '@/components/header/HeaderMenu'
 import MainMenu from '@/components/header/MainMenu'
 import FooterCopy from '@/components/footer/FooterCopy'
+import PagePopup from '@/components/PagePopup'
+import CartComponent from '@/components/cart/CartComponent'
 export default {
   data () {
     return {
       activePhones: false,
       burgerActive: false,
       searchActive: false,
+      visibilityPopup: null,
       mainMenu: [
         {
           id: 1,
@@ -774,13 +784,35 @@ export default {
           ]
         }
       ],
+      productAbout: {
+        image: require('@/assets/img/product/product-img-1.png'),
+        title: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+        offer: 'Bezpłatna dostawa z 500 Pln',
+        categoryNum: 26,
+        cod: '0723314791448',
+        firstPrice: 95,
+        price: 75,
+        status: true,
+        quantity: 1,
+        sale: "-10",
+      },
     }
   },
   components: {
     InputHeader,
     HeaderMenu,
     MainMenu,
-    FooterCopy
+    FooterCopy,
+    PagePopup,
+    CartComponent
+  },
+  methods: {
+    openPopup () {
+      this.visibilityPopup = 1;
+    },
+    closePopup () {
+      this.visibilityPopup = null;
+    }
   },
   computed: {
     MobileWidth () {
