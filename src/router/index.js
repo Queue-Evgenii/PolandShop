@@ -33,6 +33,11 @@ const routes = [
     name: 'cart',
     component: () => import('../views/CartView.vue')
   },
+  {
+    path: '/payment',
+    name: 'payment',
+    component: () => import('../views/PaymentView.vue')
+  },
 ]
 
 const router = new VueRouter({

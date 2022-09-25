@@ -11,16 +11,7 @@
                   <img src="@/assets/img/main/icons/present.png" alt="">
                   <span>Darmowy prezent do zakupu</span>
                 </div>
-                <ul class="present-cart__body">
-                  <li class="present-cart__item" v-for="item in FreeToStoreItems" :key="item.id">
-                    <div class="present-cart__image"><img :src="item.image" alt=""></div>
-                    <div class="present-cart__info">
-                      <div class="present-cart__label">{{ item.title }}</div>
-                      <div class="present-cart__price">{{ item.price }}<span>PLN</span></div>
-                      <div class="present-cart__quantity"><span>Ilość:</span>{{ item.quantity }}</div>
-                    </div>
-                  </li>
-                </ul>
+                <small-product :Items="FreeToStoreItems" />
                 <div class="present-cart__footer flex">
                   <button class="present-cart__button"><span>Dodaj do koszyka</span></button>
                 </div>
@@ -71,60 +62,6 @@
       margin-right 10px
     }
   }
-  &__body {
-    display flex
-    flex-direction column
-    row-gap: 40px
-    padding 40px 0
-    border-bottom 1px solid rgba(#8B8B8B, 0.3)
-  }
-  &__item {
-    display grid
-    grid-template-columns: 100px 1fr
-    gap: 15px
-  }
-  &__image {
-    width 100px
-    height 100px
-    position relative
-    border-radius 10px;
-    background #fff
-    img{
-      position absolute
-      width 100%
-      height 100%
-      padding 25px 5px
-    }
-  }
-  &__info {
-    display flex
-    flex-direction: column
-    justify-content space-between
-    gap: 10px
-  }
-  &__label{
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 16px;
-    color: #3D3D3D;
-  }
-  &__price {
-    font-size: 20px;
-    line-height: 23px;
-    color: #000000;
-    span{
-      font-size 16px
-      margin-left 5px
-    }
-  }
-  &__quantity {
-    font-size: 12px;
-    line-height: 14px;
-    color: #000000;
-    span{
-      margin-right 5px
-    }
-  }
   &__footer {
     justify-content center
     padding-top 30px
@@ -143,6 +80,7 @@
 </style>
 <script>
 import LayoutDefault from '@/layouts/LayoutDefault'
+import SmallProduct from '@/components/SmallProduct.vue'
 import CartComponent from '@/components/cart/CartComponent'
 import RecentProducts from '@/components/home/RecentProducts'
 import PageAds from '@/components/PageAds'
@@ -154,6 +92,7 @@ export default {
     CartComponent,
     RecentProducts,
     PageAds,
+    SmallProduct,
   },
   data() {
     return {
