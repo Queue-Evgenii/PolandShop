@@ -15,7 +15,7 @@
             </div>
           </div>
         </div>
-        <home-catalogue :mainProducts="mainProducts" />
+        <home-catalogue :mainProducts="mainProducts" :productItem1="productItem1" @addToCart="addToCart" />
         <recent-products :mainProducts="mainProducts" />
         <page-ads />
       </main>
@@ -23,8 +23,11 @@
   </div>
 </template>
 <script>
+import productList from '@/mock/productList'
 import subSlidesList from '@/mock/slider-category'
 import sidebarCategoryList from '@/mock/sidebar-category'
+import cartList from '@/mock/cartList'
+
 import LayoutDefault from '@/layouts/LayoutDefault'
 import AsideSidebar from '@/components/home/AsideSidebar'
 import MainSlider from '@/components/home/MainSlider'
@@ -41,9 +44,11 @@ export default {
   created () {
     this.subSlides = subSlidesList
     this.asideItems =sidebarCategoryList
+    this.productItem1 = productList.filter(item => item.category === 1)
   },
   data () {
     return {
+      productItem1: null,
       asideItems: [],
       mainSlides: [
         {
@@ -106,6 +111,16 @@ export default {
           price: 75
         }
       ],
+    }
+  },
+  methods: {
+    addToCart (product) {
+      if(cartList.find(item => item.id === product.id)){
+        console.log(1)
+      } else {
+        cartList.push(product)
+      }
+      console.log(cartList)
     }
   },
   components: {

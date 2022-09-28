@@ -1,75 +1,75 @@
-
 <template>
-<div class="page-products">
-  <div class="mainproducts products">
-    <div class="products__container container">
-      <div class="products__title">Akcesoria do sufitów napinanych</div>
-      <div class="products__items">
-        <div class="products__item item-product" v-for="product in mainProducts" :key="product.id">
-          <div class="item-product__body flex">
-            <div class="item-product__info flex">
-              <router-link :to="product.href" class="item-product__image">
-                <img :src="product.image" alt="">
-                <span v-if="product.mark">{{ product.mark }}</span></router-link>
-              <router-link :to="product.href" class="item-product__label">{{ product.label }}</router-link>
-              <div class="item-product__price">{{ product.price }}</div>
-            </div>
-            <div class="item-product__actions actions-product flex">
-              <button type="button" class="actions-product__button">Dodaj do koszyka</button>
-              <button type="button" class="actions-product__favorite"></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="mainproducts products">
-    <div class="products__container container">
-      <div class="products__title">Akcesoria do sufitów napinanych</div>
-      <div class="products__items">
-        <div class="products__item item-product" v-for="product in mainProducts" :key="product.id">
-          <div class="item-product__body flex">
-            <div class="item-product__info flex">
-              <router-link :to="product.href" class="item-product__image">
-                <img :src="product.image" alt="">
-                <span v-if="product.mark">{{ product.mark }}</span>
-              </router-link>
-              <router-link :to="product.href" class="item-product__label">{{ product.label }}</router-link>
-              <div class="item-product__price">{{ product.price }}</div>
-            </div>
-            <div class="item-product__actions actions-product flex">
-              <button type="button" class="actions-product__button">Dodaj do koszyka</button>
-              <button type="button" class="actions-product__favorite"></button>
+  <div class="page-products">
+    <div class="mainproducts products">
+      <div class="products__container container">
+        <div class="products__title">Akcesoria do sufitów napinanych</div>
+        <div class="products__items">
+          <div class="products__item item-product" v-for="product in productItem1" :key="product.id">
+            <div class="item-product__body flex">
+              <div class="item-product__info flex">
+                <router-link :to="product.href" class="item-product__image">
+                  <img :src="product.image" alt="">
+                  <span v-if="product.mark">{{ product.mark }}</span>
+                </router-link>
+                <router-link :to="product.href" class="item-product__label">{{ product.title }}</router-link>
+                <div class="item-product__price">{{ product.price }}</div>
+              </div>
+              <div class="item-product__actions actions-product flex">
+                <button @click="addToCart(product)" type="button" class="actions-product__button">Dodaj do koszyka</button>
+                <button type="button" class="actions-product__favorite"></button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <page-ads />
-  <div class="mainproducts products">
-    <div class="products__container container">
-      <div class="products__title">Akcesoria do sufitów napinanych</div>
-      <div class="products__items">
-        <div class="products__item item-product" v-for="product in mainProducts" :key="product.id">
-          <div class="item-product__body flex">
-            <div class="item-product__info flex">
-              <router-link :to="product.href" class="item-product__image">
-                <img :src="product.image" alt="">
-                <span v-if="product.mark">{{ product.mark }}</span>
-              </router-link>
-              <router-link :to="product.href" class="item-product__label">{{ product.label }}</router-link>
-              <div class="item-product__price">{{ product.price }}</div>
-            </div>
-            <div class="item-product__actions actions-product flex">
-              <button type="button" class="actions-product__button">Dodaj do koszyka</button>
-              <button type="button" class="actions-product__favorite"></button>
+    <div class="mainproducts products">
+      <div class="products__container container">
+        <div class="products__title">Akcesoria do sufitów napinanych</div>
+        <div class="products__items">
+          <div class="products__item item-product" v-for="product in mainProducts" :key="product.id">
+            <div class="item-product__body flex">
+              <div class="item-product__info flex">
+                <router-link :to="product.href" class="item-product__image">
+                  <img :src="product.image" alt="">
+                  <span v-if="product.mark">{{ product.mark }}</span>
+                </router-link>
+                <router-link :to="product.href" class="item-product__label">{{ product.label }}</router-link>
+                <div class="item-product__price">{{ product.price }}</div>
+              </div>
+              <div class="item-product__actions actions-product flex">
+                <button @click="addToCart" type="button" class="actions-product__button">Dodaj do koszyka</button>
+                <button type="button" class="actions-product__favorite"></button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+    <page-ads />
+    <div class="mainproducts products">
+      <div class="products__container container">
+        <div class="products__title">Akcesoria do sufitów napinanych</div>
+        <div class="products__items">
+          <div class="products__item item-product" v-for="product in mainProducts" :key="product.id">
+            <div class="item-product__body flex">
+              <div class="item-product__info flex">
+                <router-link :to="product.href" class="item-product__image">
+                  <img :src="product.image" alt="">
+                  <span v-if="product.mark">{{ product.mark }}</span>
+                </router-link>
+                <router-link :to="product.href" class="item-product__label">{{ product.label }}</router-link>
+                <div class="item-product__price">{{ product.price }}</div>
+              </div>
+              <div class="item-product__actions actions-product flex">
+                <button @click="addToCart(product.id)" type="button" class="actions-product__button">Dodaj do koszyka</button>
+                <button type="button" class="actions-product__favorite"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <style lang="stylus">
@@ -107,13 +107,15 @@
     border-radius: 10px;
     position relative
     background-color #fff
+    border 2px solid rgba(256, 256, 256, 0.1)
+    transition all 0.3s ease 0s
     &:hover{
       box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.2);
       border: 2px solid #FF0031;
-      padding 26px 30px
       .actions-product__button{
         border: 2px solid #FF0031;
         color: #FF0031
+        transition all 0.3s ease 0s
       }
     }
   }
@@ -199,10 +201,22 @@ export default {
   props: {
     mainProducts: {
       type: Array,
+    },
+    productItem1: {
+      type: Array,
     }
   },
   components: {
     PageAds
+  },
+  methods: {
+    addToCart (product) {
+      this.$emit('addToCart', product)
+    }
+  },
+  data() {
+    return {
+    }
   }
 }
 </script>

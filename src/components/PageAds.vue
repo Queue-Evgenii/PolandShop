@@ -3,7 +3,7 @@
     <div class="ads__container container">
       <div class="ads__row flex">
         <div class="ads__item ads__content">
-          <h4 class="ads__title">Promocje - 30%</h4>
+          <div class="ads__title">Promocje - 30%</div>
           <p class="ads__text">Wpisz swój adres e-mail, jeśli chcesz otrzymywać najnowsze informacje o promocjach.</p>
         </div>
         <div class="ads__item ads__images">

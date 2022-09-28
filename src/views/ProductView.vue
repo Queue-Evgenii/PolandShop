@@ -14,6 +14,9 @@
                   <commodity-content :productAbout="productAbout" />
                 </div>
                 <div class="product-page__info info-product">
+                  id: {{$route.params.id}}
+                  <br>
+                  {{productItem}}
                   <about-product />
                   <table-product :tableProductItems="tableProductItems" />
                   <gallery-product :commoditySlides="commoditySlides" />
@@ -128,6 +131,7 @@
 <script>
 import PagePopup from '@/components/PagePopup'
 
+import productList from '@/mock/productList'
 import sidebarCategoryList from '@/mock/sidebar-category'
 
 import ReviewsProduct from '@/components/product/ReviewsProduct'
@@ -147,6 +151,8 @@ export default {
   layouts: 'default',
   created () {
     this.asideItems =sidebarCategoryList
+    this.productId = parseInt(this.$route.params.id)
+    this.productItem = productList.find(item => item.id === this.productId)
   },
   components: {
     LayoutDefault,
@@ -163,6 +169,8 @@ export default {
   },
   data () {
     return {
+      productItem: null,
+      productId: null, 
       visibilityPopup: null,
       asideItems: [],
       subSlides: [],

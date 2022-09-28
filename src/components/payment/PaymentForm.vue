@@ -29,12 +29,12 @@
       <div class="form-payment__title">Wybierz opcję dostawy</div>
       <ul class="form-payment__block">
         <div class="form-payment__row radio-block">
+          <input id="delivery" type="checkbox" class="form-payment__radiobox">
           <label for="delivery" class="form-payment__label-radio">
             <p>Standardowy zakres dostawy</p>
             <p>Wysyłka w ciągu 2-3 dni</p>
             <span>Koszt dostawy 5 PLN</span>
           </label>
-          <input id="delivery" type="checkbox" class="form-payment__radiobox">
         </div>
       </ul>
     </div>
@@ -43,10 +43,10 @@
         <div class="form-payment__title">Wybierz metodę płatności</div>
         <ul class="form-payment__block">
           <li class="form-payment__row radio-block">
+            <input id="payment" type="checkbox" class="form-payment__radiobox">
             <label for="payment" class="form-payment__label-radio">
               <p>Karta kredytowa / debetowa</p>
             </label>
-            <input id="payment" type="checkbox" class="form-payment__radiobox">
           </li>
           <li class="form-payment__row">
             <label for="CardNum" class="form-payment__label">Numer karty</label>
@@ -70,10 +70,10 @@
         <div class="form-payment__title-bold">Dostawa adresu</div>
         <ul class="form-payment__block">
           <li class="form-payment__row radio-block">
+            <input id="delivery-adress" type="checkbox" class="form-payment__radiobox">
             <label for="delivery-adress" class="form-payment__label-radio">
               <p>Użyj mojego adresu wysyłki</p>
             </label>
-            <input id="delivery-adress" type="checkbox" class="form-payment__radiobox">
           </li>
           <li class="form-payment__row">
             <label for="AdressChange" class="form-payment__label">Zmiana adresu</label>
@@ -167,16 +167,16 @@
       position absolute
       left 0
       top 3px
-      width 15px
-      height 15px
+      width 16px
+      height 16px
       border: 1px solid #272727;
       border-radius: 50%
     }
     &::after{
       content: ''
       position absolute
-      left 3.5px
-      top 6.5px
+      left 4px
+      top 7px
       width 7.5px
       height 7.5px
       border-radius: 50%
@@ -190,7 +190,7 @@
   width 300px
 }
 .radio-block {
-  input[type=checkbox]:checked + label{
+  input[type=checkbox]:checked + label {
     &::after{
       transform: scale(1)
     }

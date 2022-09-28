@@ -79,8 +79,10 @@
 }
 </style>
 <script>
+import cartList from '@/mock/cartList'
+
 import LayoutDefault from '@/layouts/LayoutDefault'
-import SmallProduct from '@/components/SmallProduct.vue'
+import SmallProduct from '@/components/SmallProduct'
 import CartComponent from '@/components/cart/CartComponent'
 import RecentProducts from '@/components/home/RecentProducts'
 import PageAds from '@/components/PageAds'
@@ -94,20 +96,23 @@ export default {
     PageAds,
     SmallProduct,
   },
+  created () {
+      this.productAbout = cartList
+  },
   data() {
     return {
-      productAbout: {
-        image: require('@/assets/img/product/product-img-1.png'),
-        title: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-        offer: 'Bezpłatna dostawa z 500 Pln',
-        categoryNum: 26,
-        cod: '0723314791448',
-        firstPrice: 95,
-        price: 75,
-        status: true,
-        quantity: 1,
-        sale: "-10",
-      },
+      // productAbout: {
+      //   image: require('@/assets/img/product/product-img-1.png'),
+      //   title: 'Profil aluminiowy uniwersalny bezuszczelkowy',
+      //   offer: 'Bezpłatna dostawa z 500 Pln',
+      //   categoryNum: 26,
+      //   cod: '0723314791448',
+      //   firstPrice: 95,
+      //   price: 75,
+      //   status: true,
+      //   quantity: 1,
+      //   sale: "-10",
+      // },
       FreeToStoreItems: [
         {
           id: 1,

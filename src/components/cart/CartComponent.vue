@@ -7,32 +7,33 @@
         <span class="cart-page__title-amount">Ilość</span>
         <span class="cart-page__title-total">Cena £</span>
       </div>
-      <cart-item :productAbout="productAbout" />
-      <div class="cart-page__payment payment-cart">
-        <div class="payment-cart__cupon"></div>
-        <div class="payment-cart__row flex">
-          <div class="payment-cart__label">Razem do zapłaty:</div>
-          <div class="payment-cart__sale item-cart__sale"><span>Rabat</span>{{ productAbout.sale + "%" }}
+      <div class="cart-block">
+        <cart-item :product="product" v-for="product in productAbout" :key="product.id" />
+        <div class="cart-page__payment payment-cart">
+          <div class="payment-cart__cupon"></div>
+          <div class="payment-cart__row flex">
+            <div class="payment-cart__label">Razem do zapłaty:</div>
+            <div class="payment-cart__sale item-cart__sale"><span>Rabat</span>-</div>
+            <div class="payment-cart__total-price">610 PLN</div>
           </div>
-          <div class="payment-cart__total-price">610 PLN</div>
-        </div>
-        <div class="payment-cart__button-box flex">
-          <button class="payment-cart__button button"><span>Zapłać za towar</span></button>
+          <div class="payment-cart__button-box flex">
+            <button class="payment-cart__button button"><span>Zapłać za towar</span></button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</template>\
+</template>
 <script>
 import CartItem from '@/components/cart/CartItem'
-export default{
+export default {
   components: {
     CartItem,
   },
   props: {
     productAbout: {
-      type: Object,
-      required: true,
+      type: Array,
+      required: []
     }
   }
 }

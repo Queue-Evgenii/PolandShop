@@ -33,6 +33,7 @@
             </div>
           </div>
         </div>
+        <page-ads />
       </main>
     </layout-default>
   </div>
@@ -41,6 +42,7 @@
 import LayoutDefault from '@/layouts/LayoutDefault'
 import PaymentForm from '@/components/payment/PaymentForm'
 import SmallProduct from '@/components/SmallProduct'
+import PageAds from '@/components/PageAds.vue'
 export default {
   name: 'CatalogView',
   layouts: 'default',
@@ -48,6 +50,7 @@ export default {
     LayoutDefault,
     PaymentForm,
     SmallProduct,
+    PageAds,
   },
   data() {
     return {
