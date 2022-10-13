@@ -6,12 +6,12 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/shop/',
+    path: '/',
     name: 'home',
     component: HomeView
   },
   {
-    path: '/shop/about',
+    path: '/about',
     name: 'about',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -19,15 +19,25 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
   {
-    path: '/shop/catalog',
-    name: 'catalog',
+    path: '/catalog/:id',
+    name: 'catalogList',
     component: () => import('../views/CatalogView.vue')
   },
   {
-    path: '/shop/product',
-    name: 'product',
+    path: '/product/:id',
+    name: 'productItem',
     component: () => import('../views/ProductView.vue')
-  }
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: () => import('../views/CartView.vue')
+  },
+  {
+    path: '/payment',
+    name: 'payment',
+    component: () => import('../views/PaymentView.vue')
+  },
 ]
 
 const router = new VueRouter({

@@ -11,6 +11,10 @@
     width 100%
     font-size 16px
     line-height 18px
+    overflow-x: hidden
+  }
+  .wrapper{
+    position relative
   }
   .container {
     max-width: 1860px;
@@ -64,8 +68,9 @@
         flex-basis: 100%
       }
     }
-  .button{
-  background: #FF0031;
+.button{
+  border-radius: 8px
+  background-color: #FF0031;
   min-width 240px
   padding 16px 5px
   span{
@@ -75,5 +80,34 @@
   @media(max-width:1440px){
     width 100%
   }
+  &:hover{
+    border 1px solid #FF0031
+    background-color: rgba(#FF0031, 0.5);
+  }
 }
+.quantity-product {
+    display flex
+    align-items center
+    span{
+      display inline-block
+      font-size 32px
+      color: #3D3D3D;
+      padding 15px
+      cursor: pointer
+      &:hover{
+        color: #FF0031;
+      }
+    }
+    &__input {
+      flex: 0 0 70px
+      border 1px dashed #000
+      input{
+        background transparent
+        padding: 5px 15px
+        width 70px
+        font-size 24px
+        color: #3D3D3D;
+      }
+    }
+  }
 </style>

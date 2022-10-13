@@ -1,10 +1,10 @@
 <template>
   <div class="subslider">
     <VueSlickCarousel v-bind="settings" class="subslider__wrapper">
-        <div class="subslider__slide" v-for="item in subSlides" :key="item.id">
+        <router-link  class="subslider__slide" v-for="item in subSlides" :key="item.id" :to="{name: 'catalogList', params: {id: item.id}}">
           <div class="subslider__image"><img :src="item.image" alt=""></div>
           <div class="subslider__label">{{ item.label }}</div>
-        </div>
+        </router-link>
     </VueSlickCarousel>
   </div>
 </template>

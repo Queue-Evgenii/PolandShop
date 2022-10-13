@@ -1,6 +1,6 @@
 <template>
     <div class="mainslider">
-      <VueSlickCarousel :arrows="true" :dots="true">
+      <VueSlickCarousel :autoplay="true" :arrows="true" :dots="true">
         <div class="mainslider__slide" v-for="item in mainSlides" :key="item.id">
           <div class="mainslider__image"><img :src="item.image" alt=""></div>
             <div class="mainslider__button"><router-link :to="item.url">{{ item.label }}</router-link></div>

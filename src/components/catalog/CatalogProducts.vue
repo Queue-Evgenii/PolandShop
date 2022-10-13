@@ -1,6 +1,6 @@
 <template>
   <div class="catalog-products products">
-    <div class="products__title">Akcesoria do sufitów napinanych</div>
+    <div class="products__title">{{productsLabel}}</div>
     <div class="catalog-products__settings settings-products">
       <div class="settings-products__menu flex">
         <button type="button" class="settings-products__filters" @click="filtersToggle">Filtr</button>
@@ -15,24 +15,12 @@
       </div>
     </div>
      <div class="products__items" ref="products">
-      <div class="products__item item-product" ref="product" v-for="product in getItems" :key="product.id">
-        <div class="item-product__body flex">
-          <div class="item-product__info flex">
-            <router-link :to="product.href" class="item-product__image">
-              <img :src="product.image" alt="">
-              <span v-if="product.mark">{{ product.mark }}</span>
-            </router-link>
-              <div class="item-product__info-text">
-                <router-link :to="product.href" class="item-product__label">{{ product.label }}</router-link>
-                <div class="item-product__price">{{ product.price }}</div>
-              </div>
-          </div>
-          <div class="item-product__actions actions-product flex">
-            <button type="button" class="actions-product__button">Dodaj do koszyka</button>
-            <button type="button" class="actions-product__favorite"></button>
-          </div>
-        </div>
-      </div>
+      <product-item
+        v-for="product in getItems" 
+        :key="product.id" 
+        :product="product"
+        @addToCart="addToCart"
+      />
     </div>
     <div class="products__navi navi-products">
       <div class="navi-products__button"><button type="button">Załaduj jeszcze 10 produktów</button></div>
@@ -46,12 +34,12 @@
         :break-view-text="'●'"
         :click-handler="paginateClickCallback"
       ></paginate>
-      <!-- <pagination v-model="page" :records="pagging.total" :per-page="pagging.perPage" @paginate="paginate" /> -->
     </div>
   </div>
 </template>
 <script>
-  import Paginate from 'vuejs-paginate'
+import ProductItem from '@/components/ProductItem'
+import Paginate from 'vuejs-paginate'
 export default {
   data () {
     return {
@@ -63,10 +51,15 @@ export default {
   props: {
     catalogProducts: {
       type: Array,
+    },
+    productsLabel: {
+      type: String,
+      required: true,
     }
   },
   components: {
     Paginate,
+    ProductItem,
   },
   methods: {
     paginateClickCallback (pageNum) {
@@ -99,6 +92,14 @@ export default {
           productItem.classList.add('item-product-row')
         }
         products.classList.add('products-items-row')
+      }
+    },
+    addToCart (product) {
+      if(this.$store.state.cartList.find(item => item.id === product.id)){
+        product.quantity += 1
+      } else {
+        this.$store.state.cartList.push(product)
+        console.log(this.$store.state.cartList)
       }
     }
   },

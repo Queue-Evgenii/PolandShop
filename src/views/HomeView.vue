@@ -6,16 +6,34 @@
           <div class="home-page__container container">
             <div class="home-page__row row">
               <aside class="home-page__sidebar sidebar">
-                <aside-sidebar :asideItems="asideItems" />
+                <aside-sidebar :asideItems="categoryItems" />
               </aside>
               <div class="home-page__content content">
                 <main-slider :mainSlides="mainSlides" />
-                <sub-slider :subSlides="subSlides" />
+                <sub-slider :subSlides="categoryItems " />
               </div>
             </div>
           </div>
         </div>
-        <home-catalogue :mainProducts="mainProducts" />
+        <home-catalogue
+          catalogId='1'
+          :productItem1="productItem1"
+          :categoryItems="categoryItems"
+          @addToCart="addToCart"
+        />
+        <home-catalogue
+          catalogId='2'
+          :productItem1="productItem1"
+          :categoryItems="categoryItems"
+          @addToCart="addToCart"
+        />
+        <page-ads />
+        <home-catalogue
+          catalogId='3'
+          :productItem1="productItem3"
+          :categoryItems="categoryItems"
+          @addToCart="addToCart"
+        />
         <recent-products :mainProducts="mainProducts" />
         <page-ads />
       </main>
@@ -23,8 +41,8 @@
   </div>
 </template>
 <script>
-import subSlidesList from '@/mock/slider-category'
-import sidebarCategoryList from '@/mock/sidebar-category'
+// import sidebarCategoryList from '@/mock/sidebar-category'
+
 import LayoutDefault from '@/layouts/LayoutDefault'
 import AsideSidebar from '@/components/home/AsideSidebar'
 import MainSlider from '@/components/home/MainSlider'
@@ -32,18 +50,26 @@ import SubSlider from '@/components/SubSlider'
 import HomeCatalogue from '@/components/home/HomeCatalogue'
 import RecentProducts from '@/components/home/RecentProducts'
 import PageAds from '@/components/PageAds'
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
   name: 'HomeView',
   layouts: 'default',
   created () {
-    this.subSlides = subSlidesList
-    this.asideItems =sidebarCategoryList
+    this.categoryItems = this.categoryList;
+    this.productItem1 = this.productList.filter(item => item.category === 1);
+    this.productItem2 = this.productList.filter(item => item.category === 2);
+    this.productItem3 = this.productList.filter(item => item.category === 3);
+  },
+  computed: {
+    productList () {
+      return this.$store.getters.productList;
+    },
+    categoryList () {
+      return this.$store.getters.categoryList;
+    },
   },
   data () {
     return {
+      productItem1: null,
       asideItems: [],
       mainSlides: [
         {
@@ -106,6 +132,17 @@ export default {
           price: 75
         }
       ],
+    }
+  },
+  methods: {
+    addToCart (product) {
+      if(this.$store.state.cartList.find(item => item.id === product.id)){
+        product.quantity += 1
+      } else {
+        this.$store.state.cartList.push(product)
+        console.log(this.$store.state.cartList)
+      }
+      
     }
   },
   components: {

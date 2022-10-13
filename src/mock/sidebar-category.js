@@ -2,6 +2,7 @@ const sidebarCategoryList = [
   {
     id: 1,
     label: 'Akcesoria do sufitów napinanych',
+    image: require('@/assets/img/main/slider/subslide-bg.png'),
     asideSubItems: [
       {
         id: 1,
@@ -48,6 +49,7 @@ const sidebarCategoryList = [
   {
     id: 2,
     label: 'Folia do sufitów napinanych',
+    image: require('@/assets/img/main/slider/subslide-bg.png'),
     asideSubItems: [
       {
         id: 1,
@@ -94,6 +96,7 @@ const sidebarCategoryList = [
   {
     id: 3,
     label: 'Oprawy sufitowe',
+    image: require('@/assets/img/main/slider/subslide-bg.png'),
     asideSubItems: [
       {
         id: 1,
@@ -140,6 +143,7 @@ const sidebarCategoryList = [
   {
     id: 4,
     label: 'LED akcesoria',
+    image: require('@/assets/img/main/slider/subslide-bg.png'),
     asideSubItems: [
       {
         id: 1,
@@ -186,6 +190,7 @@ const sidebarCategoryList = [
   {
     id: 5,
     label: 'Elektryka i akcesoria',
+    image: require('@/assets/img/main/slider/subslide-bg.png'),
     asideSubItems: [
       {
         id: 1,

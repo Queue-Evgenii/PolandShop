@@ -17,16 +17,13 @@
           </div>
         </div>
       </div>
-      <section-filter v-for="item in filterItems" :key="item.id" :item="item"></section-filter>
-      <!-- <div class="sidebar-filter__section section-filter" v-for="item in filterItems" :key="item.id">
-        <div class="section-filter__title" ref="title" @click="categotyToggle">{{ item.name }}</div>
-        <ul class="section-filter__body section-filter__body-line" ref="sublist">
-          <li class="section-filter__item" v-for="input in item.filterInputs" :key="input.id">
-            <input type="checkbox" :id="input.for">
-            <label class="flex" :for="input.for">{{ input.label }}</label>
-          </li>
-        </ul>
-      </div> -->
+      <section-filter 
+        v-for="item in filterItems"  
+        :key="item.id" 
+        :item="item"
+        :class="{'active' : currentNavItem === item.id}"
+        @onSelected="onSelected"
+      />
       <div class="sidebar-filter__section section-filter section-button">
         <div class="section-filter__body">
           <button class="section-filter__button button"><span>Stosować</span></button>
@@ -41,25 +38,6 @@
   // you probably need to import built-in style
   import 'vue-range-slider/dist/vue-range-slider.css'
   export default {
-    methods: {
-      // categotyToggle (e) {
-      //   const title = e.target
-      //   const list = e.target.nextSibling
-      //   if (list.classList.contains('active')) {
-      //     list.classList.remove('active')
-      //     title.classList.remove('active')
-      //   } else {
-      //     this.$refs.sublist.forEach(element => {
-      //       element.classList.remove('active')
-      //       list.classList.add('active')
-      //     })
-      //     this.$refs.title.forEach(element => {
-      //       element.classList.remove('active')
-      //       title.classList.add('active')
-      //     })
-      //   }
-      // },
-    },
     data () {
       return {
         filterSlider: {
@@ -67,16 +45,27 @@
           sliderMinValue: 0,
           sliderMaxValue: 350,
         },
+        currentNavItem: null
       }
     },
     props: {
       filterItems: {
         type: Array,
+        required: true,
       }
     },
     components: {
       RangeSlider,
       SectionFilter
+    },
+    methods: {
+      onSelected (id) {
+        if (this.currentNavItem !== id) {
+          this.currentNavItem = id
+        } else if (this.currentNavItem === id) {
+          this.currentNavItem = null
+        }
+      }
     }
   }
 </script> 

@@ -4,18 +4,18 @@
       <main class="page">
         <div class="page__catalog catalog-page">
           <div class="catalog-page__container container">
-            <aside-sidebar :asideItems="asideItems" v-if="!SidebarWidth" />
+            <aside-sidebar :asideItems="categoryItems " v-if="!SidebarWidth" />
             <div class="catalog-page__row row">
               <aside class="catalog-page__sidebar sidebar">
-                <aside-sidebar :asideItems="asideItems" v-if="SidebarWidth" />
+                <aside-sidebar :asideItems="categoryItems " v-if="SidebarWidth" />
                 <aside-filter :filterItems="filterItems" v-if="SidebarWidth" />
               </aside>
               <div class="catalog-page__content content">
                 <div class="catalog-page__slider">
-                  <sub-slider :subSlides="subSlides" />
+                  <sub-slider :subSlides="categoryItems" />
                 </div>
                 <div class="catalog-page__products">
-                  <catalog-products :catalogProducts="catalogProducts">
+                  <catalog-products :catalogProducts="catalogList" :productsLabel="productsLabel" > <!-- catalogList located in created -->
                     <aside-filter :filterItems="filterItems" v-if="!SidebarWidth" />
                   </catalog-products>
                 </div>
@@ -32,8 +32,7 @@
 <style lang="stylus">
 </style>
 <script>
-import subSlidesList from '@/mock/slider-category'
-import sidebarCategoryList from '@/mock/sidebar-category'
+// import sidebarCategoryList from '@/mock/sidebar-category'
 import LayoutDefault from '@/layouts/LayoutDefault'
 import AsideSidebar from '@/components/home/AsideSidebar'
 import SubSlider from '@/components/SubSlider'
@@ -45,8 +44,10 @@ export default {
   name: 'CatalogView',
   layouts: 'default',
   created () {
-    this.subSlides = subSlidesList
-    this.asideItems =sidebarCategoryList
+    this.categoryItems = this.categoryList;
+    this.catalogId = parseInt(this.$route.params.id);
+    this.catalogList = this.productList.filter(item => item.category === this.catalogId);
+    this.categoryItem = this.categoryItems.find(item => item.id == this.catalogId);//searching item which id === route id
   },
   components: {
     LayoutDefault,
@@ -59,266 +60,9 @@ export default {
   },
   data () {
     return {
+      catalogId: 1,
       asideItems: [],
       subSlides: [],
-      catalogProducts: [
-        {
-          id: 1,
-          image: require('@/assets/img/products/product-1.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 2,
-          image: require('@/assets/img/products/product-2.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 3,
-          image: require('@/assets/img/products/product-3.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 4,
-          image: require('@/assets/img/products/product-4.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 5,
-          image: require('@/assets/img/products/product-1.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 6,
-          image: require('@/assets/img/products/product-2.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 7,
-          image: require('@/assets/img/products/product-3.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 8,
-          image: require('@/assets/img/products/product-4.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 9,
-          image: require('@/assets/img/products/product-1.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 10,
-          image: require('@/assets/img/products/product-2.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 11,
-          image: require('@/assets/img/products/product-3.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 12,
-          image: require('@/assets/img/products/product-4.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 13,
-          image: require('@/assets/img/products/product-1.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 14,
-          image: require('@/assets/img/products/product-2.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 15,
-          image: require('@/assets/img/products/product-3.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 16,
-          image: require('@/assets/img/products/product-4.png'),
-          href: '#',
-          mark: '',
-          label: 'PRofil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 17,
-          image: require('@/assets/img/products/product-1.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 18,
-          image: require('@/assets/img/products/product-2.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 19,
-          image: require('@/assets/img/products/product-3.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 20,
-          image: require('@/assets/img/products/product-4.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 21,
-          image: require('@/assets/img/products/product-1.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 22,
-          image: require('@/assets/img/products/product-2.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 23,
-          image: require('@/assets/img/products/product-3.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 24,
-          image: require('@/assets/img/products/product-4.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 25,
-          image: require('@/assets/img/products/product-1.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 26,
-          image: require('@/assets/img/products/product-2.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 27,
-          image: require('@/assets/img/products/product-3.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 28,
-          image: require('@/assets/img/products/product-4.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 29,
-          image: require('@/assets/img/products/product-1.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 30,
-          image: require('@/assets/img/products/product-2.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 31,
-          image: require('@/assets/img/products/product-3.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 32,
-          image: require('@/assets/img/products/product-4.png'),
-          href: '#',
-          mark: '',
-          label: 'PRofil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-      ],
       mainProducts: [
         {
           id: 1,
@@ -463,6 +207,15 @@ export default {
     }
   },
   computed: {
+    productList () {
+      return this.$store.getters.productList;
+    },
+    categoryList () {
+      return this.$store.getters.categoryList;
+    },
+    productsLabel() {
+      return this.categoryItem.label;
+    },
     SidebarWidth () {
       if (window.innerWidth <= 1200) {
         return false
