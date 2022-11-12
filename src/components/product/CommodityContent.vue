@@ -16,18 +16,18 @@
     <div class="content-commodity__actions actions-commodity">
       <div class="actions-commodity__row">
         <div class="actions-commodity__quantity quantity-product">
-          <span>-</span>
+          <span @click="decrement()">-</span>
           <div class="quantity-product__input">
-            <input type="text" value="1">
+            <input type="text" value="1" ref="productInput">
           </div>
-          <span>+</span>
+          <span @click="increment()">+</span>
         </div>
         <div class="actions-commodity__token flex"><span>Cod Kupon:</span><input type="text" placeholder="_ _ _ _ _ _ _ _ _ _ _ _ _"></div>
       </div>
       <div class="actions-commodity__status flex yes" v-if="productAbout.status"><span>W magazynie - </span>Są dostępne</div>
       <div class="actions-commodity__row">
-        <button type="button" class="actions-commodity__cart button"><span>Dodaj do koszyka</span></button>
-        <button type="button" class="actions-commodity__buy button"><span>Kup w 1 kliknięciu</span></button>
+        <button type="button" class="actions-commodity__cart button" @click="addToCart(productAbout)"><span>Dodaj do koszyka</span></button>
+        <button type="button" class="actions-commodity__buy button" @click="openAlertPopup"><span>Kup w 1 kliknięciu</span></button>
       </div>
       <div class="actions-commodity__row">
         <button type="button" class="actions-commodity__favorite flex">Dodaj do uratowanego</button>
@@ -44,6 +44,10 @@
       line-height: 34px;
       color: #3D3D3D;
       margin-bottom 30px
+      @media(max-width: 375px) {
+        font-size 25px
+        margin-bottom 20px
+      }
     }
     &__offer{
       display inline-block
@@ -89,6 +93,13 @@
         display inline-block
         width 80px
       }
+      @media(max-width: 375px) {
+        font-size 40px
+        line-height 40px
+        span{
+          font-size 18px
+        }
+      }
     }
     &__first-price{
       font-weight: 700;
@@ -111,6 +122,13 @@
         font-weight: 400;
         font-size: 20px;
         line-height: 23px;
+      }
+      @media(max-width: 375px) {
+        font-size 30px
+        line-height 20px
+        span{
+          font-size 16px
+        }
       }
     }
     &__price-info{
@@ -160,6 +178,7 @@
         background-color transparent
         font-size 18px
         transition: all 0.5s ease 
+        letter-spacing: 4px
         &:focus{
           box-shadow: 0.2px 0.2px 5px rgba(#000, 0.2)
         }
@@ -295,6 +314,27 @@
         type: Object,
         required: true,
       }
-    }
+    },
+    methods: {
+      increment () {
+        this.$refs.productInput.value++
+      },
+      decrement () {
+        if(this.$refs.productInput.value>1){
+          this.$refs.productInput.value--
+        }
+      },
+      addToCart (product) {
+        if(this.$store.state.cartList.find(item => item.id === product.id)){
+          product.quantity = this.$refs.productInput.value
+        } else {
+          this.$store.state.cartList.push(product)
+          product.quantity = this.$refs.productInput.value
+        }
+      },
+      openAlertPopup () {
+        this.$emit('openAlertPopup', this.$refs.productInput.value)
+      },
+    },
   }
 </script>

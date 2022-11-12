@@ -101,6 +101,7 @@
     <page-popup
       v-if="visibilityPopup"
       @closePopup="closePopup"
+      :popupOutput="popupOutput"
     >
       <cart-component :cartList="cartList" />
     </page-popup>
@@ -138,7 +139,7 @@
       @media(max-width: 768px){
         min-height 70px
         column-gap: 5px
-        row-gap: 15px
+        row-gap: 20px
         flex-wrap: wrap
       }
     }
@@ -230,6 +231,11 @@
     &__button{
       height 100%
       width 45px
+      z-index 2
+      cursor pointer
+      @media(min-width: 770px){
+        position relative
+      }
       @media(min-width: 769px){
         position absolute
       }
@@ -279,6 +285,9 @@
       margin: 0 -25px 0 0
       order: 3
       flex: 0 1 40%;
+    }
+    @media(max-width: 360px) {
+      flex: 1 1 100%
     }
     span{
         position absolute
@@ -611,6 +620,9 @@ export default {
       burgerActive: false,
       searchActive: false,
       visibilityPopup: null,
+      popupOutput: {
+        title: "Dodano do koszyka"
+      },
       mainMenu: [
         {
           id: 1,
@@ -620,7 +632,7 @@ export default {
         {
           id: 2,
           label: 'O nas',
-          to: '/shop/about'
+          to: '/about'
         },
         {
           id: 3,
@@ -637,37 +649,37 @@ export default {
         {
           id: 1,
           label: 'Kategorie',
-          url: '#'
+          url: '/'
         },
         {
           id: 2,
           label: 'Promocje',
-          url: '#'
+          url: '/'
         },
         {
           id: 3,
           label: 'Aktualności',
-          url: '#'
+          url: '/'
         },
         {
           id: 4,
           label: 'Nowości',
-          url: '#'
+          url: '/'
         },
         {
           id: 5,
           label: 'Dostawa',
-          url: '#'
+          url: '/'
         },
         {
           id: 6,
           label: 'Dodaj opinię o sklepie',
-          url: '#'
+          url: '/'
         },
         {
           id: 7,
           label: 'Kontakt',
-          url: '#'
+          url: '/'
         }
       ],
       footerColumn: [

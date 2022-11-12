@@ -42,17 +42,17 @@
   color: #8B8B8B;
   }
   .row{
-    display flex
+    display flex !important
     column-gap: 60px
     }
     .sidebar{
       padding 40px 0 0 0
-      flex: 0 0 350px
+      flex: 0 0 350px !important
     }
     .content{
       max-width: 1500px
       min-width: 0
-      flex: 1 1 1500px
+      flex: 1 1 1500px !important
     }
     @media(max-width: 1200px){
       .row{
@@ -73,6 +73,7 @@
   background-color: #FF0031;
   min-width 240px
   padding 16px 5px
+  transition: all 0.5s ease
   span{
     font-weight: 700;
     color: #fff
@@ -110,4 +111,136 @@
       }
     }
   }
+  .item-product {
+  &__body {
+    min-height 100%
+    flex-direction column
+    gap: 20px
+    padding 30px
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    position relative
+    background-color #fff
+    border 2px solid rgba(256, 256, 256, 0.1)
+    transition all 0.3s ease 0s
+    &:hover{
+      box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.2);
+      border: 2px solid #FF0031;
+      .actions-product__button{
+        border: 2px solid #FF0031;
+        color: #FF0031
+        transition all 0.3s ease 0s
+      }
+    }
+  }
+  &__image {
+    display block
+    width 225px
+    // max-width 270px
+    height 200px
+    img{
+      width 100%
+      height 100%
+    }
+    span{
+      display inline-block
+      width 160px
+      padding 5px 0
+      text-align center
+      background: #FF0031;
+      border-radius: 5px;
+      font-size: 12px;
+      line-height: 14px;
+      color: #FFFFFF;
+      position absolute
+      top 22px
+      right 12px
+    }
+  }
+  &__label {
+    font-size 18px
+    line-height: 21px;
+  }
+  &__price {
+    width 100%
+    text-align left
+    font-size 33px
+    &::after{
+      content: 'PLN'
+      font-size 24px
+      margin-left: 10px
+    }
+  }
+  &__info{
+    width 100%
+    flex-direction column
+    flex 1 1 100%
+    gap 20px
+  }
+  &__actions {
+  }
+  @media(max-width: 1400px){
+    flex-basis 50%
+  }
+}
+.actions-product {
+  width 100%
+  min-width: 225px
+  justify-content space-between
+  gap 5px
+  &__button {
+    flex-shrink: 0
+    padding 20px 30px
+    max-width 195px
+    text-align center
+    font-size: 16px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    &:hover{
+      background-color #FF0031;
+      color: #fff !important
+    }
+  }
+  &__favorite {
+    width 28px
+    height 28px
+    background url('@/assets/img/main/icons/main-favorite.png') 0 0 no-repeat
+    &:hover{
+      background url('@/assets/img/main/icons/favorite-on-hover.png') 0 0 no-repeat
+    }
+  }
+}
+.products {
+  margin 30px 0
+  &__title {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 25px;
+    color: #3D3D3D;
+  }
+  &__items {
+    padding 50px 0
+    margin 0 -10px
+    display grid
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
+    row-gap: 40px
+    @media(max-width: 1335px){
+      grid-template-columns: repeat(3, minmax(300px, 1fr));
+    }
+    @media(max-width: 992px) {
+      grid-template-columns: repeat(2, minmax(300px, 1fr));
+    }
+    @media(max-width: 768px) {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    @media(max-width: 560px){
+      padding 20px 0
+    }
+  }
+  &__item {
+    padding 0 10px
+    margin 5px 0
+    min-height 100%
+  }
+}
 </style>

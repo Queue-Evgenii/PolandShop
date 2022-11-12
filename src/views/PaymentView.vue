@@ -3,11 +3,12 @@
     <layout-default>
       <main class="page">
         <div class="page__payment payment-page">
-          <div class="payment-page__container container">
-            <div class="payment-page__content">
+          <div class="payment-page__container container row">
+            <aside class="payment-page__sidebar sidebar"></aside>
+            <div class="payment-page__content content">
               <div class="payment-page__title">Zapłata za towary</div>
               <div class="payment-page__columns">
-                <payment-form />
+                <payment-form @goBackPopup="goBackPopup"/>
                 <div class="payment-page__preview preview-payment">
                   <div class="preview-payment__content">
                     <div class="preview-payment__row flex">
@@ -18,14 +19,14 @@
                         <span>produkty</span>
                       </div>
                     </div>
-                    <small-product :Items="productPreview" />
+                    <preview-product :Items="productPreview" />
                     <div class="preview-payment__delivery-price flex">
                       <span class="preview-payment__label">Koszt przesyłki</span>
                       <span>5 PLN</span>
                     </div>
                     <div class="preview-payment__total-price flex">
                       <span class="preview-payment__label">Całkowity</span>
-                      <span>655 PLN</span>
+                      <span>{{cartTotalCost}} PLN</span>
                     </div>
                   </div>
                 </div>
@@ -36,12 +37,23 @@
         <page-ads />
       </main>
     </layout-default>
+    <page-popup 
+     v-if="openPopup" 
+     @goBackPopup="goBackPopup"
+     @closePopup="closePopup"
+     :popupOutput="this.onPayment"
+    >
+      <payment-alert @goBack="goBack" :popupOutput="this.onPayment" @closePopup="closePopup"/>
+    </page-popup>
   </div>
 </template>
 <script>
+import PagePopup from '@/components/PagePopup'
+
 import LayoutDefault from '@/layouts/LayoutDefault'
 import PaymentForm from '@/components/payment/PaymentForm'
-import SmallProduct from '@/components/SmallProduct'
+import PreviewProduct from '@/components/PreviewProduct'
+import PaymentAlert from '@/components/product/PaymentAlert'
 import PageAds from '@/components/PageAds.vue'
 export default {
   name: 'CatalogView',
@@ -49,27 +61,17 @@ export default {
   components: {
     LayoutDefault,
     PaymentForm,
-    SmallProduct,
+    PreviewProduct,
     PageAds,
+    PaymentAlert,
+    PagePopup,
+  },
+  created () {
   },
   data() {
     return {
-      productPreview: [
-        {
-          id: 1,
-          image: require('@/assets/img/products/product-1.png'),
-          title: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: '500',
-          quantity: '3',
-        },
-        {
-          id: 2,
-          image: require('@/assets/img/products/product-2.png'),
-          title: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: '150',
-          quantity: '1',
-        },
-      ],
+      openPopup: false,
+      isExistData: false,
       productAbout: {
         image: require('@/assets/img/product/product-img-1.png'),
         title: 'Profil aluminiowy uniwersalny bezuszczelkowy',
@@ -82,7 +84,55 @@ export default {
         quantity: 1,
         sale: "-10",
       },
+      onPayment: {
+        title: "Do you really want go back??",
+        nclass: "on-payment",
+      },
     }
+  },
+  methods: {
+    goBackPopup() {
+      this.openPopup = true;
+    },
+    closePopup(){
+      this.openPopup = false;
+    },
+    goBack() {
+      this.$store.state.quickBuy.length = 0;// this is a question
+      this.openPopup = false;
+    },
+  },
+  computed: {
+    productPreview () {
+      if(this.$store.state.quickBuy.length > 0) {
+        return this.$store.state.quickBuy;
+      } else if (this.$store.state.quickBuy.length <= 0 && this.$store.state.cartList.length > 0) {
+        return this.$store.getters.cartList;
+      } else {
+        return [];
+      }
+    },
+    cartTotalCost() {
+      let result = [];
+      if(this.$store.state.quickBuy.length > 0){
+        for(let item of this.$store.state.quickBuy) {
+          result.push(item.price * item.quantity);
+        }
+        result = result.reduce(function (sum, el) {
+          return sum + el;
+        })
+      } else if (this.$store.state.cartList.length > 0) {
+        for(let item of this.$store.state.cartList) {
+          result.push(item.price * item.quantity);
+        }
+        result = result.reduce(function (sum, el) {
+          return sum + el;
+        })
+      } else {
+        result = 0;
+      }
+      return result;
+    },
   },
 }
 </script>
@@ -103,6 +153,13 @@ export default {
     }
     &__content{
       margin-bottom 150px
+      max-width: none !important
+      flex 100% !important;
+    }
+    &__sidebar{
+      flex: 0 !important;
+      padding 0 !important;
+      width 0 !important;
     }
   }
   .payment-page__preview {

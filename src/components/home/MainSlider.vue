@@ -20,6 +20,7 @@
     z-index 3
     font-size 0
     bottom 45px
+    transition opacity 0.3s ease
     &:hover{
       background: rgb(255, 255, 255);
       opacity 0.9
@@ -110,20 +111,26 @@
       position relative
     }
     &__button{
-      display inline-flex
-      justify-content center
-      align-items center
-      position absolute
-      min-width 198px
-      height 58px
-      bottom 138px
-      left 164px
-      background: #FFFFFF;
-      border: 1px solid #000000;
-      box-shadow: 0px 4px 100px #FF0000;
-      border-radius: 5px;
-      color: #FF0000;
-      font-weight 700
+      a{
+        display inline-flex
+        justify-content center
+        align-items center
+        position absolute
+        min-width 198px
+        height 58px
+        bottom 138px
+        left 164px
+        background: #FFFFFF;
+        border: 1px solid #000000;
+        box-shadow: 0px 4px 100px #FF0000;
+        border-radius: 5px;
+        color: #FF0000;
+        font-weight 700
+        transition box-shadow 0.5s ease
+        &:hover{
+          box-shadow: 2px 2px 5px rgba(#000, 0.3)
+        }
+      }
     }
     @media(max-width: 768px){
       height 320px

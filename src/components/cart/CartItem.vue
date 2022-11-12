@@ -39,7 +39,7 @@ export default {
     increment (id) {
       this.$store.state.cartList.find(item => {
         if(item.id === id){
-          item.quantity += 1
+          item.quantity++;
         }
       })
     },
@@ -47,7 +47,7 @@ export default {
       this.$store.state.cartList.find(item => {
         if(item.id === id){
           if(item.quantity > 1){
-            item.quantity -= 1
+            item.quantity--;
           } else {
             this.removeItem(id);
           }

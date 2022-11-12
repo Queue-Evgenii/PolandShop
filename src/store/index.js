@@ -1530,7 +1530,9 @@ export default new Vuex.Store({
         ]
       }
     ],
-    cartList: []
+    cartList: [],
+    quickBuy: [],
+    recentList: [],
   },
   getters: {
     productList (state) {
@@ -1541,6 +1543,9 @@ export default new Vuex.Store({
     },
     cartList (state) {
       return state.cartList
+    },
+    recentList (state) {
+      return state.recentList
     }
   },
   mutations: {

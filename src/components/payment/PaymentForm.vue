@@ -11,7 +11,7 @@
           <label for="username" class="form-payment__label">Imię Nazwisko</label>
           <input id="username" type="text" class="form-payment__input input-width" placeholder="Imie">
         </li>
-        <li class="form-payment__row row">
+        <li class="form-payment__row n-row">
           <label for="cod" class="form-payment__label f1-1">Kod pocztowy</label>
           <input id="cod" type="text" class="form-payment__input w-110" placeholder="Kod">
           <button class="form-payment__button">Znajdź adres</button>
@@ -83,6 +83,7 @@
       </div>
     </div>
     <div class="form-payment__section-btn flex">
+      <button class="form-payment__cancel button" type="button" @click="goBackPopup()">Cancel</button>
       <button class="form-payment__submit button" type="submit">Płacić</button>
     </div>
   </form>
@@ -96,7 +97,11 @@
     }
   }
   &__section-btn {
-    justify-content center
+    justify-content left
+    gap: 30px
+    @media(max-width: 475px){
+      flex-wrap: wrap
+    }
   }
   &__title {
   }
@@ -134,8 +139,25 @@
     color: #FF0031;
     border 1px solid #FF0031;
     border-radius 5px
+    transition background 0.3s ease 0s;
+    &:hover{
+      background-color #ff0031;
+      color: #fff;
+    }
   }
-  &__select {
+  &__cancel {
+    background transparent
+    color: #ff0031;
+    border: 1px solid #ff0031;
+    width 190px
+    min-width: initial;
+    @media(max-width: 992px){
+      width 100% 
+    }
+    &:hover{
+      background-color #ff0031;
+      color: #fff;
+    }
   }
   &__submit{
     color: #fff
@@ -199,7 +221,7 @@
 .f1-1{
   flex: 1 1 100%
 }
-.row{
+.n-row{
   flex-direction: row
   flex-wrap: wrap
 }
@@ -208,3 +230,12 @@
   max-width: 122px
 }
 </style>
+<script>
+export default {
+  methods: {
+    goBackPopup() {
+      this.$emit("goBackPopup");
+    }
+  }
+}
+</script>

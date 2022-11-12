@@ -29,21 +29,25 @@ const routes = [
     component: () => import('../views/ProductView.vue')
   },
   {
-    path: '/cart',
+    path: '/cart/',
     name: 'cart',
     component: () => import('../views/CartView.vue')
   },
   {
-    path: '/payment',
+    path: '/payment/',
     name: 'payment',
     component: () => import('../views/PaymentView.vue')
   },
 ]
 
+
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
+  scrollBehavior() {
+      return {x: 0, y: 0}
+  }
 })
 
 export default router

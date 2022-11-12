@@ -25,7 +25,7 @@
       flex: 1 1 50%
       text-align: left
       padding 10px 15px
-      font-size: 24px;
+      font-size: 20px;
       line-height: 28px;
     }
     th {

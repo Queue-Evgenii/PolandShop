@@ -15,7 +15,7 @@
                   <sub-slider :subSlides="categoryItems" />
                 </div>
                 <div class="catalog-page__products">
-                  <catalog-products :catalogProducts="catalogList" :productsLabel="productsLabel" > <!-- catalogList located in created -->
+                  <catalog-products :catalogProducts="catalogList" :productsLabel="productsLabel" > 
                     <aside-filter :filterItems="filterItems" v-if="!SidebarWidth" />
                   </catalog-products>
                 </div>
@@ -23,7 +23,7 @@
             </div>
           </div>
         </div>
-        <recent-products :mainProducts="mainProducts" />
+        <recent-products  v-if="recentList.length !== 0" :recentProducts="recentList"/>
         <page-ads />
       </main>
     </layout-default>
@@ -32,7 +32,6 @@
 <style lang="stylus">
 </style>
 <script>
-// import sidebarCategoryList from '@/mock/sidebar-category'
 import LayoutDefault from '@/layouts/LayoutDefault'
 import AsideSidebar from '@/components/home/AsideSidebar'
 import SubSlider from '@/components/SubSlider'
@@ -45,9 +44,8 @@ export default {
   layouts: 'default',
   created () {
     this.categoryItems = this.categoryList;
-    this.catalogId = parseInt(this.$route.params.id);
-    this.catalogList = this.productList.filter(item => item.category === this.catalogId);
-    this.categoryItem = this.categoryItems.find(item => item.id == this.catalogId);//searching item which id === route id
+    this.fetchCatalogList();
+    this.fetchCategoryItem()
   },
   components: {
     LayoutDefault,
@@ -63,40 +61,6 @@ export default {
       catalogId: 1,
       asideItems: [],
       subSlides: [],
-      mainProducts: [
-        {
-          id: 1,
-          image: require('@/assets/img/products/product-1.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 2,
-          image: require('@/assets/img/products/product-2.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 3,
-          image: require('@/assets/img/products/product-3.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 4,
-          image: require('@/assets/img/products/product-4.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        }
-      ],
       filterItems: [
         {
           name: 'Rodzaj produktu',
@@ -204,9 +168,15 @@ export default {
           ]
         },
       ],
+      catalogList: [],
+      categoryItem: {},
+      categoryItems: [],
     }
   },
   computed: {
+    currentCatId() {
+      return parseInt(this.$route.params.id) || 1;
+    },
     productList () {
       return this.$store.getters.productList;
     },
@@ -215,6 +185,9 @@ export default {
     },
     productsLabel() {
       return this.categoryItem.label;
+    },
+    recentList () {
+      return this.$store.getters.recentList;
     },
     SidebarWidth () {
       if (window.innerWidth <= 1200) {
@@ -230,6 +203,23 @@ export default {
         return true
       }
     },
+  },
+  watch: {
+    currentCatId() {
+      setTimeout(() => {
+        this.fetchCatalogList()
+        this.fetchCategoryItem()
+      }, 0)
+    }
+  },
+  methods: {
+    fetchCatalogList () {
+      this.catalogList = this.productList.filter(item => item.category === this.currentCatId);
+    },
+    fetchCategoryItem() {
+      this.categoryItem = this.categoryItems.find(item => item.id == this.currentCatId);
+      
+    }
   },
 }
 </script>

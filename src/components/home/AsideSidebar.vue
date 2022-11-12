@@ -78,6 +78,7 @@
     line-height: 50px;
     color: #3D3D3D;
     position relative
+    cursor pointer
     &::before{
       content ''
       width 20px
@@ -100,6 +101,9 @@
     padding 0 30px
     position relative
     a{
+      display block
+      width 100%
+      height 100%
       color: #3d3d3d
       font-size: 20px;
       line-height: 40px;

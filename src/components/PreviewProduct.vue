@@ -1,11 +1,11 @@
 <template>
-  <ul class="small-product__body">
-    <li class="small-product__item" v-for="item in Items" :key="item.id">
-      <div class="small-product__image"><img :src="item.image" alt=""></div>
-      <div class="small-product__info">
-        <div class="small-product__label">{{ item.title }}</div>
-        <div class="small-product__price">{{ item.price }}<span>PLN</span></div>
-        <div class="small-product__quantity"><span>Ilość:</span>{{ item.quantity }}</div>
+  <ul class="preview-product__body">
+    <li class="preview-product__item" v-for="item in Items" :key="item.id">
+      <div class="preview-product__image"><img :src="item.image" alt=""></div>
+      <div class="preview-product__info">
+        <div class="preview-product__label">{{ item.title }}</div>
+        <div class="preview-product__price">{{ item.price }}<span>PLN</span></div>
+        <div class="preview-product__quantity"><span>Ilość:</span>{{ item.quantity }}</div>
       </div>
     </li>
   </ul>
@@ -21,7 +21,7 @@ export default {
 }
 </script>
 <style lang="stylus">
-.small-product {
+.preview-product {
   &__body {
     display flex
     flex-direction column

@@ -2,7 +2,7 @@
   <div class="popup">
     <div class="popup__content">
       <div class="popup__header">
-        <div class="popup__title"></div>
+        <div class="popup__title">{{popupOutput.title}}</div>
         <div class="popup__close" @click="closePopup"><img src="@/assets/img/main/icons/close.png" alt=""></div>
       </div>
       <div class="popup__body">
@@ -12,13 +12,10 @@
   </div>
 </template>
 <script>
-export default {
-  name: 'PagePopup'
-}
 </script>
 <style lang="stylus">
   .popup{
-    position absolute
+    position fixed
     top 0
     right 0
     left 0
@@ -26,6 +23,7 @@ export default {
     background-color rgba(0,0,0,0.5)
     z-index: 10
     padding 30px
+    overflow-y scroll
     @media(max-width: 630px){
       padding 0
     }
@@ -49,6 +47,11 @@ export default {
       border-bottom 1px solid rgba(0, 0, 0, 0.4);
       padding-bottom 35px
     }
+    &__title{
+      font-size 28px
+      line-height 32px
+      max-width: 500px
+    }
     &__close{
       z-index 11
       @media(max-width: 630px){
@@ -67,6 +70,12 @@ export default {
 </style>
 <script>
   export default{
+    name: 'PagePopup',
+    props: {
+      popupOutput: {
+        type: Object,
+      }
+    },
     methods: {
       closePopup () {
         this.$emit('closePopup')

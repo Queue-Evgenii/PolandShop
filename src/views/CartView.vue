@@ -11,7 +11,7 @@
                   <img src="@/assets/img/main/icons/present.png" alt="">
                   <span>Darmowy prezent do zakupu</span>
                 </div>
-                <small-product :Items="FreeToStoreItems" />
+                <preview-product :Items="FreeToStoreItems" />
                 <div class="present-cart__footer flex">
                   <button class="present-cart__button"><span>Dodaj do koszyka</span></button>
                 </div>
@@ -81,7 +81,7 @@
 <script>
 
 import LayoutDefault from '@/layouts/LayoutDefault'
-import SmallProduct from '@/components/SmallProduct'
+import PreviewProduct from '@/components/PreviewProduct'
 import CartComponent from '@/components/cart/CartComponent'
 import RecentProducts from '@/components/home/RecentProducts'
 import PageAds from '@/components/PageAds'
@@ -93,7 +93,7 @@ export default {
     CartComponent,
     RecentProducts,
     PageAds,
-    SmallProduct,
+    PreviewProduct,
   },
   computed: {
     cartList () {

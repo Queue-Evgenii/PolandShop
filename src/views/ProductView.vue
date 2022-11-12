@@ -11,7 +11,7 @@
               <div class="product-page__content content">
                 <div class="product-page__commodity commodity-page">
                   <commodity-slider :commoditySlides="productItem.images" @openPopup="openPopup" />
-                  <commodity-content :productAbout="productItem" />
+                  <commodity-content :productAbout="productItem" @openAlertPopup="openAlertPopup" @inputValue="inputValue" />
                 </div>
                 <div class="product-page__info info-product">
                   <about-product :aboutText="productItem.aboutText" />
@@ -24,7 +24,7 @@
             </div>
           </div>
         </div>
-        <recent-products />
+        <recent-products v-if="recentList.length !== 0" :recentProducts="recentList"/>
         <page-ads />
       </main>
     </layout-default>
@@ -34,6 +34,13 @@
     >
       <commodity-slider :commoditySlides="productItem.images" />
       <commodity-content :productAbout="productItem" />
+    </page-popup>
+    <page-popup 
+     v-if="buyOneClickPopup" 
+     @closePopup="closePopup"
+     :popupOutput="this.beforePayment"
+    >
+      <payment-alert @quickBuy="quickBuy" :popupOutput="this.beforePayment"/>
     </page-popup>
   </div>
 </template>
@@ -83,7 +90,7 @@
       width: 100%
       border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 20px;
-      padding 45px 55px
+      padding 25px 30px
       background-color: #fff
       &:not(:last-child) {
         margin-bottom: 45px
@@ -129,12 +136,11 @@
 import PagePopup from '@/components/PagePopup'
 
 
-import sidebarCategoryList from '@/mock/sidebar-category'
-
+import PaymentAlert from '@/components/product/PaymentAlert'
 import ReviewsProduct from '@/components/product/ReviewsProduct'
 import TableProduct from '@/components/product/TableProduct'
 import GalleryProduct from '@/components/product/GalleryProduct'
-import AboutProduct from '@/components/product/AboutProduct.vue'
+import AboutProduct from '@/components/product/AboutProduct'
 
 import CommodityContent from '@/components/product/CommodityContent'
 import CommoditySlider from '@/components/product/CommoditySlider'
@@ -147,7 +153,7 @@ export default {
   name: 'CatalogView',
   layouts: 'default',
   created() {
-    this.asideItems = sidebarCategoryList
+    this.asideItems = this.categoryList
     this.productId = parseInt(this.$route.params.id)
     this.productItem = this.productList.find(item => item.id === this.productId)
   },
@@ -162,117 +168,20 @@ export default {
     TableProduct,
     GalleryProduct,
     ReviewsProduct,
-    PagePopup
+    PagePopup,
+    PaymentAlert,
   },
   data() {
     return {
-      productItem: null,
       productId: null,
       visibilityPopup: null,
+      buyOneClickPopup: null,
       asideItems: [],
-      // commoditySlides: [
-      //   {
-      //     id: 1,
-      //     image: require('@/assets/img/product/product-img-1.png')
-      //   },
-      //   {
-      //     id: 2,
-      //     image: require('@/assets/img/product/product-img-2.png')
-      //   },
-      //   {
-      //     id: 3,
-      //     image: require('@/assets/img/product/product-img-3.png')
-      //   },
-      //   {
-      //     id: 4,
-      //     image: require('@/assets/img/product/product-img-4.png')
-      //   },
-
-      //   {
-      //     id: 5,
-      //     image: require('@/assets/img/product/product-img-2.png')
-      //   },
-      // ],
-      // tableProductItems: [
-      //   {
-      //     id: 1,
-      //     th: "Waga:",
-      //     td: "160 g/m.b."
-      //   },
-      //   {
-      //     id: 2,
-      //     th: "Możliwość włożenia uszczelki:",
-      //     td: "Tak"
-      //   },
-      //   {
-      //     id: 3,
-      //     th: "Materiał:",
-      //     td: "Biały"
-      //   },
-      //   {
-      //     id: 4,
-      //     th: "Długość:",
-      //     td: "PCV"
-      //   },
-      //   {
-      //     id: 5,
-      //     th: "Waga:",
-      //     td: "2,0 m"
-      //   },
-      //   {
-      //     id: 6,
-      //     th: "Waga:",
-      //     td: "160 g/m.b."
-      //   },
-      //   {
-      //     id: 7,
-      //     th: "Waga:",
-      //     td: "160 g/m.b."
-      //   },
-      // ],
-      // ReviewsProductItems: [
-      //   {
-      //     id: 1,
-      //     username: 'Tatiana',
-      //     text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
-      //   },
-      //   {
-      //     id: 2,
-      //     username: 'Jewgienij',
-      //     text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
-      //   },
-      //   {
-      //     id: 3,
-      //     username: 'Tatiana',
-      //     text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
-      //   },
-      //   {
-      //     id: 4,
-      //     username: 'Jewgienij',
-      //     text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
-      //   },
-      //   {
-      //     id: 5,
-      //     username: 'Tatiana',
-      //     text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
-      //   },
-      //   {
-      //     id: 6,
-      //     username: 'Jewgienij',
-      //     text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
-      //   },
-      // ],
-      // productAbout: {
-      //   image: require('@/assets/img/product/product-img-1.png'),
-      //   title: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-      //   offer: 'Bezpłatna dostawa z 500 Pln',
-      //   categoryNum: 26,
-      //   cod: '0723314791448',
-      //   firstPrice: 95,
-      //   price: 75,
-      //   status: true,
-      //   quantity: 1,
-      // },
+      inputValue: 0,
+      beforePayment: {
+        title: "You want to buy only that product OR buy all products from your cart?",
+        nclass: "before-payment",
+      },
     }
   },
   methods: {
@@ -281,11 +190,25 @@ export default {
     },
     closePopup() {
       this.visibilityPopup = null;
+      this.buyOneClickPopup = null;
+    },
+    openAlertPopup(value) {
+      this.buyOneClickPopup = 1;
+      this.inputValue = value
+    },
+    quickBuy() {
+      this.$store.state.quickBuy.push(this.productItem);
     }
   },
   computed: {
     productList() {
       return this.$store.getters.productList
+    },
+    categoryList () {
+      return this.$store.getters.categoryList;
+    },
+    recentList () {
+      return this.$store.getters.recentList;
     },
     SidebarWidth() {
       if (window.innerWidth <= 1200) {

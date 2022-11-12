@@ -49,8 +49,8 @@
 <style lang="stylus">
 .about-product {
   &__text {
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 20px;
+    line-height: 25px;
     color: #000000;
     p {
       &:not(:last-child) {

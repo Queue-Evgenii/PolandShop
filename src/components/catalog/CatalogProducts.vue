@@ -16,7 +16,7 @@
     </div>
      <div class="products__items" ref="products">
       <product-item
-        v-for="product in getItems" 
+        v-for="product in catalogProducts" 
         :key="product.id" 
         :product="product"
         @addToCart="addToCart"
@@ -78,25 +78,32 @@ export default {
     filtersLayout (e) {
       const column = this.$refs.column,
             row = column.nextElementSibling,
-            products = this.$refs.products,
-            productItems = this.$refs.product
-      if (column == e.target) {
-        for (let index = 0; index < productItems.length; index++) {
-          const productItem = productItems[index];
+            products = this.$refs.products;
+            // productItems = this.$refs.product
+            console.log(products)
+      if (column === e.target) {
+        for (let index = 0; index < products.length; index++) {
+          const productItem = products[index];
           productItem.classList.remove('item-product-row')
         }
         products.classList.remove('products-items-row')
-      } else if (row == e.target) {
-        for (let index = 0; index < productItems.length; index++) {
-          const productItem = productItems[index];
-          productItem.classList.add('item-product-row')
+      } else if (row === e.target) {
+        products.filter(function (element) {
+          element.classList.add('item-product-row')
         }
+          
+        );
+        // for (let index = 0; index < products.length; index++) {
+        //   const productItem = products[index];
+        //   productItem.classList.add('item-product-row')
+        //   console.log(777)
+        // }
         products.classList.add('products-items-row')
       }
     },
     addToCart (product) {
       if(this.$store.state.cartList.find(item => item.id === product.id)){
-        product.quantity += 1
+        product.quantity++
       } else {
         this.$store.state.cartList.push(product)
         console.log(this.$store.state.cartList)

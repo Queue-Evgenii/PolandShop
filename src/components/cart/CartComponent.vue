@@ -17,7 +17,7 @@
             <div class="payment-cart__total-price">{{cartTotalCost}} PLN</div>
           </div>
           <div class="payment-cart__button-box flex">
-            <button class="payment-cart__button button"><span>Zapłać za towar</span></button>
+            <router-link :to="{name: 'payment'}" class="payment-cart__button button"><span>Zapłać za towar</span></router-link>
           </div>
         </div>
       </div>
@@ -202,7 +202,9 @@ export default {
     justify-content center
     padding 75px 0
   }
-  &__button {
+  &__button { 
+    display block
+    text-align center
     width 240px !important
   }
 }
@@ -231,9 +233,7 @@ export default {
 }
 .popup{
   .cart-page__title{
-    position absolute
-    top 40px
-    left 40px
+    display none
   }
   .cart-page__titles{
     padding-top: 0px

@@ -26,6 +26,9 @@
       display: grid
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
       gap: 25px
+      @media(max-width: 420px) {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+      }
     }
     &__item {
       border: 1px solid rgba(#000, 0.3);
@@ -40,6 +43,9 @@
         width: 100%
         height: 100%
         padding 15px
+      }
+      @media(max-width: 375px) {
+        height: 250px
       }
     }
   }

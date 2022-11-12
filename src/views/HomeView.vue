@@ -17,24 +17,24 @@
         </div>
         <home-catalogue
           catalogId='1'
-          :productItem1="productItem1"
+          :productItem="productItem1"
           :categoryItems="categoryItems"
           @addToCart="addToCart"
         />
         <home-catalogue
           catalogId='2'
-          :productItem1="productItem1"
+          :productItem="productItem2"
           :categoryItems="categoryItems"
           @addToCart="addToCart"
         />
         <page-ads />
         <home-catalogue
           catalogId='3'
-          :productItem1="productItem3"
+          :productItem="productItem3"
           :categoryItems="categoryItems"
           @addToCart="addToCart"
         />
-        <recent-products :mainProducts="mainProducts" />
+        <recent-products v-if="recentList.length !== 0" :recentProducts="recentList" />
         <page-ads />
       </main>
     </layout-default>
@@ -65,6 +65,9 @@ export default {
     },
     categoryList () {
       return this.$store.getters.categoryList;
+    },
+    recentList () {
+      return this.$store.getters.recentList;
     },
   },
   data () {
@@ -98,52 +101,16 @@ export default {
         }
       ],
       subSlides: [],
-      mainProducts: [
-        {
-          id: 1,
-          image: require('@/assets/img/products/product-1.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 2,
-          image: require('@/assets/img/products/product-2.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 3,
-          image: require('@/assets/img/products/product-3.png'),
-          href: '#',
-          mark: 'Najlepiej sprzedający się',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        },
-        {
-          id: 4,
-          image: require('@/assets/img/products/product-4.png'),
-          href: '#',
-          mark: '',
-          label: 'Profil aluminiowy uniwersalny bezuszczelkowy',
-          price: 75
-        }
-      ],
     }
   },
   methods: {
     addToCart (product) {
       if(this.$store.state.cartList.find(item => item.id === product.id)){
-        product.quantity += 1
+        product.quantity++
       } else {
         this.$store.state.cartList.push(product)
-        console.log(this.$store.state.cartList)
       }
-      
-    }
+    },
   },
   components: {
     LayoutDefault,
