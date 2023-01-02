@@ -70,6 +70,7 @@ export default {
   },
   data() {
     return {
+      quickBuyExist: false,
       openPopup: false,
       isExistData: false,
       productAbout: {
@@ -98,7 +99,8 @@ export default {
       this.openPopup = false;
     },
     goBack() {
-      this.$store.state.quickBuy.length = 0;// this is a question
+      this.$store.state.quickBuy = [];// this is a question
+      console.log(this.$store.state.quickBuy);
       this.openPopup = false;
     },
   },

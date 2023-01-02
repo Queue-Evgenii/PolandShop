@@ -6,7 +6,7 @@
       <router-link :to="{name: 'cart'}" class="alert-block__payment button"><span>Go to cart</span></router-link>
     </div>
     <div class="alert-block__buttons" :class="popupOutput.nclass === 'on-payment' ? 'on-payment' : ''">
-      <router-link :to="{name: 'home/'}" @click.native="goBack()" class="alert-block__buy button"><span>Clear quick buy and go to main page</span></router-link>
+      <router-link :to="{name: 'cart'}" @click.native="goBack()" class="alert-block__buy button"><span>Go to main page</span></router-link>
       <button class="alert-block__payment button" @click="closePopup()"><span>Back to payment</span></button>
     </div>
   </div>
@@ -48,6 +48,9 @@
       border 1px solid transparent
       display inline-block
       text-align center
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 16px;
     }
   }
 </style>
@@ -60,12 +63,14 @@ export default {
     }
   },
   methods: {
+    goBack(event) {
+      console.log(111);
+      this.$emit('goBack', event);
+    },
     quickBuy() {
       this.$emit('quickBuy');
     },
-    goBack() {
-      this.$emit('goBack');
-    },
+    
     closePopup() {
       this.$emit('closePopup');
     }

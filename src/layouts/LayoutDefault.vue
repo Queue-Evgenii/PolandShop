@@ -105,6 +105,7 @@
     >
       <cart-component :cartList="cartList" />
     </page-popup>
+    <access-alert />
   </div>
 </template>
 <style lang="stylus">
@@ -612,6 +613,7 @@ import HeaderMenu from '@/components/header/HeaderMenu'
 import MainMenu from '@/components/header/MainMenu'
 import FooterCopy from '@/components/footer/FooterCopy'
 import PagePopup from '@/components/PagePopup'
+import AccessAlert from '@/components/AccessAlert'
 import CartComponent from '@/components/cart/CartComponent'
 export default {
   data () {
@@ -627,59 +629,59 @@ export default {
         {
           id: 1,
           label: 'Wzmacniacz',
-          to: '/shop/'
+          to: 'home'
         },
         {
           id: 2,
           label: 'O nas',
-          to: '/about'
+          to: 'about'
         },
         {
           id: 3,
           label: 'Łączność',
-          to: '/shop/about'
+          to: 'kontakt'
         },
         {
           id: 4,
           label: 'Sklepy',
-          to: '/shop/about'
+          to: 'home'
         }
       ],
       headerMenu: [
         {
           id: 1,
           label: 'Kategorie',
-          url: '/'
+          url: 'kategorie'
         },
         {
           id: 2,
           label: 'Promocje',
-          url: '/'
+          url: 'promocje'
         },
         {
           id: 3,
           label: 'Aktualności',
-          url: '/'
+          url: 'aktualności'
         },
         {
           id: 4,
           label: 'Nowości',
-          url: '/'
+          url: 'nowości'
         },
         {
           id: 5,
           label: 'Dostawa',
-          url: '/'
+          url: 'dostawa'
         },
         {
           id: 6,
           label: 'Dodaj opinię o sklepie',
-          url: '/'
+          url: 'opinię'
         },
         {
           id: 7,
           label: 'Kontakt',
-          url: '/'
+          url: 'kontakt'
         }
       ],
       footerColumn: [
@@ -806,6 +808,7 @@ export default {
     MainMenu,
     FooterCopy,
     PagePopup,
+    AccessAlert,
     CartComponent
   },
   methods: {

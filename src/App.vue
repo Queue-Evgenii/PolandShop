@@ -21,6 +21,9 @@
     padding 0 30px
     margin: 0 auto;
     overflow: hidden;
+    @media(max-width: 350px) {
+      padding 0 20px
+    }
   }
   .flex{
     display flex
@@ -156,6 +159,12 @@
       top 22px
       right 12px
     }
+  }
+  &__text-row{
+    display flex
+    flex-direction column;
+    gap: 20px
+    width 100%
   }
   &__label {
     font-size 18px

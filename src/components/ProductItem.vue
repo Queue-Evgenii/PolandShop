@@ -7,11 +7,12 @@
             <img :src="product.image" alt="">
             <span v-if="product.mark">{{ product.mark }}</span>
           </div> 
-          <div class="item-product__label">{{ product.title}}</div>
-          <div class="item-product__price">{{ product.price }}</div>
-        </div>
+          <div class="item-product__text-row">
+            <div class="item-product__label">{{ product.title}}</div>
+            <div class="item-product__price">{{ product.price }}</div></div>
+          </div>
         <div class="item-product__actions actions-product flex">
-          <button @click="addToCart(product);$event.stopPropagation();$event.preventDefault()" type="button" class="actions-product__button">Dodaj do koszyka</button>
+          <button @click="addToCart(product);$event.stopPropagation();$event.preventDefault();showAlert()" type="button" class="actions-product__button">Dodaj do koszyka</button>
           <button type="button" class="actions-product__favorite"></button>
         </div>
       </div>
@@ -40,6 +41,11 @@ export default {
         this.$store.state.recentList.unshift(product)
       }
       // this.$store.state.recentList.push(product)
+    },
+    showAlert() {
+      const block = document.querySelector('.access-alert__container')
+      block.classList.add('show-access-alert')
+      setTimeout(() => block.classList.remove('show-access-alert'), 1000);
     },
   },
 }
