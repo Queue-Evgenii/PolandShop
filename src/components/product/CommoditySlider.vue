@@ -36,7 +36,7 @@ export default {
       slider: undefined,
       thumb: undefined,
       settings: {
-        "dots": true,
+        "dots": false,
         "focusOnSelect": true,
         "infinite": true,
         "speed": 500,

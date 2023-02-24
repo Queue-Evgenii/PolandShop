@@ -85,31 +85,37 @@ export default new Vuex.Store({
         reviews: [
           {
             id: 1,
+            grade: 3.5,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 2,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 3,
+            grade: 4.4,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 4,
+            grade: 4.2,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 5,
+            grade: 4.7,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 6,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
@@ -192,31 +198,37 @@ export default new Vuex.Store({
         reviews: [
           {
             id: 1,
+            grade: 3.5,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 2,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 3,
+            grade: 4.4,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 4,
+            grade: 4.2,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 5,
+            grade: 4.7,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 6,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
@@ -299,31 +311,37 @@ export default new Vuex.Store({
         reviews: [
           {
             id: 1,
+            grade: 3.5,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 2,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 3,
+            grade: 4.4,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 4,
+            grade: 4.2,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 5,
+            grade: 4.7,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 6,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
@@ -406,31 +424,37 @@ export default new Vuex.Store({
         reviews: [
           {
             id: 1,
+            grade: 3.5,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 2,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 3,
+            grade: 4.4,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 4,
+            grade: 4.2,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 5,
+            grade: 4.7,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 6,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
@@ -513,31 +537,37 @@ export default new Vuex.Store({
         reviews: [
           {
             id: 1,
+            grade: 3.5,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 2,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 3,
+            grade: 4.4,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 4,
+            grade: 4.2,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 5,
+            grade: 4.7,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 6,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
@@ -620,31 +650,37 @@ export default new Vuex.Store({
         reviews: [
           {
             id: 1,
+            grade: 3.5,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 2,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 3,
+            grade: 4.4,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 4,
+            grade: 4.2,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 5,
+            grade: 4.7,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 6,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
@@ -727,31 +763,37 @@ export default new Vuex.Store({
         reviews: [
           {
             id: 1,
+            grade: 3.5,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 2,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 3,
+            grade: 4.4,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 4,
+            grade: 4.2,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 5,
+            grade: 4.7,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 6,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
@@ -834,31 +876,37 @@ export default new Vuex.Store({
         reviews: [
           {
             id: 1,
+            grade: 3.5,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 2,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 3,
+            grade: 4.4,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 4,
+            grade: 4.2,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 5,
+            grade: 4.7,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 6,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
@@ -941,31 +989,37 @@ export default new Vuex.Store({
         reviews: [
           {
             id: 1,
+            grade: 3.5,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 2,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 3,
+            grade: 4.4,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 4,
+            grade: 4.2,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 5,
+            grade: 4.7,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 6,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
@@ -1048,31 +1102,37 @@ export default new Vuex.Store({
         reviews: [
           {
             id: 1,
+            grade: 3.5,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 2,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 3,
+            grade: 4.4,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 4,
+            grade: 4.2,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 5,
+            grade: 4.7,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 6,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
@@ -1155,31 +1215,37 @@ export default new Vuex.Store({
         reviews: [
           {
             id: 1,
+            grade: 3.5,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 2,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 3,
+            grade: 4.4,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 4,
+            grade: 4.2,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 5,
+            grade: 4.7,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 6,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
@@ -1262,31 +1328,37 @@ export default new Vuex.Store({
         reviews: [
           {
             id: 1,
+            grade: 3.5,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 2,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 3,
+            grade: 4.4,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 4,
+            grade: 4.2,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 5,
+            grade: 4.7,
             username: 'Tatiana',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
           {
             id: 6,
+            grade: 5,
             username: 'Jewgienij',
             text: 'Maszyna została kupiona jako zapas, do odzieży roboczej, dywaników i innych bzdur pranych osobno. Umiarkowanie głośny, nie spodziewałem się kolejnego. Ale są niuanse z programami, czasami nie jest to jasne, nie wyciska się i trzeba osobno ponownie włączyć wirowanie.. nie zawsze zmywa podobne zanieczyszczenia, które inna maszyna Indesit może z łatwością zmyć.'
           },
