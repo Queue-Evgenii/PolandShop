@@ -4,10 +4,10 @@
       <main class="page">
         <div class="page__catalog catalog-page">
           <div class="catalog-page__container container">
-            <aside-sidebar :asideItems="categoryItems " v-if="!SidebarWidth" />
+            <aside-sidebar v-if="!SidebarWidth" />
             <div class="catalog-page__row row">
               <aside class="catalog-page__sidebar sidebar">
-                <aside-sidebar :asideItems="categoryItems " v-if="SidebarWidth" />
+                <aside-sidebar v-if="SidebarWidth" />
                 <aside-filter :filterItems="filterItems" v-if="SidebarWidth" />
               </aside>
               <div class="catalog-page__content content">
@@ -15,8 +15,8 @@
                   <sub-slider :subSlides="categoryItems" />
                 </div>
                 <div class="catalog-page__products">
-                  <catalog-products :catalogProducts="catalogList" :productsLabel="productsLabel" > 
-                    <aside-filter :filterItems="filterItems" v-if="!SidebarWidth" />
+                  <catalog-products :catalogProducts="catalogProducts" :productsLabel="productsLabel" > 
+                    <aside-filter :filterItems="filterItems" v-if="!SidebarWidth"></aside-filter>
                   </catalog-products>
                 </div>
               </div>
@@ -44,8 +44,6 @@ export default {
   layouts: 'default',
   created () {
     this.categoryItems = this.categoryList;
-    this.fetchCatalogList();
-    this.fetchCategoryItem()
   },
   components: {
     LayoutDefault,
@@ -58,9 +56,6 @@ export default {
   },
   data () {
     return {
-      catalogId: 1,
-      asideItems: [],
-      subSlides: [],
       filterItems: [
         {
           name: 'Rodzaj produktu',
@@ -168,23 +163,17 @@ export default {
           ]
         },
       ],
-      catalogList: [],
-      categoryItem: {},
       categoryItems: [],
+      catalogProducts: [],
+      productsLabel: '',
     }
   },
   computed: {
     currentCatId() {
       return parseInt(this.$route.params.id) || 1;
     },
-    productList () {
-      return this.$store.getters.productList;
-    },
     categoryList () {
       return this.$store.getters.categoryList;
-    },
-    productsLabel() {
-      return this.categoryItem.label;
     },
     recentList () {
       return this.$store.getters.recentList;
@@ -207,19 +196,21 @@ export default {
   watch: {
     currentCatId() {
       setTimeout(() => {
-        this.fetchCatalogList()
-        this.fetchCategoryItem()
+        this.fetchProductsByCategoryId(this.currentCatId)
       }, 0)
     }
   },
   methods: {
-    fetchCatalogList () {
-      this.catalogList = this.productList.filter(item => item.category === this.currentCatId);
-    },
-    fetchCategoryItem() {
-      this.categoryItem = this.categoryItems.find(item => item.id == this.currentCatId);
-      
+    fetchProductsByCategoryId(id) {
+      this.$store.dispatch('listProductsByIdCategory', id)
+        .then(res => {
+          this.catalogProducts = res.data.products
+          this.productsLabel = res.data.name
+        })
     }
   },
+  mounted () {
+    this.fetchProductsByCategoryId(this.currentCatId)
+  }
 }
 </script>

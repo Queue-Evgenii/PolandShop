@@ -14,17 +14,18 @@
         <slot></slot>
       </div>
     </div>
-     <div class="products__items" ref="products">
+      <div v-if="catalogProducts.length === 0" class="catalog-page__notice">Category does not contain products yet ;(</div>
+     <div v-if="catalogProducts.length !== 0" class="products__items" ref="products">
       <product-item
-        v-for="product in catalogProducts" 
+        v-for="product in getItems" 
         :key="product.id" 
         :product="product"
         @addToCart="addToCart"
       />
     </div>
-    <div class="products__navi navi-products">
+    <div v-if="catalogProducts.length > this.perPage" class="products__navi navi-products">
       <div class="navi-products__button"><button type="button">Załaduj jeszcze 10 produktów</button></div>
-      <paginate 
+      <paginate
         :page-count="getPaginateCount"
         :page-range="1"
         :container-class="'paginate-products'"
@@ -45,7 +46,6 @@ export default {
     return {
       currentPage: 1,
       perPage: 16,
-      currentProducts: this.catalogProducts,
     }
   },
   props: {
@@ -64,11 +64,7 @@ export default {
   methods: {
     paginateClickCallback (pageNum) {
       this.currentPage = Number(pageNum);
-      // console.log(pageNum)
     },
-    // clickCallback (pageNum) {
-    //   console.log(pageNum)
-    // },
     filtersToggle (e) {
       const title = e.target
       const list = this.$refs.filters
@@ -103,19 +99,23 @@ export default {
   },
   computed: {
     getPaginateCount () {
-      console.log(Math.ceil(this.catalogProducts.length / this.perPage))
       return Math.ceil(this.catalogProducts.length / this.perPage);
     },
     getItems () {
       let start = (this.currentPage - 1) * this.perPage;
       let end = this.currentPage * this.perPage;
-      this.currentProducts.slice(start, end);
-      return this.currentProducts.slice(start, end);
+      this.catalogProducts.slice(start, end);
+      return this.catalogProducts.slice(start, end);
     }
   },
 }
 </script>
 <style lang="stylus">
+.catalog-page__notice{
+  padding-left 10px
+  font-size 28px
+  padding 50px 0 90px
+}
   .settings-products {
     @media(min-width: 1201px){
       display none
@@ -300,65 +300,48 @@ export default {
     flex-wrap wrap
     gap: 20px
   }
-    .products-items-row{
+    @media(min-width: 501px) {
+      .products-items-row{
       grid-template-columns: repeat(1, minmax(300px, 1fr)) !important
     }
-    @media(min-width: 520px) {
       .item-product-row .item-product__body{
         flex-direction: row
-        .item-product-row .item-product__image{
-          flex 0 0 200px
-          @media(max-width: 669px){
-            flex: 0 0 100px !important
-            height 100px
-          }
-        }
         @media(max-width: 669px){
           flex-direction: column
+        }
+        .item-product__image{
+          @media(min-width: 670px) {
+            flex 0 0 200px
+            width 200px
+          }
+        }
+        .item-product-row .item-product__image{
+          
+          @media(max-width: 669px){
+            flex: 0 0 100px 
+            width 100px
+            height 100px
+          }
         }
       }
       .item-product-row .item-product__info{
         flex-direction: row
         align-items: start;
-        margin-top 45px
+        margin-top 15px
         margin-right 60px
         @media(max-width: 669px){
           margin-right 0
           align-items center
         }
-        // .item-product__info-text{
-        //   display flex
-        //   flex-wrap wrap
-        //   gap: 20px
-        //   position absolute
-        //   left 250px
-        //   right 30px
-        //   top 80px
-        //   @media(max-width: 768px){
-        //     top 60px
-        //   }
-        //   @media(max-width: 669px){
-        //     left 150px
-        //     top 50px
-        //   }
-        //   @media(max-width: 590px){
-        //     flex-direction column !important
-        //   }
-        // }
         .item-product__price{
           width unset
         }
       }
       .item-product-row .item-product__actions{
         position absolute
-        left 250px
+        left 270px
         right 30px
         bottom 60px
-        // align-self end
-        // flex-direction: column-reverse
-        // row-gap: 10px
-        // align-items end
-        // height 120px
         justify-content space-between
         width unset
         @media(max-width: 768px){
@@ -379,6 +362,7 @@ export default {
           align-items start
         }
       }
+
     }
     .catalog-products {
       .products__items{

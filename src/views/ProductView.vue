@@ -6,18 +6,19 @@
           <div class="product-page__container container">
             <div class="product-page__row row">
               <aside class="product-page__sidebar sidebar">
-                <aside-sidebar :asideItems="asideItems" v-if="SidebarWidth" />
+                <aside-sidebar v-if="SidebarWidth" />
               </aside>
               <div class="product-page__content content">
                 <div class="product-page__commodity commodity-page">
-                  <commodity-slider :commoditySlides="productItem.images" @openPopup="openPopup" />
-                  <commodity-content :productAbout="productItem" @openAlertPopup="openAlertPopup" @inputValue="inputValue" />
+                  <!-- <div class="carousel-commodity__image"><img :src="this.productItem.preview" alt="" @click="openPopup(item.id)"></div> -->
+                  <commodity-slider :productItem="this.productItem" @openPopup="openPopup" />
+                  <commodity-content :productAbout="this.productItem" @openAlertPopup="openAlertPopup" @inputValue="inputValue" />
                 </div>
                 <div class="product-page__info info-product">
-                  <about-product :aboutText="productItem.aboutText" />
-                  <table-product :tableProductItems="productItem.description" />
-                  <gallery-product :commoditySlides="productItem.images" />
-                  <reviews-product :ReviewsProductItems="productItem.reviews" />
+                  <about-product v-if="this.productItem.description" :aboutText="this.productItem.description" />
+                  <!-- <table-product :tableProductItems="productItem.description" /> -->
+                  <!-- <gallery-product :commoditySlides="productItem.images" /> -->
+                  <!-- <reviews-product :ReviewsProductItems="productItem.reviews" /> -->
                   <!-- <button class="info-product__more">Uczyć się więcej</button> -->
                 </div>
               </div>
@@ -28,13 +29,15 @@
         <page-ads />
       </main>
     </layout-default>
-    <page-popup 
+    <!-- <page-popup 
      v-if="visibilityPopup" 
      @closePopup="closePopup"
+     :popupOutput="this.productItem"
     >
-      <commodity-slider :commoditySlides="productItem.images" />
-      <commodity-content :productAbout="productItem" />
-    </page-popup>
+      <commodity-slider :commoditySlides="this.productItem.images" />
+      <commodity-slider :productItem="this.productItem" />
+      <commodity-content :productAbout="this.productItem" />
+    </page-popup> -->
     <page-popup 
      v-if="buyOneClickPopup" 
      @closePopup="closePopup"
@@ -137,9 +140,9 @@ import PagePopup from '@/components/PagePopup'
 
 
 import PaymentAlert from '@/components/product/PaymentAlert'
-import ReviewsProduct from '@/components/product/ReviewsProduct'
-import TableProduct from '@/components/product/TableProduct'
-import GalleryProduct from '@/components/product/GalleryProduct'
+// import ReviewsProduct from '@/components/product/ReviewsProduct'
+// import TableProduct from '@/components/product/TableProduct'
+// import GalleryProduct from '@/components/product/GalleryProduct'
 import AboutProduct from '@/components/product/AboutProduct'
 
 import CommodityContent from '@/components/product/CommodityContent'
@@ -152,11 +155,6 @@ import PageAds from '@/components/PageAds'
 export default {
   name: 'CatalogView',
   layouts: 'default',
-  created() {
-    this.asideItems = this.categoryList
-    this.productId = parseInt(this.$route.params.id)
-    this.productItem = this.productList.find(item => item.id === this.productId)
-  },
   components: {
     LayoutDefault,
     AsideSidebar,
@@ -165,23 +163,22 @@ export default {
     CommoditySlider,
     CommodityContent,
     AboutProduct,
-    TableProduct,
-    GalleryProduct,
-    ReviewsProduct,
+    // TableProduct,
+    // GalleryProduct,
+    // ReviewsProduct,
     PagePopup,
     PaymentAlert,
   },
   data() {
     return {
-      productId: null,
       visibilityPopup: null,
       buyOneClickPopup: null,
-      asideItems: [],
       inputValue: 0,
       beforePayment: {
-        title: "You want to buy only that product OR buy all products from your cart?",
+        name: "You want to buy only that product OR buy all products from your cart?",
         nclass: "before-payment",
       },
+      productItem: {},
     }
   },
   methods: {
@@ -201,15 +198,25 @@ export default {
       if(this.$store.state.quickBuy.find(item => item.id === this.productItem.id)){
         this.$store.state.quickBuy[0].quantity = this.inputValue;
       }
+    },
+    getProducts () {
+      this.$store.dispatch('getProducts')
+        .then(res => {
+          this.productItem = res.data.find(item => item.id === this.productId)
+        })
+    }
+  },
+  mounted () {
+    this.getProducts()
+  },
+  watch: {
+    productId() {
+      setTimeout(() => {
+        this.getProducts()
+      }, 0)
     }
   },
   computed: {
-    productList() {
-      return this.$store.getters.productList
-    },
-    categoryList () {
-      return this.$store.getters.categoryList;
-    },
     recentList () {
       return this.$store.getters.recentList;
     },
@@ -226,6 +233,9 @@ export default {
       } else {
         return true
       }
+    },
+    productId() {
+      return parseInt(this.$route.params.id) || 1;
     },
   },
 }

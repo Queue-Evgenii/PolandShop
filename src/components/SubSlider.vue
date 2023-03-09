@@ -1,11 +1,12 @@
 <template>
   <div class="subslider">
-    <VueSlickCarousel v-bind="settings" class="subslider__wrapper">
+    <VueSlickCarousel v-if="this.subSlides.length !== 0" v-bind="settings" class="subslider__wrapper">
         <router-link  class="subslider__slide" v-for="item in subSlides" :key="item.id" :to="{name: 'catalogList', params: {id: item.id}}">
           <div class="subslider__image"><img :src="item.image" alt=""></div>
-          <div class="subslider__label">{{ item.label }}</div>
+          <div class="subslider__label">{{ item.name }}</div>
         </router-link>
     </VueSlickCarousel>
+    <span class="loading" v-if="this.subSlides.length === 0"></span>
   </div>
 </template>
 <style lang="stylus">
@@ -18,6 +19,7 @@
       padding-right 150px
       position relative
       overflow-y: hidden
+      min-height: 140px
       @media(max-width: 768px){
         padding-right 0
         padding 20px 0 50px 0
@@ -125,14 +127,26 @@ export default {
             }
           }
         ]
-      }
+      },
+      subSlides: [],
     }
   },
-  props: {
-    subSlides: {
-      type: Array,
-    }
-  },
+  // props: {
+  //   subSlides: {
+  //     type: Array,
+  //   }
+  // },
   components: { VueSlickCarousel },
+  methods: {
+    fetchCategory () {
+      this.$store.dispatch('getCategories')
+      .then(data => {
+        this.subSlides = data.data.filter(item => item.children.length === 0)
+      })
+    }
+  },
+  mounted () {
+    this.fetchCategory()
+  },
 }
 </script>

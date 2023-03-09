@@ -1,12 +1,12 @@
 <template>
   <div class="cart-page__item item-cart">
-    <div class="item-cart__image"><img :src="product.image" alt=""></div>
+    <router-link class="item-cart__image" :to="{name: 'productItem', params: {id: product.id}}" @click.native="closePopup()"><img :src="product.preview" alt="" ></router-link>
     <div class="item-cart__row">
       <div class="item-cart__info">
-        <div class="item-cart__title">{{ product.title }}</div>
-        <div class="item-cart__num"><span>Numer kategorii: </span>{{ product.categoryNum }}</div>
-        <div class="item-cart__cod"><span>Kod EAN: </span>{{ product.cod }}</div>
-        <div class="item-cart__sale"><span>Rabat</span>{{ product.sale + "%" }}</div>
+        <router-link class="item-cart__title" :to="{name: 'productItem', params: {id: product.id}}" @click.native="closePopup()">{{ product.name }}</router-link>
+        <div class="item-cart__num"><span>Numer kategorii: </span>{{ product.category_id }}</div>
+        <div class="item-cart__cod"><span>Kod EAN: </span>{{ product.code }}</div>
+        <div class="item-cart__sale"><span>Rabat</span>{{ Math.ceil(100 - product.price/product.first_price*100) + "%" }}</div>
       </div>
       <div class="item-cart__quantity quantity-product">
         <span @click="decrement(product.id)">-</span>
@@ -53,6 +53,9 @@ export default {
           }
         }
       })
+    },
+    closePopup () {
+      this.$emit('closePopup')
     }
   },
 }

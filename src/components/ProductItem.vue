@@ -4,13 +4,14 @@
       <div class="item-product__body flex" @click="addToRecent(product)">
         <div class="item-product__info flex">
           <div class="item-product__image">
-            <img :src="product.image" alt="">
-            <span v-if="product.mark">{{ product.mark }}</span>
+            <img :src="product.preview" alt="">
+            <span v-if="product.mark">{{ product.labelMark }}</span>
           </div> 
           <div class="item-product__text-row">
-            <div class="item-product__label">{{ product.title}}</div>
-            <div class="item-product__price">{{ product.price }}</div></div>
+            <div class="item-product__label">{{ product.name}}</div>
+            <div class="item-product__price">{{ product.price }}</div>
           </div>
+        </div>
         <div class="item-product__actions actions-product flex">
           <button @click="addToCart(product);$event.stopPropagation();$event.preventDefault();showAlert()" type="button" class="actions-product__button">Dodaj do koszyka</button>
           <button type="button" class="actions-product__favorite"></button>
@@ -36,7 +37,7 @@ export default {
     },
     addToRecent(product){
       if(this.$store.state.recentList.find(item => item.id === product.id)){
-        console.log("dublicate product")
+        // console.log("dublicate product")
       } else {
         this.$store.state.recentList.unshift(product)
       }

@@ -1,9 +1,9 @@
 <template>
   <ul class="preview-product__body">
     <li class="preview-product__item" v-for="item in Items" :key="item.id">
-      <div class="preview-product__image"><img :src="item.image" alt=""></div>
+      <div class="preview-product__image"><img :src="item.preview" alt=""></div>
       <div class="preview-product__info">
-        <div class="preview-product__label">{{ item.title }}</div>
+        <div class="preview-product__label">{{ item.name }}</div>
         <div class="preview-product__price">{{ item.price }}<span>PLN</span></div>
         <div class="preview-product__quantity"><span>Ilość:</span>{{ item.quantity }}</div>
       </div>
@@ -45,6 +45,7 @@ export default {
       width 100%
       height 100%
       padding 25px 5px
+      object-fit: cover
     }
   }
   &__info {

@@ -1,15 +1,15 @@
 <template>
   <div class="commodity-page__content content-commodity">
-    <div class="content-commodity__title">{{ productAbout.title }}</div>
-    <div class="content-commodity__offer">{{ productAbout.offer }}</div>
+    <div class="content-commodity__title">{{ productAbout.name }}</div>
+    <!-- <div class="content-commodity__offer">{{ productAbout.offer }}</div> -->
     <div class="content-commodity__info">
-      <div class="content-commodity__info-row"><span>Numer kategorii: </span>26</div>
-      <div class="content-commodity__info-row"><span>Kod EAN: </span>0723314791448</div>
+      <div class="content-commodity__info-row"><span>Numer kategorii: </span>{{ productAbout.category_id }}</div>
+      <div class="content-commodity__info-row"><span>Kod EAN: </span>{{ productAbout.code }}</div>
     </div>
     <div class="content-commodity__price flex">
       <div class="content-commodity__new-price flex">{{ productAbout.price }}<span>PLN ZA M.B.</span></div>
       <div class="content-commodity__sale-price">
-        <div class="content-commodity__first-price flex">{{ productAbout.firstPrice }}<span>PLN ZA M.B.</span></div>
+        <div class="content-commodity__first-price flex">{{ productAbout.first_price }}<span>PLN ZA M.B.</span></div>
         <div class="content-commodity__price-info"><span>do -7% </span>w hurcie, sprawdz cennik</div>
       </div>
     </div>
@@ -24,9 +24,10 @@
         </div>
         <div class="actions-commodity__token flex"><span>Cod Kupon:</span><input type="text" placeholder="_ _ _ _ _ _ _ _ _ _ _ _ _"></div>
       </div>
-      <div class="actions-commodity__status flex yes" v-if="productAbout.status"><span>W magazynie - </span>Są dostępne</div>
+      <div class="actions-commodity__status flex yes" v-if="productAbout.status"><span>W magazynie - </span>{{ productAbout.labelMark }}</div>
+      <div class="actions-commodity__status flex no" v-else><span>W magazynie - </span>{{ productAbout.labelMark }}</div>
       <div class="actions-commodity__row">
-        <button type="button" class="actions-commodity__cart button" @click="addToCart(productAbout)"><span>Dodaj do koszyka</span></button>
+        <button type="button" class="actions-commodity__cart button" @click="addToCart(productAbout);showAlert()"><span>Dodaj do koszyka</span></button>
         <button type="button" class="actions-commodity__buy button" @click="openAlertPopup"><span>Kup w 1 kliknięciu</span></button>
       </div>
       <div class="actions-commodity__row">
@@ -331,6 +332,11 @@
           this.$store.state.cartList.push(product)
           product.quantity = this.$refs.productInput.value
         }
+      },
+      showAlert() {
+        const block = document.querySelector('.access-alert__container')
+        block.classList.add('show-access-alert')
+        setTimeout(() => block.classList.remove('show-access-alert'), 1000);
       },
       openAlertPopup () {
         this.$emit('openAlertPopup', this.$refs.productInput.value)

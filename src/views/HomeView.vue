@@ -10,31 +10,25 @@
               </aside>
               <div class="home-page__content content">
                 <main-slider :mainSlides="mainSlides" />
-                <sub-slider :subSlides="categoryItems " />
+                <sub-slider />
               </div>
             </div>
           </div>
         </div>
         <home-catalogue
-          catalogId='1'
-          :productItem="productItem1"
-          :categoryItems="categoryItems"
+          catalogId='13'
           @addToCart="addToCart"
         />
         <home-catalogue
-          catalogId='2'
-          :productItem="productItem2"
-          :categoryItems="categoryItems"
+          catalogId='14'
           @addToCart="addToCart"
         />
         <page-ads />
         <home-catalogue
-          catalogId='3'
-          :productItem="productItem3"
-          :categoryItems="categoryItems"
+          catalogId='15'
           @addToCart="addToCart"
         />
-        <recent-products v-if="recentList.length !== 0" :recentProducts="recentList" />
+        <recent-products v-if="recentList.length !== 0" :recentProducts="recentList" @addToCart="addToCart" />
         <page-ads />
       </main>
     </layout-default>
@@ -55,14 +49,8 @@ export default {
   layouts: 'default',
   created () {
     this.categoryItems = this.categoryList;
-    this.productItem1 = this.productList.filter(item => item.category === 1);
-    this.productItem2 = this.productList.filter(item => item.category === 2);
-    this.productItem3 = this.productList.filter(item => item.category === 3);
   },
   computed: {
-    productList () {
-      return this.$store.getters.productList;
-    },
     categoryList () {
       return this.$store.getters.categoryList;
     },
@@ -73,7 +61,6 @@ export default {
   data () {
     return {
       productItem1: null,
-      asideItems: [],
       mainSlides: [
         {
           id: 1,
@@ -100,7 +87,6 @@ export default {
           image: require('@/assets/img/main/slider/slide-bg.png')
         }
       ],
-      subSlides: [],
     }
   },
   methods: {

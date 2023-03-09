@@ -2,11 +2,12 @@
   <div class="page-products">
     <div class="mainproducts products">
       <div class="products__container container">
-        <div class="products__title"><router-link :to="{name: 'catalogList', params: {id: catalogId}}">{{productsLabel}}</router-link></div>
-        <div class="products__items">
+        <div class="products__title"><router-link :to="{name: 'catalogList', params: {id: catalogId}}">{{ productsLabel }}</router-link></div>
+        <span v-if="this.notExistProducts" class="products__not-exist">Category does not contain products yet ;(</span>
+        <div v-if="!this.notExistProducts" class="products__items">
           <product-item
-            v-for="product in productItem" 
-            :key="product.id" 
+            v-for="product in catalogProducts"
+            :key="product.id"
             :product="product"
             @addToCart="addToCart"
           />
@@ -19,27 +20,10 @@
 import ProductItem from '@/components/ProductItem'
 export default {
   props: {
-    mainProducts: {
-      type: Array,
-    },
-    productItem: {
-      type: Array,
-    },
-    categoryItems: {
-      type: Array,
-    },
     catalogId: {
       type: String,
       required: true,
     }
-  },
-  computed: {
-    productsLabel() {
-      return this.categoryItem.label;
-    }
-  },
-  created () {
-    this.categoryItem = this.categoryItems.find(item => item.id == this.catalogId)
   },
   components: {
     ProductItem,
@@ -48,6 +32,30 @@ export default {
     addToCart (product) {
       this.$emit('addToCart', product)
     },
+    fetchProductsByCategoryId(id) {
+      this.$store.dispatch('listProductsByIdCategory', id)
+        .then(res => {
+          if (res.data.products.length > 4) {
+            this.catalogProducts = res.data.products.slice(0,4)
+          } else if (res.data.products.length === 0) {
+            this.notExistProducts = true;
+          }
+          else {
+            this.catalogProducts = res.data.products
+          }
+          this.productsLabel = res.data.name
+        })
+    }
   },
+  mounted () {
+    this.fetchProductsByCategoryId(this.catalogId)
+  },
+  data () {
+    return {
+      catalogProducts: [],
+      productsLabel: '',
+      notExistProducts: false,
+    }
+  }
 }
 </script>

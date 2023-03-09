@@ -50,7 +50,14 @@
     }
     .sidebar{
       padding 40px 0 0 0
-      flex: 0 0 350px !important
+      @media(min-width: 1201px) {
+        flex: 0 0 350px !important
+      }
+      @media(max-width: 1200px) {
+        .sidebar-category__title{
+          cursor pointer
+        }
+      }
     }
     .content{
       max-width: 1500px
@@ -165,12 +172,15 @@
     flex-direction column;
     gap: 20px
     width 100%
+    min-height: 80px
   }
   &__label {
     font-size 18px
     line-height: 21px;
+    flex: 1 1 100%
   }
   &__price {
+    flex: 0 0 auto;
     width 100%
     text-align left
     font-size 33px
@@ -251,5 +261,11 @@
     margin 5px 0
     min-height 100%
   }
+}
+.products__not-exist{
+  display: block;
+  font-size: 24px;
+  line-height: 1.5;
+  padding: 50px 0;
 }
 </style>

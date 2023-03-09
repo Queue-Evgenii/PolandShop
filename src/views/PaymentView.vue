@@ -100,7 +100,6 @@ export default {
     },
     goBack() {
       this.$store.state.quickBuy = [];// this is a question
-      console.log(this.$store.state.quickBuy);
       this.openPopup = false;
     },
   },

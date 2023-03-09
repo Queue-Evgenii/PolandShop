@@ -2,17 +2,25 @@
   <div class="sidebar-category">
     <div class="sidebar-category__title" @click="mobileCategory">Kategorie</div>
      <ul class="sidebar-category__list">
+      <span class="loading" v-if="isLoading"></span>
       <category-item
-        v-for="item in asideItems" 
+        v-for="item in filterListCategory" 
         :key="item.id"
         :item="item"
-        :class="{'active' : currentNavItem === item.id}"
-        @onSelected="onSelected"
       />
     </ul>
   </div>
 </template>
 <style lang="stylus">
+.loading{
+  background: url('@/assets/img/main/icons/loader-new.gif') no-repeat
+  background-size: contain
+  width 100%
+  height 180px
+  position absolute
+  background-position: center
+  top 0px
+}
 .sidebar-category{
   overflow hidden
   transition all 0.5s ease 0s
@@ -61,9 +69,11 @@
     }
   }
   &__list{
-      @media(max-width: 1200px){
-        display none
-      }
+    position relative
+    min-height 180px
+    @media(max-width: 1200px){
+      display none
+    }
     &.active{
       display block
     }
@@ -73,6 +83,9 @@
     padding 5px 0
   }
   &__item-title {
+    display inline-block
+    width 100%
+    height 100%
     font-weight: 700;
     font-size: 16px;
     line-height: 50px;
@@ -131,11 +144,6 @@ export default {
   components: {
     CategoryItem,
   },
-  props: {
-    asideItems: {
-      type: Array,
-    }
-  },
   methods: {
     mobileCategory (e) {
       const categoriesTitle = e.target
@@ -146,12 +154,13 @@ export default {
         categoriesTitle.parentNode.classList.toggle('active')
       }
     },
-    onSelected (id) {
-      if (this.currentNavItem !== id) {
-        this.currentNavItem = id
-      } else if (this.currentNavItem === id) {
-        this.currentNavItem = null
-      }
+    fetchCategory () {
+      this.isLoading = true
+      this.$store.dispatch("getCategories")
+      .then(data => {
+        this.isLoading = false
+        this.listCategory = data.data
+      })
     }
   },
   data () {
@@ -161,8 +170,17 @@ export default {
         sliderMinValue: 0,
         sliderMaxValue: 350,
       },
-      currentNavItem: null
+      listCategory: [],
+      isLoading: false,
     }
   },
+  mounted () {
+    this.fetchCategory()
+  },
+  computed: {
+    filterListCategory() {
+      return this.listCategory.filter(item => item.parent_id === null)
+    }
+  }
 }
 </script>

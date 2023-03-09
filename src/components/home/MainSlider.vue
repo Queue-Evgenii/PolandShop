@@ -65,6 +65,9 @@
       width 100%
       justify-content center
     }
+    @media(max-width: 400px){
+      display none !important
+    }
     button {
       font-size 0
     }

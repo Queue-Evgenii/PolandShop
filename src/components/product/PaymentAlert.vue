@@ -64,7 +64,6 @@ export default {
   },
   methods: {
     goBack(event) {
-      console.log(111);
       this.$emit('goBack', event);
     },
     quickBuy() {

@@ -2,7 +2,7 @@
   <div class="popup">
     <div class="popup__content">
       <div class="popup__header">
-        <div class="popup__title">{{popupOutput.title}}</div>
+        <div class="popup__title">{{popupOutput.name}}</div>
         <div class="popup__close" @click="closePopup"><img src="@/assets/img/main/icons/close.png" alt=""></div>
       </div>
       <div class="popup__body">
@@ -11,8 +11,6 @@
     </div>
   </div>
 </template>
-<script>
-</script>
 <style lang="stylus">
   .popup{
     position fixed

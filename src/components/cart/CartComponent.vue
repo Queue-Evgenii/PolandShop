@@ -8,7 +8,7 @@
         <span class="cart-page__title-total">Cena £</span>
       </div>
       <div class="cart-block">
-        <cart-item :product="product" v-for="product in cartList" :key="product.id" />
+        <cart-item :product="product" v-for="product in cartList" :key="product.id" @closePopup="closePopup"/>
         <div class="cart-page__payment payment-cart">
           <div class="payment-cart__cupon"></div>
           <div class="payment-cart__row flex">
@@ -51,6 +51,11 @@ export default {
       }
       return result;
     }
+  },
+  methods: {
+    closePopup () {
+      this.$emit('closePopup')
+    }
   }
 }
 </script>
@@ -81,7 +86,8 @@ export default {
       position absolute
       width 100%
       height 100%
-      padding 30px 5px
+      padding 5px
+      object-fit: cover
     }
     @media(max-width: 992px){
       height 175px

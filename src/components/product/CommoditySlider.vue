@@ -1,13 +1,14 @@
 <template>
   <div class="commodity-page__images commodity-images">
     <div class="commodity-images__wrapper">
-      <VueSlickCarousel 
+      <div class="commodity-images__array" v-if="typeof productItem.preview === 'array'">
+        <VueSlickCarousel 
         ref="thumb" 
         v-bind="settingsThumbs" 
         :asNavFor="slider"
         class="commodity-images__thumbs thumbs-commodity"
       >
-        <div class="thumbs-commodity__slide" v-for="item in commoditySlides" :key="item.id">
+        <div class="thumbs-commodity__slide" v-for="item in productItem.preview" :key="item.id">
           <div class="thumbs-commodity__image"><img :src="item.image" alt=""></div>
         </div>
       </VueSlickCarousel>
@@ -18,12 +19,16 @@
         class="commodity-images__carousel carousel-commodity"
       >
         <div class="carousel-commodity__slide"
-          v-for="item in commoditySlides"
+          v-for="item in productItem.preview"
           :key="item.id"
         >
           <div class="carousel-commodity__image"><img :src="item.image" alt="" @click="openPopup(item.id)"></div>
         </div>
       </VueSlickCarousel>
+      </div>
+      <div class="commodity-images__string" v-if="typeof productItem.preview === 'string'">
+        <div class="carousel-commodity__image"><img :src="productItem.preview" alt="" @click="openPopup(1)"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -114,8 +119,8 @@ export default {
     this.thumb = this.$refs.thumb
   },
   props: {
-    commoditySlides: {
-      type: Array,
+    productItem: {
+      type: Object,
       required: true,
     }
   },
@@ -130,6 +135,19 @@ export default {
 <style lang="stylus">
   .commodity-images{
     &__wrapper{
+      // display grid
+      // grid-template-columns: 140px minmax(200px, 1fr)
+      // column-gap 25px
+      // row-gap: 10px
+      // overflow: hidden
+      // position relative
+      // padding-bottom 70px
+      // margin-bottom 30px
+      // @media(max-width: 1590px){
+      //   grid-template-columns: minmax(200px, 1fr)
+      // }
+    }
+    &__array{
       display grid
       grid-template-columns: 140px minmax(200px, 1fr)
       column-gap 25px
@@ -141,7 +159,7 @@ export default {
       @media(max-width: 1590px){
         grid-template-columns: minmax(200px, 1fr)
       }
-    }
+    } 
     &__thumbs,
     &__carousel{
       min-width 0
@@ -169,7 +187,6 @@ export default {
         }
       }
     }
-    
   }
   .thumbs-commodity{
     .slick-track{
@@ -241,6 +258,7 @@ export default {
     }
     &__image{
       // max-width 610px
+      border: 1px solid rgba(139,139,139,0.522);
       height 558px
       position relative
       img{

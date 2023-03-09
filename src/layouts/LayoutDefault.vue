@@ -103,7 +103,7 @@
       @closePopup="closePopup"
       :popupOutput="popupOutput"
     >
-      <cart-component :cartList="cartList" />
+      <cart-component :cartList="cartList" @closePopup="closePopup"/>
     </page-popup>
     <access-alert />
   </div>
@@ -623,7 +623,7 @@ export default {
       searchActive: false,
       visibilityPopup: null,
       popupOutput: {
-        title: "Dodano do koszyka"
+        name: "Dodano do koszyka"
       },
       mainMenu: [
         {
