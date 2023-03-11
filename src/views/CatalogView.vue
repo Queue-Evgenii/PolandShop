@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <layout-default>
+    <layout-default v-if="!is404">
       <main class="page">
         <div class="page__catalog catalog-page">
           <div class="catalog-page__container container">
@@ -27,6 +27,7 @@
         <page-ads />
       </main>
     </layout-default>
+    <NotFound v-else/>
   </div>
 </template>
 <style lang="stylus">
@@ -39,6 +40,7 @@ import AsideFilter from '@/components/catalog/AsideFilter'
 import CatalogProducts from '@/components/catalog/CatalogProducts'
 import RecentProducts from '@/components/home/RecentProducts'
 import PageAds from '@/components/PageAds'
+import NotFound from '@/components/NotFound'
 export default {
   name: 'CatalogView',
   layouts: 'default',
@@ -53,6 +55,7 @@ export default {
     CatalogProducts,
     RecentProducts,
     PageAds,
+    NotFound,
   },
   data () {
     return {
@@ -166,6 +169,7 @@ export default {
       categoryItems: [],
       catalogProducts: [],
       productsLabel: '',
+      is404: false,
     }
   },
   computed: {
@@ -201,8 +205,12 @@ export default {
     fetchProductsByCategoryId(id) {
       this.$store.dispatch('listProductsByIdCategory', id)
         .then(res => {
+          this.is404 = false
           this.catalogProducts = res.data.products
           this.productsLabel = res.data.name
+        })
+        .catch(() => {
+          this.is404 = true
         })
     }
   },

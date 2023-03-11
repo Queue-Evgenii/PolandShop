@@ -38,7 +38,7 @@ const routes = [
     component: () => import('../views/PaymentView.vue')
   },
   {
-    path: '/:pathMatch(.*)*',
+    path: '/:pathMatch(.*)',
     name: 'PageNotFound',
     component: () => import('../views/PageNotFound.vue')
   },
