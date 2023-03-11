@@ -16,7 +16,7 @@ export default {
     Items: {
       type: Array,
       required: []
-    }
+    },
   }
 }
 </script>
@@ -44,7 +44,8 @@ export default {
       position absolute
       width 100%
       height 100%
-      padding 25px 5px
+      padding 5px 5px
+      border-radius 10px;
       object-fit: cover
     }
   }

@@ -18,10 +18,12 @@
         </li>
         <li class="form-payment__row">
           <label for="phone" class="form-payment__label">Telefoniczny numer kontaktowy</label>
-          <div class="form-payment__input input-width">
-            <div class="form-payment__select"></div>
-            <input id="phone" type="text">
-          </div>
+          <input class="form-payment__input input-width" id="phone" type="tel" placeholder="Kontaktowy numer">
+<!--          I cant remember for which point these code-->
+<!--          <div class="form-payment__input input-width">-->
+<!--            <div class="form-payment__select"></div>-->
+<!--            <input id="phone" type="text">-->
+<!--          </div>-->
         </li>
       </ul>
     </div>
@@ -152,7 +154,7 @@
     width 190px
     min-width: initial;
     @media(max-width: 992px){
-      width 100% 
+      width 100%
     }
     &:hover{
       background-color #ff0031;
@@ -166,7 +168,7 @@
     line-height 16px
     width 215px
     @media(max-width: 992px){
-      width 100% 
+      width 100%
     }
   }
   &__radiobox {

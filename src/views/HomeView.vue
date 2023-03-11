@@ -51,11 +51,8 @@ export default {
     this.categoryItems = this.categoryList;
   },
   computed: {
-    categoryList () {
-      return this.$store.getters.categoryList;
-    },
     recentList () {
-      return this.$store.getters.recentList;
+      return this.$store.state.recentList;
     },
   },
   data () {

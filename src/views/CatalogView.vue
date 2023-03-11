@@ -172,11 +172,8 @@ export default {
     currentCatId() {
       return parseInt(this.$route.params.id) || 1;
     },
-    categoryList () {
-      return this.$store.getters.categoryList;
-    },
     recentList () {
-      return this.$store.getters.recentList;
+      return this.$store.state.recentList;
     },
     SidebarWidth () {
       if (window.innerWidth <= 1200) {

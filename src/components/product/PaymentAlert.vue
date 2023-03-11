@@ -2,7 +2,7 @@
   <div class="alert-block">
     <!-- <div class="alert-block__text">{{popupOutput.title}}</div>  -->
     <div class="alert-block__buttons" :class="popupOutput.nclass === 'before-payment' ? 'before-payment' : ''">
-      <router-link :to="{name: 'payment'}" @click.native="quickBuy()" class="alert-block__buy button"><span>Buy onle that</span></router-link>
+      <router-link :to="{name: 'payment'}" class="alert-block__buy button"><span  @click="quickBuy()">Buy onle that</span></router-link>
       <router-link :to="{name: 'cart'}" class="alert-block__payment button"><span>Go to cart</span></router-link>
     </div>
     <div class="alert-block__buttons" :class="popupOutput.nclass === 'on-payment' ? 'on-payment' : ''">
@@ -35,7 +35,10 @@
       background-color #fff
       border 1px solid #FF0031
       span{
+        display inline-block
         color #FF0031
+        width 100%
+        height 100%
       }
       &:hover{
         background-color #FF0031
@@ -67,9 +70,9 @@ export default {
       this.$emit('goBack', event);
     },
     quickBuy() {
-      this.$emit('quickBuy');
+      console.log(112233)
+      this.$emit('quickBuy')
     },
-    
     closePopup() {
       this.$emit('closePopup');
     }

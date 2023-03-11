@@ -37,7 +37,7 @@
               </div>
               <div class="actions-header__cart actions-header__item flex" @click="openPopup">
                 <a href="#" class="actions-header__link hover-underline">Moje zakupy</a>
-                <a href="#" class="actions-header__cart-icon"><span>0</span></a>
+                <a href="#" class="actions-header__cart-icon"><span>{{ this.$store.state.cartList.length }}</span></a>
               </div>
               <div class="actions-header__user actions-header__item flex">
                 <a href="#" class="actions-header__link hover-underline">Obszar osobisty</a>
@@ -337,7 +337,7 @@
       flex 0 0 26px
       position relative
       span{
-        background: linear-gradient(270deg, rgba(255, 142, 68, 0.24) 0%, rgba(249, 19, 98, 0.24) 50%, rgba(53, 18, 106, 0.24) 100%);
+        background: linear-gradient(90deg, rgba(212,198,219,1) 0%, rgba(251,198,217,1) 35%, rgba(255,224,211,1) 100%)
       }
     }
     &__user-icon{
@@ -821,7 +821,7 @@ export default {
   },
   computed: {
     cartList () {
-      return this.$store.getters.cartList
+      return this.$store.state.cartList
     },
     MobileWidth () {
       if (window.innerWidth <= 768) {

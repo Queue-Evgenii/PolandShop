@@ -1,16 +1,16 @@
 <template>
   <div class="commodity-page__content content-commodity">
-    <div class="content-commodity__title">{{ productAbout.name }}</div>
-    <!-- <div class="content-commodity__offer">{{ productAbout.offer }}</div> -->
+    <div class="content-commodity__title">{{ productItem.name }}</div>
+    <!-- <div class="content-commodity__offer">{{ productItem.offer }}</div> -->
     <div class="content-commodity__info">
-      <div class="content-commodity__info-row"><span>Numer kategorii: </span>{{ productAbout.category_id }}</div>
-      <div class="content-commodity__info-row"><span>Kod EAN: </span>{{ productAbout.code }}</div>
+      <div class="content-commodity__info-row"><span>Numer kategorii: </span>{{ productItem.category_id }}</div>
+      <div class="content-commodity__info-row"><span>Kod EAN: </span>{{ productItem.code }}</div>
     </div>
     <div class="content-commodity__price flex">
-      <div class="content-commodity__new-price flex">{{ productAbout.price }}<span>PLN ZA M.B.</span></div>
+      <div class="content-commodity__new-price flex">{{ productItem.price }}<span>PLN ZA M.B.</span></div>
       <div class="content-commodity__sale-price">
-        <div class="content-commodity__first-price flex">{{ productAbout.first_price }}<span>PLN ZA M.B.</span></div>
-        <div class="content-commodity__price-info"><span>do -7% </span>w hurcie, sprawdz cennik</div>
+        <div v-if="productItem.first_price" class="content-commodity__first-price flex">{{ productItem.first_price }}<span>PLN ZA M.B.</span></div>
+        <div v-if="productItem.first_price" class="content-commodity__price-info"><span>do -7% </span>w hurcie, sprawdz cennik</div>
       </div>
     </div>
     <div class="content-commodity__actions actions-commodity">
@@ -18,16 +18,16 @@
         <div class="actions-commodity__quantity quantity-product">
           <span @click="decrement()">-</span>
           <div class="quantity-product__input">
-            <input type="text" value="1" ref="productInput">
+            <input type="text" :value="this.getQuantity" ref="productInput">
           </div>
           <span @click="increment()">+</span>
         </div>
         <div class="actions-commodity__token flex"><span>Cod Kupon:</span><input type="text" placeholder="_ _ _ _ _ _ _ _ _ _ _ _ _"></div>
       </div>
-      <div class="actions-commodity__status flex yes" v-if="productAbout.status"><span>W magazynie - </span>{{ productAbout.labelMark }}</div>
-      <div class="actions-commodity__status flex no" v-else><span>W magazynie - </span>{{ productAbout.labelMark }}</div>
+      <div class="actions-commodity__status flex yes" v-if="productItem.status"><span>W magazynie - </span>{{ productItem.labelMark }}</div>
+      <div class="actions-commodity__status flex no" v-else><span>W magazynie - </span>{{ productItem.labelMark }}</div>
       <div class="actions-commodity__row">
-        <button type="button" class="actions-commodity__cart button" @click="addToCart(productAbout);showAlert()"><span>Dodaj do koszyka</span></button>
+        <button type="button" class="actions-commodity__cart button" @click="addToCart(productItem);showAlert()"><span>Dodaj do koszyka</span></button>
         <button type="button" class="actions-commodity__buy button" @click="openAlertPopup"><span>Kup w 1 kliknięciu</span></button>
       </div>
       <div class="actions-commodity__row">
@@ -79,7 +79,7 @@
       }
     }
     &__sale-price{
-      
+
     }
     &__new-price{
       font-weight: 700;
@@ -178,7 +178,7 @@
         max-width 155px
         background-color transparent
         font-size 18px
-        transition: all 0.5s ease 
+        transition: all 0.5s ease
         letter-spacing: 4px
         &:focus{
           box-shadow: 0.2px 0.2px 5px rgba(#000, 0.2)
@@ -190,7 +190,7 @@
       font-size: 14px;
       line-height: 16px;
       color: #FF0031;
-      column-gap: 10px 
+      column-gap: 10px
       span{
         font-weight 700
       }
@@ -258,7 +258,7 @@
       right 0
     }
     .content-commodity__title{
-      position absolute 
+      position absolute
       top 40px
     }
     .content-commodity__info,
@@ -311,7 +311,7 @@
 <script>
   export default {
     props: {
-      productAbout: {
+      productItem: {
         type: Object,
         required: true,
       }
@@ -327,11 +327,14 @@
       },
       addToCart (product) {
         if(this.$store.state.cartList.find(item => item.id === product.id)){
-          product.quantity = this.$refs.productInput.value
+          const item = this.$store.state.cartList.find(item => item.id === product.id)
+          item.quantity = this.$refs.productInput.value
         } else {
           this.$store.state.cartList.push(product)
-          product.quantity = this.$refs.productInput.value
+          const item = this.$store.state.cartList.find(item => item.id === product.id)
+          item.quantity = this.$refs.productInput.value
         }
+        console.log(product.quantity)
       },
       showAlert() {
         const block = document.querySelector('.access-alert__container')
@@ -342,5 +345,16 @@
         this.$emit('openAlertPopup', this.$refs.productInput.value)
       },
     },
+    computed: {
+      getQuantity () {
+        if (!this.$store.state.cartList.find(item => item.id === this.productItem.id)) {
+          return this.productItem.quantity
+        } else {
+          const item = this.$store.state.cartList.find(item => item.id === this.productItem.id)
+          console.log(item)
+          return item.quantity
+        }
+      }
+    }
   }
 </script>

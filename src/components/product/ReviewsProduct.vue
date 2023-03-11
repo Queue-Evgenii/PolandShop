@@ -1,7 +1,7 @@
 <template>
   <div class="info-product__reviews reviews-product info-product__block">
     <div class="info-product__title">Opinie klientów:</div>
-    <ul class="reviews-product__items">
+    <ul v-if="ReviewsProductItems.length !== 0" class="reviews-product__items">
       <li class="reviews-product__item" v-for="item in ReviewsProductItems" :key="item.id">
         <span class="reviews-product__username">{{item.username}}</span>
         <span class="reviews-product__rating rating-product">
@@ -12,6 +12,7 @@
         <p class="reviews-product__text">{{item.text}}</p>
       </li>
     </ul>
+    <div v-else class="reviews-product__no-reviews">This product not contain feedbacks ;(</div>
   </div>
 </template>
 <script>
@@ -50,6 +51,11 @@
     }
     &__text{
       color: #3D3D3D;
+    }
+    &__no-reviews{
+      font-size: 20px;
+      line-height: 25px;
+      color: #000;
     }
   }
   .rating-product{

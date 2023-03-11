@@ -2,7 +2,7 @@
   <div class="subslider">
     <VueSlickCarousel v-if="this.subSlides.length !== 0" v-bind="settings" class="subslider__wrapper">
         <router-link  class="subslider__slide" v-for="item in subSlides" :key="item.id" :to="{name: 'catalogList', params: {id: item.id}}">
-          <div class="subslider__image"><img :src="item.image" alt=""></div>
+          <div class="subslider__image"><img :src="item.preview" alt=""></div>
           <div class="subslider__label">{{ item.name }}</div>
         </router-link>
     </VueSlickCarousel>
@@ -41,8 +41,13 @@
           display flex !important
           gap 15px
           min-height: 181px
+          padding 5px 0
         }
         .slick-slide{
+          transition: all 0.2s ease 0s
+          &:hover{
+            box-shadow: 1px 1px 5px 1px #000;
+          }
         }
       }
       &__slide{
@@ -58,8 +63,17 @@
         background: linear-gradient(117.13deg, #FFFFFF -11.73%, #D5D5D5 105.48%);
       }
       &__image{
-        max-width 174px
+        width 174px
         height 90px
+        position relative
+        img{
+          position absolute
+          top 0
+          left 0
+          width 100%
+          height 100%
+          object-fit: cover
+        }
       }
       &__label{
         font-weight: 700;

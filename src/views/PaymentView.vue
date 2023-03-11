@@ -15,18 +15,18 @@
                       <div class="preview-payment__title">Podsumowanie zamowienia</div>
                       <div class="preview-payment__qtty">
                         <img src="@/assets/img/header/icon/cart.png" alt="">
-                        {{ productPreview.length }}
+                        {{ this.previewProducts.length }}
                         <span>produkty</span>
                       </div>
                     </div>
-                    <preview-product :Items="productPreview" />
+                    <preview-product :Items="this.previewProducts" />
                     <div class="preview-payment__delivery-price flex">
                       <span class="preview-payment__label">Koszt przesyłki</span>
-                      <span>5 PLN</span>
+                      <span>{{ this.deliveryPrice }} PLN</span>
                     </div>
                     <div class="preview-payment__total-price flex">
                       <span class="preview-payment__label">Całkowity</span>
-                      <span>{{cartTotalCost}} PLN</span>
+                      <span>{{ +cartTotalCost + +this.deliveryPrice }} PLN</span>
                     </div>
                   </div>
                 </div>
@@ -37,8 +37,8 @@
         <page-ads />
       </main>
     </layout-default>
-    <page-popup 
-     v-if="openPopup" 
+    <page-popup
+     v-if="openPopup"
      @goBackPopup="goBackPopup"
      @closePopup="closePopup"
      :popupOutput="this.onPayment"
@@ -54,7 +54,7 @@ import LayoutDefault from '@/layouts/LayoutDefault'
 import PaymentForm from '@/components/payment/PaymentForm'
 import PreviewProduct from '@/components/PreviewProduct'
 import PaymentAlert from '@/components/product/PaymentAlert'
-import PageAds from '@/components/PageAds.vue'
+import PageAds from '@/components/PageAds'
 export default {
   name: 'CatalogView',
   layouts: 'default',
@@ -70,7 +70,8 @@ export default {
   },
   data() {
     return {
-      quickBuyExist: false,
+      previewProducts: [],
+      deliveryPrice: "5",
       openPopup: false,
       isExistData: false,
       productAbout: {
@@ -102,16 +103,29 @@ export default {
       this.$store.state.quickBuy = [];// this is a question
       this.openPopup = false;
     },
+    productPreview () {
+      if(this.isQuickBuy) {
+        this.previewProducts = this.$store.state.quickBuy;
+      } else if (!this.isQuickBuy) {
+        this.previewProducts = this.$store.state.cartList;
+      } else {
+        this.previewProducts = [];
+      }
+    },
+  },
+  watch: {
+    isQuickBuy () {
+      setTimeout(() => {
+        this.productPreview()
+      }, 0)
+    }
+  },
+  mounted() {
+    this.productPreview()
   },
   computed: {
-    productPreview () {
-      if(this.$store.state.quickBuy.length > 0) {
-        return this.$store.state.quickBuy;
-      } else if (this.$store.state.quickBuy.length <= 0 && this.$store.state.cartList.length > 0) {
-        return this.$store.getters.cartList;
-      } else {
-        return [];
-      }
+    isQuickBuy () {
+      return this.$store.state.isQuickBuy
     },
     cartTotalCost() {
       let result = [];

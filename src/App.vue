@@ -82,11 +82,16 @@
   border-radius: 8px
   background-color: #FF0031;
   min-width 240px
-  padding 16px 5px
+  min-height 50px
   transition: all 0.5s ease
+  border 1px solid transparent
   span{
+    display inline-block
+    padding 16px 5px
     font-weight: 700;
     color: #fff
+    width 100%
+    height 100%
   }
   @media(max-width:1440px){
     width 100%

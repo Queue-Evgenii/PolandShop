@@ -13,11 +13,11 @@
           <div class="payment-cart__cupon"></div>
           <div class="payment-cart__row flex">
             <div class="payment-cart__label">Razem do zapłaty:</div>
-            <div class="payment-cart__sale item-cart__sale"><span>Rabat</span>-</div>
+            <div class="payment-cart__sale item-cart__sale"><span>Rabat</span>{{ sale() + '%' }}</div>
             <div class="payment-cart__total-price">{{cartTotalCost}} PLN</div>
           </div>
           <div class="payment-cart__button-box flex">
-            <router-link :to="{name: 'payment'}" class="payment-cart__button button"><span>Zapłać za towar</span></router-link>
+            <router-link :to="{name: 'payment'}" @click.native="closePopup()" class="payment-cart__button button"><span @click="notQuickBuy()">Zapłać za towar</span></router-link>
           </div>
         </div>
       </div>
@@ -55,6 +55,21 @@ export default {
   methods: {
     closePopup () {
       this.$emit('closePopup')
+    },
+    notQuickBuy() {
+      this.$store.state.isQuickBuy = false
+    },
+    sale(){
+      let sumWithout = 0, sumWith = 0
+      this.cartList.forEach(element => {
+        sumWithout += +element.price
+        sumWith += +element.first_price
+      });
+      return Math.ceil(100 - sumWithout/sumWith*100)
+    },
+  },
+  data() {
+    return{
     }
   }
 }

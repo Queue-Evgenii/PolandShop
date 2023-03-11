@@ -38,6 +38,11 @@ const routes = [
     component: () => import('../views/PaymentView.vue')
   },
   {
+    path: '/:pathMatch(.*)*',
+    name: 'PageNotFound',
+    component: () => import('../views/PageNotFound.vue')
+  },
+  {
     path: '/kategorie/',
     name: 'kategorie',
   },

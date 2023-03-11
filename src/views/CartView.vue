@@ -19,7 +19,7 @@
             </div>
           </div>
         </div>
-        <recent-products :mainProducts="mainProducts" />
+        <recent-products v-if="recentList.length !== 0" :recentProducts="recentList" />
         <page-ads />
       </main>
     </layout-default>
@@ -97,7 +97,10 @@ export default {
   },
   computed: {
     cartList () {
-      return this.$store.getters.cartList
+      return this.$store.state.cartList
+    },
+    recentList () {
+      return this.$store.state.recentList;
     },
   },
   data() {

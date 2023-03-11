@@ -12,13 +12,13 @@
                 <div class="product-page__commodity commodity-page">
                   <!-- <div class="carousel-commodity__image"><img :src="this.productItem.preview" alt="" @click="openPopup(item.id)"></div> -->
                   <commodity-slider :productItem="this.productItem" @openPopup="openPopup" />
-                  <commodity-content :productAbout="this.productItem" @openAlertPopup="openAlertPopup" @inputValue="inputValue" />
+                  <commodity-content :productItem="this.productItem" @openAlertPopup="openAlertPopup" @inputValue="inputValue" />
                 </div>
                 <div class="product-page__info info-product">
                   <about-product v-if="this.productItem.description" :aboutText="this.productItem.description" />
                   <!-- <table-product :tableProductItems="productItem.description" /> -->
                   <!-- <gallery-product :commoditySlides="productItem.images" /> -->
-                  <!-- <reviews-product :ReviewsProductItems="productItem.reviews" /> -->
+                  <reviews-product v-if="this.productItem.feedbacks" :ReviewsProductItems="productItem.feedbacks" />
                   <!-- <button class="info-product__more">Uczyć się więcej</button> -->
                 </div>
               </div>
@@ -140,7 +140,7 @@ import PagePopup from '@/components/PagePopup'
 
 
 import PaymentAlert from '@/components/product/PaymentAlert'
-// import ReviewsProduct from '@/components/product/ReviewsProduct'
+import ReviewsProduct from '@/components/product/ReviewsProduct'
 // import TableProduct from '@/components/product/TableProduct'
 // import GalleryProduct from '@/components/product/GalleryProduct'
 import AboutProduct from '@/components/product/AboutProduct'
@@ -165,7 +165,7 @@ export default {
     AboutProduct,
     // TableProduct,
     // GalleryProduct,
-    // ReviewsProduct,
+    ReviewsProduct,
     PagePopup,
     PaymentAlert,
   },
@@ -194,6 +194,8 @@ export default {
       this.inputValue = value
     },
     quickBuy() {
+      this.$store.state.isQuickBuy = true
+      console.log(this.$store.state.isQuickBuy)
       this.$store.state.quickBuy[0] = this.productItem;
       if(this.$store.state.quickBuy.find(item => item.id === this.productItem.id)){
         this.$store.state.quickBuy[0].quantity = this.inputValue;
@@ -218,7 +220,7 @@ export default {
   },
   computed: {
     recentList () {
-      return this.$store.getters.recentList;
+      return this.$store.state.recentList;
     },
     SidebarWidth() {
       if (window.innerWidth <= 1200) {
