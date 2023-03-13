@@ -13,6 +13,20 @@ module.exports = defineConfig({
           }
         ]
       })
-    ]
+    ],
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules\/(?!ora)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              ignore: [/node_modules\/ora\/index\.js/]
+            }
+          }
+        }
+      ]
+    }
   }
 })
