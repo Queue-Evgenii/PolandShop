@@ -18,11 +18,11 @@ module.exports = defineConfig({
       rules: [
         {
           test: /\.js$/,
-          exclude: /node_modules\/(?!ora)/,
+          exclude: /node_modules\/(?!(@?(your-company|your-package)\/))/,
           use: {
             loader: 'babel-loader',
             options: {
-              ignore: [/node_modules\/ora\/index\.js/]
+              ignore: [/node_modules\/(@?(your-company|your-package)\/).*\.js/]
             }
           }
         }
