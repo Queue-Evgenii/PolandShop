@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "my-build": "vue-cli-service build && cp public/.htaccess dist/.htaccess",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
